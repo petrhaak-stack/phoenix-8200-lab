@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phoenix 8200 Lab</title>
+<meta name="description" content="Phoenix 8200 BML — úpravy, zkušenosti a technická řešení z praxe. Deník jednoho obytného auta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-bg:hover{background:#fbfaf6}
+  .hover-row:hover{background:#161513}
+  .hover-border:hover{border-color:#16140F}
+  input:focus, select:focus, textarea:focus{border-color:var(--gold) !important}
+  .filter-btn{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.04em; padding:9px 16px; border-radius:999px; cursor:pointer;}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    .grid-4{grid-template-columns:repeat(2,1fr) !important}
+    .grid-5{grid-template-columns:repeat(2,1fr) !important}
+    .grid-3{grid-template-columns:1fr !important}
+    h1{font-size:38px !important}
+    h2{font-size:30px !important}
+    .contact-grid{grid-template-columns:1fr !important}
+    .contact-grid > div{border-right:none !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="#auto" style="text-decoration:none; color:#4a463f">Moje auto</a>
+        <a href="#upravy" style="text-decoration:none; color:#4a463f">Úpravy</a>
+        <a href="#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="#dily" style="text-decoration:none; color:#4a463f">Databáze dílů</a>
+        <a href="#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Napiš mi</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" style="position:relative">
+    <div style="background:#111010; color:#F3F1EA; position:relative; overflow:hidden">
+      <div style="max-width:1280px; margin:0 auto; padding:72px 40px 0; display:grid; grid-template-columns:1fr; gap:0">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:24px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase">Deník jednoho Phoenixu</span>
+          <span style="height:1px; flex:1; background:linear-gradient(90deg, var(--gold), transparent)"></span>
+        </div>
+        <h1 style="font-family:var(--display); font-weight:400; font-size:64px; line-height:1.02; letter-spacing:-0.02em; margin:0 0 24px; max-width:16ch">Phoenix 8200 BML — úpravy, zkušenosti a&nbsp;technická řešení z&nbsp;praxe</h1>
+        <p style="font-size:18px; line-height:1.6; color:#B8B3A8; max-width:54ch; margin:0 0 36px">Neobyčejné obytné auto, které postupně ladím a&nbsp;testuji. Každá úprava jako technický článek: problém → řešení → použité díly → výsledek → co bych dnes udělal jinak.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px">
+          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Elektro</a>
+          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Voda</a>
+          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Topení</a>
+          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Konektivita</a>
+          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Bezpečnost</a>
+          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Interiér</a>
+          <a href="#auto" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Servis</a>
+        </div>
+      </div>
+      <div style="max-width:1280px; margin:0 auto; padding:0 40px 0">
+        <div style="position:relative; height:440px; border-radius:6px 6px 0 0; overflow:hidden; background:repeating-linear-gradient(135deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 16px), #1c1b18; border:1px solid #2a2824; border-bottom:none; display:flex; align-items:flex-end; justify-content:space-between; padding:24px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">[ FOTO — Phoenix 8200, čelní pohled na lokaci ]</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">2 300 × 920</span>
+        </div>
+      </div>
+      <!-- spec strip -->
+      <div style="background:#0b0a0a; border-top:1px solid #2a2824">
+        <div class="grid-4" style="max-width:1280px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:repeat(4, 1fr)">
+          <div style="padding:22px 0; border-right:1px solid #211f1c">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Model</div>
+            <div style="font-size:20px; font-weight:600; color:#F3F1EA">Phoenix 8200 BML</div>
+          </div>
+          <div style="padding:22px 0; border-right:1px solid #211f1c">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Podvozek</div>
+            <div style="font-size:20px; font-weight:600; color:#F3F1EA">Iveco Daily</div>
+          </div>
+          <div style="padding:22px 0; border-right:1px solid #211f1c">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Délka</div>
+            <div style="font-size:20px; font-weight:600; color:#F3F1EA">8,20 m</div>
+          </div>
+          <div style="padding:22px 0; border-right:1px solid #211f1c">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Najeto</div>
+            <div style="font-size:20px; font-weight:600; color:#F3F1EA">142 000 km</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOJE AUTO ============ -->
+  <section id="auto" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">01 — Moje auto</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technická data &amp; aktuální stav</h2>
+      </div>
+      <a href="#auto" style="text-decoration:none; color:#16140F; font-size:14px; font-weight:600; white-space:nowrap">Celá specifikace →</a>
+    </div>
+    <div class="grid-2" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:32px; align-items:stretch">
+      <div style="border:1px solid #E7E4DC; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; min-height:360px; display:flex; align-items:flex-end; padding:22px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">[ FOTO — Phoenix 8200, boční profil + půdorys ]</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E7E4DC; border:1px solid #E7E4DC; border-radius:6px; overflow:hidden">
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Model</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">Phoenix 8200 BML</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Rok výroby</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">2015</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Podvozek</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">Iveco Daily 70C18</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Motor</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">3.0 / 132 kW</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Délka × šířka</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">8,20 × 2,30 m</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Výška</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">3,15 m</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Hmotnost</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">7,2 t</div>
+        </div>
+        <div style="background:#fff; padding:22px 20px">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Místa k spaní</div>
+          <div style="font-size:18px; font-weight:600; color:#16140F">4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ÚPRAVY A UPGRADY ============ -->
+  <section id="upravy" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">02 — Úpravy a upgrady</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Hlavní sekce — každý zásah jako článek</h2>
+      </div>
+    </div>
+
+    <!-- category index -->
+    <div class="grid-5" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:1px; background:#E7E4DC; border:1px solid #E7E4DC; border-radius:6px; overflow:hidden; margin-bottom:48px">
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Elektro a LiFePO₄</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Soláry a Victron</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Voda a čerpadla</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Topení / Alde / klima</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Internet / Starlink / 5G</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Kamery a zabezpečení</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">07</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Světla a elektroinstalace</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">08</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Interiér</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">09</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Servis podvozku</span></a>
+      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">10</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Antikorozní ochrana</span></a>
+    </div>
+
+    <!-- featured articles -->
+    <div class="grid-2" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:32px">
+      <article style="display:flex; flex-direction:column">
+        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — bateriový blok pod sedačkou ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Elektro a LiFePO₄</span>
+        </div>
+        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Přechod na 400 Ah LiFePO₄</h3>
+        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Olověná banka nestíhala a stárla. Popisuji výběr článků, BMS, jištění a reálnou kapacitu po roce provozu.</p>
+        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
+          <span>Problém → řešení</span>
+          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
+          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        </div>
+      </article>
+      <article style="display:flex; flex-direction:column">
+        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — panely na střeše ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Soláry a Victron</span>
+        </div>
+        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">820 Wp na střeše + Victron MPPT</h3>
+        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Rozložení panelů, kabeláž, MPPT regulace a kolik to reálně nasype v létě i v zimě.</p>
+        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
+          <span>Montáž → výsledek</span>
+          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
+          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        </div>
+      </article>
+      <article style="display:flex; flex-direction:column">
+        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — Starlink na střeše ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Internet / Starlink / 5G</span>
+        </div>
+        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Starlink a 5G router pro práci na cestě</h3>
+        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Sestava pro stabilní připojení v Evropě, spotřeba, držák na střeše a failover na 5G.</p>
+        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
+          <span>Použité díly</span>
+          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
+          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        </div>
+      </article>
+      <article style="display:flex; flex-direction:column">
+        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — Alde jednotka ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Topení / Alde</span>
+        </div>
+        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Servis Alde a tišší cirkulace</h3>
+        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Odvzdušnění, výměna kapaliny a úprava čerpadla pro klidnější noc. Co se osvědčilo.</p>
+        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
+          <span>Co bych udělal jinak</span>
+          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
+          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ BLOG ============ -->
+  <section id="blog" style="background:#111010; color:#F3F1EA; margin-top:104px">
+    <div style="max-width:1280px; margin:0 auto; padding:96px 40px">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:48px; border-bottom:1px solid #2a2824; padding-bottom:20px">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">03 — Blog</div>
+          <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0; color:#F3F1EA">Krátké praktické články z cest</h2>
+        </div>
+        <a href="#blog" style="text-decoration:none; color:#F3F1EA; font-size:14px; font-weight:600; white-space:nowrap">Všechny články →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr; gap:0">
+        <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span>
+          <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Kolik reálně dá solár 820 Wp</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Naměřené hodnoty den po dni — jaro, léto, zataženo.</p></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">12 min · květen 2026</span>
+        </a>
+        <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span>
+          <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Starlink v obytném autě v Chorvatsku</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Rychlosti, spotřeba a kde to fungovalo nejlíp.</p></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">9 min · duben 2026</span>
+        </a>
+        <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span>
+          <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Jak dlouho vydrží voda pro čtyřčlennou rodinu</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Reálná spotřeba na 5 dní bez doplňování.</p></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">7 min · březen 2026</span>
+        </a>
+        <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span>
+          <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Co bych u Phoenixu po 10 letech změnil</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Pět věcí, které bych dnes řešil úplně jinak.</p></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">14 min · únor 2026</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DATABÁZE DÍLŮ ============ -->
+  <section id="dily" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">04 — Databáze dílů</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Co je v autě a proč zrovna to</h2>
+      </div>
+      <a href="#dily" style="text-decoration:none; color:#16140F; font-size:14px; font-weight:600; white-space:nowrap">Celá databáze →</a>
+    </div>
+    <div style="border:1px solid #E7E4DC; border-radius:6px; overflow:hidden">
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:14px 24px; background:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#7a766d; text-transform:uppercase">
+        <span>Díl</span><span>Model</span><span>Cena</span><span>Proč &amp; zkušenost</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Měnič / nabíječ</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Victron MultiPlus II</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">32 900</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Spolehlivý a tichý, skvělá integrace s VictronConnect. Po 3 letech bez problému.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Solární regulátor</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">SmartSolar MPPT 100/30</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">4 200</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Přesné MPPT a Bluetooth monitoring. Drží i v zatažení.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Trakční baterie</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">LiFePO₄ 400 Ah</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">48 000</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Vysoká využitelná kapacita, nízká hmotnost. Výdrž přes zimu OK.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Tlakové čerpadlo</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Shurflo 4.0 GPM</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">2 400</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Tišší než originál, stabilní tlak ve dvou odběrech.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Konektivita</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Starlink Mini</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">15 900</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Práce na cestě bez výpadků. Spotřebu řeším přes Victron.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Topení</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Alde Compact 3030</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">—</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Originál, po servisu výrazně tišší. Teplá voda i radiátory.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOTOGALERIE ============ -->
+  <section id="galerie" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:28px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">05 — Fotogalerie</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Před / po &amp; detaily montáže</h2>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px">
+      <button class="filter-btn" data-filter="Vše" style="border:1px solid #16140F; background:#16140F; color:#F3F1EA">Vše</button>
+      <button class="filter-btn" data-filter="Elektro" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Elektro</button>
+      <button class="filter-btn" data-filter="Voda" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Voda</button>
+      <button class="filter-btn" data-filter="Topení" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Topení</button>
+      <button class="filter-btn" data-filter="Konektivita" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Konektivita</button>
+      <button class="filter-btn" data-filter="Interiér" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Interiér</button>
+      <button class="filter-btn" data-filter="Podvozek" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Podvozek</button>
+    </div>
+    <div id="gallery-grid" class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px">
+      <div class="gallery-item" data-tag="Elektro" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Elektro</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Před / po — rozvaděč ]</span></div>
+      <div class="gallery-item" data-tag="Voda" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Voda</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Detail — čerpadlo a filtr ]</span></div>
+      <div class="gallery-item" data-tag="Topení" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Topení</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Alde — montáž ]</span></div>
+      <div class="gallery-item" data-tag="Konektivita" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Konektivita</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Starlink na střeše ]</span></div>
+      <div class="gallery-item" data-tag="Interiér" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Interiér</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Před / po — kuchyň ]</span></div>
+      <div class="gallery-item" data-tag="Podvozek" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Podvozek</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Antikoroze — detail ]</span></div>
+      <div class="gallery-item" data-tag="Elektro" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Elektro</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Bateriový blok ]</span></div>
+      <div class="gallery-item" data-tag="Interiér" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Interiér</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Úložné prostory ]</span></div>
+      <div class="gallery-item" data-tag="Voda" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Voda</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Nádrž a rozvod ]</span></div>
+    </div>
+  </section>
+
+  <!-- ============ KE STAŽENÍ ============ -->
+  <section id="ke-stazeni" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+    <div style="border-bottom:1px solid #E7E4DC; padding-bottom:20px; margin-bottom:36px">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">06 — Ke stažení</div>
+      <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Schémata, checklisty a servisní poznámky</h2>
+    </div>
+    <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px">
+      <a href="#ke-stazeni" class="hover-border" style="text-decoration:none; color:inherit; border:1px solid #E7E4DC; border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:18px; min-height:188px">
+        <div style="display:flex; align-items:center; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); padding:4px 9px; border-radius:4px">PDF</span><span style="font-size:20px; color:#16140F">↓</span></div>
+        <div style="margin-top:auto"><h3 style="font-size:18px; font-weight:600; line-height:1.25; margin:0 0 8px">Checklist před cestou</h3><p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin:0">A4 · 2 strany · v3</p></div>
+      </a>
+      <a href="#ke-stazeni" class="hover-border" style="text-decoration:none; color:inherit; border:1px solid #E7E4DC; border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:18px; min-height:188px">
+        <div style="display:flex; align-items:center; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); padding:4px 9px; border-radius:4px">PDF</span><span style="font-size:20px; color:#16140F">↓</span></div>
+        <div style="margin-top:auto"><h3 style="font-size:18px; font-weight:600; line-height:1.25; margin:0 0 8px">Seznam použitých Victron komponent</h3><p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin:0">Tabulka · ceny · odkazy</p></div>
+      </a>
+      <a href="#ke-stazeni" class="hover-border" style="text-decoration:none; color:inherit; border:1px solid #E7E4DC; border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:18px; min-height:188px">
+        <div style="display:flex; align-items:center; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); padding:4px 9px; border-radius:4px">XLSX</span><span style="font-size:20px; color:#16140F">↓</span></div>
+        <div style="margin-top:auto"><h3 style="font-size:18px; font-weight:600; line-height:1.25; margin:0 0 8px">Servisní historie Phoenix 8200</h3><p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin:0">Záznamy 2015–2026</p></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ DOTAZY / FORMULÁŘ ============ -->
+  <section id="dotazy" style="max-width:1280px; margin:104px auto 0; padding:0 40px">
+    <div class="contact-grid" style="background:#111010; color:#F3F1EA; border-radius:8px; overflow:hidden; display:grid; grid-template-columns:0.85fr 1.15fr">
+      <div style="padding:56px 48px; border-right:1px solid #2a2824">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:18px">07 — Napiš mi</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:36px; line-height:1.1; margin:0 0 18px; color:#F3F1EA">Máš dotaz k úpravě nebo k Phoenixu?</h2>
+        <p style="font-size:15.5px; line-height:1.65; color:#9b968c; margin:0 0 28px">Plánuješ podobnou stavbu, řešíš konkrétní díl nebo chceš vědět, jak něco vydrží po letech? Napiš a&nbsp;ozvu se — nejlepší dotazy zařadím i&nbsp;do blogu.</p>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#75716a; line-height:2">
+          <div>↳ odpovídám obvykle do 48 h</div>
+          <div>↳ technické detaily vítány</div>
+        </div>
+      </div>
+      <div style="padding:56px 48px">
+        <div id="form-success" style="display:none; height:100%; flex-direction:column; justify-content:center; align-items:flex-start; gap:16px; min-height:300px">
+          <span style="display:inline-flex; width:48px; height:48px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-size:22px">✓</span>
+          <h3 style="font-family:var(--display); font-weight:400; font-size:28px; margin:0; color:#F3F1EA">Díky, dotaz dorazil.</h3>
+          <p style="font-size:15px; color:#9b968c; margin:0">Ozvu se na uvedený e-mail. Mezitím mrkni na blog a databázi dílů.</p>
+          <button id="form-reset" type="button" style="margin-top:8px; background:none; border:1px solid #2a2824; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:13px; padding:11px 20px; border-radius:999px; cursor:pointer">Poslat další ↺</button>
+        </div>
+        <form id="contact-form" style="display:flex; flex-direction:column; gap:18px">
+          <div class="grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px">
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Jméno</span>
+              <input name="name" required placeholder="Tvoje jméno" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">E-mail</span>
+              <input name="email" required type="email" placeholder="ty@email.cz" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none" />
+            </label>
+          </div>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Téma</span>
+            <select name="topic" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none">
+              <option>Elektro a LiFePO₄</option>
+              <option>Soláry a Victron</option>
+              <option>Voda a čerpadla</option>
+              <option>Topení / Alde / klima</option>
+              <option>Internet / Starlink / 5G</option>
+              <option>Interiér</option>
+              <option>Servis podvozku</option>
+              <option>Něco jiného</option>
+            </select>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Dotaz</span>
+            <textarea name="message" rows="4" placeholder="Co tě zajímá?" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none; resize:vertical"></textarea>
+          </label>
+          <button type="submit" style="background:var(--gold); color:#16140F; border:none; border-radius:5px; padding:15px; font-family:'Archivo',sans-serif; font-size:15px; font-weight:700; cursor:pointer; letter-spacing:0.01em">Odeslat dotaz</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="max-width:1280px; margin:80px auto 0; padding:48px 40px 64px; border-top:1px solid #E7E4DC; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Deník jednoho Phoenixu · © 2026</span>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
