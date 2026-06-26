@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vyměnil jsem klakson na obytném autě — Phoenix 8200 Lab</title>
+<meta name="description" content="Originální klakson byl po deseti letech slabý a nevýrazný. Nahradil jsem ho elektropneumatickou fanfárou Stebel Nautilus Compact — proč je to jedna z nejlepších úprav z hlediska bezpečnosti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">O voze</a>
+        <a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Vývoj Phoenixu</a>
+        <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technologie</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zpět na blog</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Bezpečnost</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Vyměnil jsem klakson na obytném autě</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Jedna z nejlepších úprav z pohledu bezpečnosti, kterou jsem na Phoenixu udělal.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+        <span>8 min čtení</span>
+        <span>·</span>
+        <span>červen 2026</span>
+        <span>·</span>
+        <span>Bezpečnost · Stebel Nautilus Compact</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Po deseti letech provozu byl originální klakson v Phoenixu slabý a zněl spíš jako skútr než jako šestitunový obytný vůz. Nešlo přitom o estetiku ani o to, abych si „udělal hlasitější autíčko" — šlo o bezpečnost. Klakson je jediný způsob, jak na sebe v dopravě upozornit zvukem, a u vozidla této hmotnosti by měl být slyšet i přes hluk dálnice, otevřená okna sousedního auta nebo hudbu v kabině řidiče, kterého chcete varovat.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Rozhodl jsem se ho vyměnit za elektropneumatickou fanfáru <strong>Stebel Nautilus Compact 12V Chrome</strong>.</p>
+
+    <img src="https://auto-majaky.s9.cdn-upgates.com/_cache/1/9/190cef7a4023276a3119aa3eaf921fcc-st103.jpg" alt="Stebel Nautilus Compact Chrome 12V" style="width:100%; border-radius:6px; margin:0 0 40px; display:block">
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Proč zrovna Stebel Nautilus Compact</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Stebel Nautilus Compact je elektropneumatická fanfára s vlastním kompresorem — na rozdíl od běžných elektromagnetických klaksonů si vzduch na zvukový tón vyrábí sama, což je důvod, proč zní tak výrazně silněji a plněji. Parametry, které mě přesvědčily:</p>
+    <ul style="padding:0 0 0 20px; margin:0 0 40px; font-size:16px; line-height:1.8; color:#3d3a34">
+      <li>Napájení 12 V, proudový odběr přibližně 18 A</li>
+      <li>Harmonizovaný dvojtón 530 + 680 Hz</li>
+      <li>Hladina akustického tlaku přibližně 115 dB ve 2 metrech</li>
+      <li>Homologace ECE pro použití v silničním provozu</li>
+    </ul>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Montáž — proč si to žádá relé a tlustší kabel</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Odběr kolem 18 A je výrazně víc, než co snese originální spínač a tenký kabel vedený od volantu. Proto se Stebel — stejně jako většina výkonných elektropneumatických klaksonů — nezapojuje napřímo, ale přes <strong>relé</strong>: originální spínač v autě jen spíná malý proud do cívky relé, a relé samo pak spíná silový okruh vedený tlustším kabelem přímo z baterie, jištěný samostatnou <strong>pojistkou</strong>. Tohle zapojení je nutné nejen pro funkčnost, ale i pro bezpečnost — bez něj hrozí přetížení originální kabeláže a spínače.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Fyzická montáž samotného tělesa klaksonu byla naopak nekomplikovaná — najít vhodné místo v motorovém prostoru, upevnit, svést kabeláž k relé a pojistkové skříňce a zapojit.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Jak to zní v praxi</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Rozdíl proti originálnímu klaksonu je markantní. Dvojtón 530+680 Hz je slyšet i v situacích, kde by byl originální klakson zcela přehlušen — na dálnici, v hustém provozu, přes otevřené okno se zapnutou hudbou. Přesně to bylo cílem té úpravy.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Hodnocení</h2>
+    <p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 20px">★★★★★☆ (5/6)</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 48px">Z hlediska poměru cena/přínos pro bezpečnost je tohle jedna z nejlepších úprav, které jsem na Phoenixu udělal — řadí se mezi věci, jako jsou tlumiče Marquart, výměna oleje v převodovce a v diferenciálu, které jsem dělal ve stejný den. Žádná z nich nejde vidět na první pohled, ale všechny mají reálný dopad na to, jak bezpečně a spolehlivě se s vozem dá jezdit.</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px">
+      <h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Použité komponenty</h2>
+      <ul style="list-style:none; padding:0; margin:0">
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Stebel Nautilus Compact 12V Chrome <span style="color:#9a958c">(elektropneumatická fanfára, 530+680 Hz, ~115 dB/2 m, ECE homologace)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Automobilové relé + samostatná pojistka pro silový okruh</li>
+      </ul>
+    </div>
+
+    <p style="font-size:13.5px; color:#9a958c; margin:24px 0 0">Zdroj produktové fotografie: <a href="https://www.auto-majaky.cz/sk/p/stebel-nautilus-compact-chrom-12v" target="_blank" rel="noopener" style="color:#9a958c; text-decoration:underline">Auto-Majáky.cz</a></p>
+
+    <a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Zpět na všechny články</a>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Deník jednoho Phoenixu · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
