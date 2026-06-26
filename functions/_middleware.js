@@ -5,7 +5,7 @@
  * automaticky zavolá před doservírováním JAKÉHOKOLI requestu na webu.
  *
  * Co dělá:
- *  1. Pro statické soubory (obrázky, CSS, JS, sitemap...) se vůbec nezapojuje
+ *  1. Pro statické soubory (obrázky, CSS, JS, sitemap...) se vůbec nezapojuje změna
  *     — necháme je obsloužit normálně, ať nezatěžujeme AI/KV.
  *  2. Pro HTML stránky rozhodne jazyk: prefix v URL (/en/, /de/, /fr/, /es/)
  *     > cookie "lang" > Accept-Language hlavička + cf.country > výchozí cs.
