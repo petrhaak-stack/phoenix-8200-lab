@@ -12,7 +12,7 @@
  *  3. Pokud je jazyk cs, jen doplní do originální stránky přepínač jazyků
  *     a hreflang tagy a vrátí ji (žádný překlad, žádné AI).
  *  4. Pokud je jazyk en/de/fr/es, zkusí ho najít v KV cache. Když tam není,
- *     vezme český originál (env.ASSETS.fetch), přeloží texty přes Workers AI kla
+ *     vezme český originál (env.ASSETS.fetch), přeloží texty přes Workers AI
  *     a výsledek uloží do KV, aby se příště už jen četlo z cache.
  *
  * Než se to nahraje na GitHub, je potřeba v Cloudflare dashboardu (Workers
@@ -162,14 +162,49 @@ ${JSON.stringify(batchTexts)}`;
 }
 
 function extractJsonArray(raw) {
+  // POZOR: nelze jen brát první "[" a poslední "]" v celém textu —
+  // přeložené texty samy můžou obsahovat hranaté závorky (např. popisky
+  // typu "[ FOTO – 5 ]"), takže "poslední ]" v odpovědi modelu může být
+  // uvnitř obsahu, ne konec JSON pole. Místo toho najdeme první "["
+  // a od něj počítáme hloubku závorek, přičemž ignorujeme vše uvnitř
+  // stringových literálů (tam se "[" / "]" nepočítají).
+  if (typeof raw !== "string") return null;
   const start = raw.indexOf("[");
-  const end = raw.lastIndexOf("]");
-  if (start === -1 || end === -1 || end < start) return null;
-  try {
-    return JSON.parse(raw.slice(start, end + 1));
-  } catch {
-    return null;
+  if (start === -1) return null;
+
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+
+  for (let i = start; i < raw.length; i++) {
+    const ch = raw[i];
+    if (inString) {
+      if (escape) {
+        escape = false;
+      } else if (ch === "\\") {
+        escape = true;
+      } else if (ch === '"') {
+        inString = false;
+      }
+      continue;
+    }
+    if (ch === '"') {
+      inString = true;
+    } else if (ch === "[") {
+      depth++;
+    } else if (ch === "]") {
+      depth--;
+      if (depth === 0) {
+        const candidate = raw.slice(start, i + 1);
+        try {
+          return JSON.parse(candidate);
+        } catch {
+          return null;
+        }
+      }
+    }
   }
+  return null;
 }
 
 async function translateBatch(batchTexts, lang, ai, errors) {
