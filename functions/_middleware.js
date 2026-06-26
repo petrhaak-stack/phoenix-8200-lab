@@ -333,16 +333,16 @@ async function translatePage(originResponse, lang, ai, { originPath }) {
 // Pro CZ verzi nepřekládáme nic, jen doplníme přepínač + hreflang tagy
 // ---------------------------------------------------------------------
 
-function decoratePage(response, originPath) {
+function decoratePage(response, originPath, lang = "cs") {
   return new HTMLRewriter()
     .on("head", {
       element(el) {
-        el.append(buildHreflangTags(originPath, "cs"), { html: true });
+        el.append(buildHreflangTags(originPath, lang), { html: true });
       },
     })
     .on("nav#mainNav", {
       element(el) {
-        el.append(buildSwitcherHtml(originPath, "cs"), { html: true });
+        el.append(buildSwitcherHtml(originPath, lang), { html: true });
       },
     })
     .transform(response);
@@ -435,17 +435,25 @@ export async function onRequest(context) {
 
   if (!env.AI) {
     // Workers AI binding chybí (nenastaveno v dashboardu) -> fail-safe na CZ originál
-    return decoratePage(originResponse, originPath);
+    return decoratePage(originResponse, originPath, lang);
   }
 
   let translatedHtml;
   try {
     translatedHtml = await translatePage(originResponse, lang, env.AI, { originPath });
   } catch (err) {
+    // DOČASNÉ DEBUG: ?debug=1 v URL ukáže skutečnou chybu místo tichého
+    // fallbacku. Po vyřešení problému tento blok smazat.
+    if (url.searchParams.get("debug") === "1") {
+      return new Response(
+        "TRANSLATE ERROR: " + (err && err.stack ? err.stack : String(err)),
+        { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
+      );
+    }
     // Cokoliv se pokazí při překladu -> raději ukážeme český originál
     // s přepínačem, než rozbitou stránku.
     const fallbackResponse = await env.ASSETS.fetch(new Request(originUrl, request));
-    return decoratePage(fallbackResponse, originPath);
+    return decoratePage(fallbackResponse, originPath, lang);
   }
 
   if (env.TRANSLATIONS_KV) {
