@@ -242,7 +242,7 @@ async function translateAll(texts, lang, ai, errors) {
 // HTMLRewriter — extrakce textu/atributů do placeholderů a zpětné vložení
 // ---------------------------------------------------------------------
 
-async function translatePage(originResponse, lang, ai, { originPath, errors }) {
+async function translatePage(originResponse, lang, ai, { originPath, errors, debugInfo }) {
   const texts = [];
   let skipDepth = 0;
 
@@ -337,6 +337,15 @@ async function translatePage(originResponse, lang, ai, { originPath, errors }) {
 
   const translations = await translateAll(texts, lang, ai, errors);
 
+  if (debugInfo) {
+    debugInfo.textsCount = texts.length;
+    debugInfo.samples = texts.slice(0, 5).map((t, i) => ({
+      original: t,
+      translated: translations[i],
+      changed: translations[i] !== t,
+    }));
+  }
+
   let finalHtml = templated;
   for (let i = 0; i < translations.length; i++) {
     finalHtml = finalHtml.split(placeholder(i)).join(escapeHtml(translations[i]));
@@ -349,7 +358,7 @@ async function translatePage(originResponse, lang, ai, { originPath, errors }) {
 // ---------------------------------------------------------------------
 
 function decoratePage(response, originPath, lang = "cs") {
-  return new HTMLRewriter()
+  const transformed = new HTMLRewriter()
     .on("head", {
       element(el) {
         el.append(buildHreflangTags(originPath, lang), { html: true });
@@ -361,6 +370,10 @@ function decoratePage(response, originPath, lang = "cs") {
       },
     })
     .transform(response);
+  // DOČASNÉ DEBUG: vypnout cache, ať nás při ladění nemate stará odpověď.
+  const headers = new Headers(transformed.headers);
+  headers.set("Cache-Control", "no-store");
+  return new Response(transformed.body, { status: transformed.status, headers });
 }
 
 // ---------------------------------------------------------------------
@@ -453,19 +466,23 @@ export async function onRequest(context) {
     return originResponse; // 404 apod. — předáme beze změny
   }
 
+  // DOČASNÉ DEBUG: souhrn stavu bindingů, vždy dostupný i bez volání AI.
+  const debugBase = {
+    timestamp: new Date().toISOString(),
+    url: request.url,
+    lang,
+    originPath,
+    cacheKey,
+    envAI: typeof env.AI,
+    envTRANSLATIONS_KV: typeof env.TRANSLATIONS_KV,
+    envASSETS: typeof env.ASSETS,
+  };
+
   if (!env.AI) {
     if (isDebug) {
       return new Response(
-        "DEBUG: env.AI binding chybí nebo není navázaný (typeof env.AI = " +
-          typeof env.AI +
-          "). env.TRANSLATIONS_KV = " +
-          typeof env.TRANSLATIONS_KV +
-          ".\n\n" +
-          "Zkontroluj v Cloudflare dashboardu Settings -> Bindings, že Workers AI " +
-          "binding má přesně název proměnné AI a že existuje deploy vytvořený AŽ PO " +
-          "jeho přidání (samotný 'Retry deployment' starého buildu bindingy nemusí " +
-          "natáhnout — zkus vyvolat úplně nový deploy, např. drobnou změnou + commit).",
-        { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
+        "MIDDLEWARE DEBUG DUMP (env.AI chybí)\n\n" + JSON.stringify(debugBase, null, 2),
+        { status: 200, headers: { "content-type": "text/plain;charset=UTF-8", "Cache-Control": "no-store" } }
       );
     }
     // Workers AI binding chybí (nenastaveno v dashboardu) -> fail-safe na CZ originál
@@ -473,27 +490,43 @@ export async function onRequest(context) {
   }
 
   const translateErrors = [];
+  const debugInfo = { textsCount: null, samples: [] };
   let translatedHtml;
+  let caughtException = null;
   try {
-    translatedHtml = await translatePage(originResponse, lang, env.AI, { originPath, errors: translateErrors });
+    translatedHtml = await translatePage(originResponse, lang, env.AI, {
+      originPath,
+      errors: translateErrors,
+      debugInfo,
+    });
   } catch (err) {
-    if (isDebug) {
-      return new Response(
-        "TRANSLATE ERROR (exception): " + (err && err.stack ? err.stack : String(err)),
-        { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
-      );
-    }
+    caughtException = err && err.stack ? err.stack : String(err);
+  }
+
+  if (isDebug) {
+    return new Response(
+      "MIDDLEWARE DEBUG DUMP\n\n" +
+        JSON.stringify(
+          {
+            ...debugBase,
+            caughtException,
+            translateErrorsCount: translateErrors.length,
+            translateErrors,
+            textsCount: debugInfo.textsCount,
+            samples: debugInfo.samples,
+          },
+          null,
+          2
+        ),
+      { status: 200, headers: { "content-type": "text/plain;charset=UTF-8", "Cache-Control": "no-store" } }
+    );
+  }
+
+  if (caughtException) {
     // Cokoliv se pokazí při překladu -> raději ukážeme český originál
     // s přepínačem, než rozbitou stránku.
     const fallbackResponse = await env.ASSETS.fetch(new Request(originUrl, request));
     return decoratePage(fallbackResponse, originPath, lang);
-  }
-
-  if (isDebug && translateErrors.length > 0) {
-    return new Response(
-      "TRANSLATE ERRORS (" + translateErrors.length + "):\n\n" + JSON.stringify(translateErrors, null, 2),
-      { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
-    );
   }
 
   // Nikdy nezacachovávat výsledek, ve kterém se jedna nebo víc dávek
@@ -506,6 +539,6 @@ export async function onRequest(context) {
   }
 
   return new Response(translatedHtml, {
-    headers: { "content-type": "text/html;charset=UTF-8" },
+    headers: { "content-type": "text/html;charset=UTF-8", "Cache-Control": "no-store" },
   });
 }
