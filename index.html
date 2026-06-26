@@ -37,15 +37,35 @@
   .hover-border:hover{border-color:#16140F}
   input:focus, select:focus, textarea:focus{border-color:var(--gold) !important}
   .filter-btn{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.04em; padding:9px 16px; border-radius:999px; cursor:pointer;}
+  .tech-box{padding:20px; margin:20px 0; border-left:5px solid; border-radius:4px; background-color:#f9f9f9}
+  .tech-box h4{margin-top:0; margin-bottom:10px; font-size:1.05rem; font-family:'Archivo',-apple-system,sans-serif}
+  .tech-box p{margin:0; font-size:15px; line-height:1.7; color:#3f3c36}
+  .tech-box.problem{border-left-color:#e74c3c; background-color:#fdf2f2}
+  .tech-box.reseni{border-left-color:#3498db; background-color:#f2f7fb}
+  .tech-box.skusenost{border-left-color:#2ecc71; background-color:#f2fbf5}
   @media (max-width: 900px){
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
     .grid-2{grid-template-columns:1fr !important}
     .grid-4{grid-template-columns:repeat(2,1fr) !important}
     .grid-5{grid-template-columns:repeat(2,1fr) !important}
-    .grid-3{grid-template-columns:1fr !important}
+    .grid-3{grid-template-columns:repeat(2,1fr) !important}
     h1{font-size:38px !important}
     h2{font-size:30px !important}
     .contact-grid{grid-template-columns:1fr !important}
     .contact-grid > div{border-right:none !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:25px !important}
+    h3{font-size:21px !important}
+    .grid-3{grid-template-columns:1fr !important}
+    .grid-4{grid-template-columns:1fr 1fr !important}
+    .grid-5{grid-template-columns:1fr 1fr !important}
+    .hover-row{grid-template-columns:1fr !important; gap:6px !important}
   }
 </style>
 </head>
@@ -59,14 +79,15 @@
         <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
         <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
       </a>
-      <nav style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
-        <a href="#auto" style="text-decoration:none; color:#4a463f">Moje auto</a>
-        <a href="#upravy" style="text-decoration:none; color:#4a463f">Úpravy</a>
-        <a href="#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="#auto" style="text-decoration:none; color:#4a463f">O voze</a>
+        <a href="#vyvoj" style="text-decoration:none; color:#4a463f">Vývoj Phoenixu</a>
         <a href="#dily" style="text-decoration:none; color:#4a463f">Technologie</a>
+        <a href="#blog" style="text-decoration:none; color:#4a463f">Blog</a>
         <a href="#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
-        <a href="#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Napiš mi</a>
+        <a href="#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
       </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="display:none; align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
     </div>
   </header>
 
@@ -82,13 +103,13 @@
         <p style="font-family:var(--display); font-style:italic; font-size:20px; line-height:1.4; color:var(--gold); max-width:48ch; margin:0 0 14px">PHOENIX MIDI 8200 BML (2016) — cesta za dokonalým obytným vozem.</p>
         <p style="font-size:18px; line-height:1.6; color:#B8B3A8; max-width:54ch; margin:0 0 36px">Žádná reklama, jen reálné zkušenosti, testování produktů a&nbsp;úpravy ověřené tisíci kilometrů na cestách. Každá kapitola jako technický deník: problém → proč zrovna toto řešení → co jsem testoval → proč jsem zvolil právě tohle → zkušenost po měsících provozu.</p>
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px">
-          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Elektro</a>
-          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Voda</a>
-          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Topení</a>
-          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Konektivita</a>
-          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Bezpečnost</a>
-          <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Interiér</a>
-          <a href="#auto" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Servis</a>
+          <a href="#vyvoj-elektro" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Elektro</a>
+          <a href="#vyvoj-voda" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Voda</a>
+          <a href="#vyvoj-topeni" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Topení</a>
+          <a href="#vyvoj-konektivita" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Konektivita</a>
+          <a href="#vyvoj-bezpecnost" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Bezpečnost</a>
+          <a href="#vyvoj-interier" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Interiér</a>
+          <a href="#vyvoj-podvozek" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Servis</a>
         </div>
       </div>
       <div style="max-width:1280px; margin:0 auto; padding:0 40px 0">
@@ -210,81 +231,82 @@
     </div>
   </section>
 
-  <!-- ============ ÚPRAVY A UPGRADY ============ -->
-  <section id="upravy" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+  <!-- ============ VÝVOJ PHOENIXU ============ -->
+  <section id="vyvoj" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
     <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
       <div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">02 — Úpravy a upgrady</div>
-        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Hlavní sekce — přehled úprav</h2>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">02 — Vývoj Phoenixu</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technický deník přestavby</h2>
       </div>
     </div>
+    <p style="font-size:15.5px; line-height:1.7; color:#5a564e; max-width:74ch; margin:0 0 40px">Úpravy rozdělené po kategoriích — uvnitř každé najdeš jednotlivé kapitoly: problém, co jsem testoval a proč jsem zvolil právě tohle řešení. Sekce se postupně rozrůstá o další kapitoly a články.</p>
 
     <!-- category index -->
     <div class="grid-5" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:1px; background:#E7E4DC; border:1px solid #E7E4DC; border-radius:6px; overflow:hidden; margin-bottom:48px">
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Elektro a LiFePO₄</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Soláry a Victron</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Voda a čerpadla</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Topení / Alde / klima</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Internet / Starlink / 5G</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Kamery a zabezpečení</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">07</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Světla a elektroinstalace</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">08</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Interiér</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">09</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Servis podvozku</span></a>
-      <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">10</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Antikorozní ochrana</span></a>
+      <a href="#vyvoj-elektro" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Elektro</span></a>
+      <a href="#vyvoj-voda" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Voda</span></a>
+      <a href="#vyvoj-topeni" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Topení</span></a>
+      <a href="#vyvoj-osvetleni" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Osvětlení</span></a>
+      <a href="#vyvoj-konektivita" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Konektivita</span></a>
+      <a href="#vyvoj-bezpecnost" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Bezpečnost</span></a>
+      <a href="#vyvoj-podvozek" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">07</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Podvozek</span></a>
+      <a href="#vyvoj-servis" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">08</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Servis</span></a>
+      <a href="#vyvoj-interier" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">09</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Interiér</span></a>
     </div>
 
-    <!-- featured articles — technický deník, kapitola po kapitole -->
+    <!-- kategorie — technický deník po kapitolách -->
     <div style="display:flex; flex-direction:column">
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:0 0 48px; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+      <article id="vyvoj-elektro" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:0 0 48px; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
         <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/elektro-mereni.jpg" alt="Victron měnič/nabíječ v rozvaděči" style="width:100%; height:100%; object-fit:cover; display:block">
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Elektro a LiFePO₄</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Elektro</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 01</div>
-          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Přechod na 400 Ah LiFePO₄</h3>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 01</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Elektro a LiFePO₄</h3>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Přechod na 400 Ah LiFePO₄</h4>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Po letech provozu už staré gelové baterie nestíhaly pokrývat běžnou spotřebu — chladnička, čerpadlo a večerní osvětlení dokázaly banku vybít rychleji, než ji za den doplnily solární panely. Reálně využitelná kapacita gelu byla navíc jen zlomek udávaných hodnot.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Rozhodl jsem se pro kompletní přechod na LiFePO₄ chemii — dvě baterie Victron 12,8 V/200 Ah, celkem 400 Ah, ze kterých lze na rozdíl od gelu využít prakticky celou kapacitu bez rizika poškození. K tomu Victron MultiPlus-II 12V/3000VA, který v jednom boxu zvládá nabíjení ze sítě i invertor pro 230V spotřebiče.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Aby se trakční baterie dobíjely i za jízdy, doplnil jsem dvě DC-DC nabíječky Orion-Tr Smart — izolovanou 12/12-30 A pro hlavní okruh a neizolovanou 12/12-50 A. Bez nich by samotný solár v zimě nestačil. Po sezóně provozu už neřeším, jestli vydrží do rána — řeším jen, kam zase vyrazit.</p>
-        </div>
-      </article>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Aby se trakční baterie dobíjely i za jízdy, doplnil jsem dvě DC-DC nabíječky Orion-Tr Smart — izolovanou 12/12-30 A pro hlavní okruh a neizolovanou 12/12-50 A. Bez nich by samotný solár v zimě nestačil. Po sezóně provozu už neřeším, jestli vydrží do rána — řeším jen, kam zase vyrazit.</p>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
-        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
-          <img src="images/solar-stresha.jpg" alt="Solární panely na střeše Phoenixu" style="width:100%; height:100%; object-fit:cover; display:block">
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Soláry a Victron</span>
-        </div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 02</div>
-          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">780 Wp na střeše — sérioparalelní zapojení</h3>
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">780 Wp na střeše — sérioparalelní zapojení</h4>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Čtyři panely na střeše musí dávat dost energie i v zatažených dnech a v zimě, kdy slunce stojí nízko a část plochy bývá ve stínu.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Zvolil jsem sérioparalelní zapojení dvou 220 Wp a dvou 170 Wp panelů, celkem 780 Wp. Sérioparalelní řazení snižuje proud (a tím ztráty na delším kabelovém vedení k regulátoru) a zároveň udržuje napětí v rozsahu, který Victron SmartSolar MPPT zvládá efektivně zpracovat i při částečném zastínění jedné větve.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Výkon sleduju přes VictronConnect, proč jsem zůstal u Victronu i u ostatních komponent místo levnější konkurence — kvůli spolehlivosti a tomu, že celý systém (baterie, měnič, solár) spolu mluví v jedné appce. Reálné denní výnosy v jednotlivých ročních obdobích popisuju v samostatném blogovém článku.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Zvolil jsem sérioparalelní zapojení dvou 220 Wp a dvou 170 Wp panelů, celkem 780 Wp. Sérioparalelní řazení snižuje proud (a tím ztráty na delším kabelovém vedení k regulátoru) a zároveň udržuje napětí v rozsahu, který Victron BlueSolar MPPT zvládá efektivně zpracovat i při částečném zastínění jedné větve.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Výkon sleduju přes VictronConnect. U Victronu jsem zůstal i u ostatních komponent místo levnější konkurence — kvůli spolehlivosti a tomu, že celý systém (baterie, měnič, solár) spolu mluví v jedné appce. Reálné denní výnosy v jednotlivých ročních obdobích popisuju v samostatném blogovém článku.</p>
         </div>
       </article>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+      <article id="vyvoj-voda" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
         <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/sprchovy-sloup.jpg" alt="Sprchový sloup s hlavicí Oxygenics Fury" style="width:100%; height:100%; object-fit:cover; display:block">
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Voda a čerpadla</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Voda</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 03</div>
-          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Tiché čerpadlo Lilie IQflow a sprcha Oxygenics Fury</h3>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 02</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Voda a čerpadla</h3>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Carawater vs Lilie IQflow 12.3</h4>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Původní vodní čerpadlo bylo rušivě hlučné — hlavně večer, když je v autě klid — a tlak navíc kolísal podle toho, kolik odběrů bylo otevřených najednou.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Vyzkoušel jsem čerpadlo Car-Water. Funkčně bylo v pořádku, ale hlukem se od originálu nijak nelišilo — chod byl slyšet v celém obytném prostoru.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Nakonec jsem zvolil Lilie IQflow 12.3. Je výrazně tišší, drží stabilní tlak i při více odběrech najednou a v provozu je sotva slyšet. Sprchu jsem doplnil hlavicí Oxygenics Fury, která díky promíchávání vzduchu do proudu šetří vodu beze ztráty pocitu síly proudu — důležité, když je nádrž omezený zdroj.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Vyzkoušel jsem čerpadlo Carawater Intelligent SmartPump ISP-12-4K-15. Funkčně bylo v pořádku, ale hlukem se od originálu nijak nelišilo — chod byl slyšet v celém obytném prostoru.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Nakonec jsem zvolil Lilie IQflow 12.3. Je výrazně tišší, drží stabilní tlak i při více odběrech najednou a v provozu je sotva slyšet.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Oxygenics Fury — sprchová hlavice</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Sprchu jsem doplnil hlavicí Oxygenics Fury, která díky promíchávání vzduchu do proudu šetří vodu beze ztráty pocitu síly proudu — důležité, když je nádrž omezený zdroj.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Kuchyňská baterie Reich Keramik Trend S</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Jednou z prvních úprav byla výměna kuchyňské baterie za Reich Keramik Trend S, která nabízí jemnější regulaci vody, kvalitnější keramickou kartuši a modernější vzhled.</p>
         </div>
       </article>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+      <article id="vyvoj-topeni" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
         <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/klimatizace.jpg" alt="Klimatizační jednotka a topení Alde" style="width:100%; height:100%; object-fit:cover; display:block">
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Topení / Alde</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Topení</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 04</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 03</div>
           <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Servis Alde a tišší cirkulace</h3>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Po letech provozu byla původní kapalina v okruhu Alde zastaralá a systém běžel hlučněji a nahříval pomaleji než na začátku.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Vyměnil jsem kapalinu za G12+ a propojil okruh Alde s chladicím okruhem motoru. Teplo, které motor vyrobí při jízdě, tak teď pomáhá předehřívat topný okruh — po zastavení nemusí Alde topit úplně od nuly.</p>
@@ -292,13 +314,34 @@
         </div>
       </article>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+      <article id="vyvoj-osvetleni" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
         <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — Starlink na střeše ]</span>
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Internet / Starlink / 5G</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — světla a klakson ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Osvětlení</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 05</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 04</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Světla a elektroinstalace</h3>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Přestavba předních světel HELLA Bi-LED</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Originální světlomety už neodpovídaly tomu, co bych čekal od auta, se kterým jezdím i v noci a v běžném provozu. Přední světlomety jsem vyměnil za HELLA Bi-LED moduly Essential a Performance — rozdíl je hlavně v kvalitě svazku světla a v tom, že neslepí protijedoucí — a doplnil LED blinkry, brzdová i couvací světla.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Montáž ale vůbec nebyla plug & play — celý příběh s 3D tištěnými adaptéry, řešením přes relé a MOSFET i nočními testy je v samostatném <a href="blog/hella-bi-led-iveco-daily.html" style="color:var(--gold); text-decoration:underline">blogovém článku</a>.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">HELLA ValueFit LED Light Bar</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Přídavné dálkové LED rampy na střeše kabiny. Ovládání je řešeno samostatným vypínačem a páčkou dálkových světel.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Klakson Stebel Nautilus Compact</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Původní klakson nahradil výrazně hlasitější Stebel Nautilus Compact.</p>
+        </div>
+      </article>
+
+      <article id="vyvoj-konektivita" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — Starlink na střeše ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Konektivita</span>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 05</div>
           <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Starlink a 5G router pro práci na cestě</h3>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Práce na cestě potřebuje stabilní a rychlé připojení i v místech bez mobilního signálu — a to se v odlehlejších lokacích stává běžně.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Páteří sítě ve voze je Teltonika RUTX50 namísto běžného LTE routeru — zvládá víc zdrojů připojení a failover mezi nimi, doplněný Starlink Mini pro satelitní připojení tam, kde mobilní síť nedosáhne.</p>
@@ -306,44 +349,74 @@
         </div>
       </article>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+      <article id="vyvoj-bezpecnost" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
         <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
           <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — EufyCam S300 na GoPro držáku ]</span>
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Kamery a zabezpečení</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Bezpečnost</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 06</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 06</div>
           <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">EufyCam S300 na hlídání auta</h3>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Auto často stojí přes noc na neznámých místech a chtěl jsem mít přehled, co se kolem něj děje, bez nutnosti tahat kabeláž po karoserii.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Řešením jsou dvě bezdrátové kamery EufyCam S300, přichycené na běžné GoPro držáky. Žádné vrtání děr, žádné napájecí kabely — a snadné přemístění podle toho, kde zrovna stojím. Po sezóně provozu je tohle jedna z úprav, na kterou bych už nechtěl spoléhat méně.</p>
         </div>
       </article>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
-        <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — světla a klakson ]</span>
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Světla a elektroinstalace</span>
+      <article id="vyvoj-podvozek" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+          <img src="images/podvozek-naprava.jpg" alt="Podvozek a náprava" style="width:100%; height:100%; object-fit:cover; display:block">
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Podvozek</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 07</div>
-          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">LED světlomety HELLA a klakson Stebel</h3>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Originální světlomety a klakson už neodpovídaly tomu, co bych čekal od auta, se kterým jezdím i v noci a v běžném provozu.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Přední světlomety jsem vyměnil za HELLA Performance LED místo běžných LED náhrad — rozdíl je hlavně v kvalitě svazku světla a v tom, že neslepí protijedoucí — a doplnil LED blinkry, brzdová i couvací světla. Výrazně lepší viditelnost za tmy i lepší viditelnost auta pro ostatní. Původní klakson nahradil hlasitější Stebel.</p>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 07</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Tlumiče a antikorozní ochrana</h3>
+
+          <h4 id="podvozek-tlumice" style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Tlumiče Marquart</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 16px">Náš Phoenix je postavený na robustním 6tunovém šasi Iveco Daily. Zadní náprava s dvojmontáží („tupláky") je kompletně na vzduchových měších, což zajišťuje skvělý komfort na dálnici a možnost vyrovnání auta v kempu. Tovární tlumiče od Iveca ale mají jednu zásadní slabinu: jsou dimenzované na běžné dodávky, ne na obytný vůz, který jezdí neustále na hranici maximální technické hmotnosti a má vysoko položené těžiště.</p>
+
+          <div class="tech-box problem">
+            <h4>⚠️ Problém: Houpání, boční vítr a nejistota v zatáčkách</h4>
+            <p>Při dálničních rychlostech kolem 100 km/h byl vůz extrémně citlivý na boční vítr a na tlakovou vlnu při předjíždění kamionů. Při sjezdu z dálnice nebo na kruhových objezdech se auto výrazně naklánělo. Nejhorší však byly příčné nerovnosti a vyjeté koleje, kde měl podvozek tendenci auto druhotně rozhoupat (tzv. „jachting efekt"). Řízení tak vyžadovalo neustálou koncentraci a korekce volantem.</p>
+          </div>
+
+          <div class="tech-box reseni">
+            <h4>🛠️ Řešení: Zesílené tlumiče Marquart (Německo)</h4>
+            <p>Jediným funkčním řešením byla kompletní výměna originálních tlumičů za zakázkové, ručně montované tlumiče od německého specialisty <strong>Marquart</strong>. Tyto tlumiče mají výrazně větší průměr pístnice, větší objem oleje a především mnohem tužší charakteristiku tlumení v tahu i tlaku. Jsou navrženy přímo pro těžké expediční vozy a linery. Při instalaci v autorizovaném servisu Iveco došlo k výměně na přední i zadní nápravě.</p>
+          </div>
+
+          <div class="tech-box skusenost">
+            <h4>💡 Reálná zkušenost: Úplně jiné auto</h4>
+            <p>Rozdíl je patrný hned po prvních kilometrech. Phoenix se přestal chovat jako těžkopádná krabice a podvozek neuvěřitelně ztuhnul – v dobrém slova smyslu. Náklony v zatáčkách klesly odhadem o 50 %, reakce na boční vítr téměř zmizela a auto se po přejezdu nerovnosti okamžitě uklidní bez jakéhokoliv následného pohupování. Investice do tlumičů Marquart je pro komfort a bezpečnost na dlouhých trasách naprostou nutností.</p>
+          </div>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:20px 0 10px; color:#16140F">Antikorozní ochrana Dinitrol</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Dvoufázová antikorozní ochrana podvozku — nejdříve penetrační ochrana dutin a spojů Dinitrol ML, poté odolná černá ochranná vrstva Dinitrol 4941.</p>
         </div>
       </article>
 
-      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0 0; align-items:start" class="grid-2">
+      <article id="vyvoj-servis" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — servisní deník ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Servis</span>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 08</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Servisní deník</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0">Připravujeme — průběžný servisní deník (výměny oleje, filtrů, kontroly podvozku) doplníme postupně.</p>
+        </div>
+      </article>
+
+      <article id="vyvoj-interier" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0 0; align-items:start" class="grid-2">
         <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/nozovy-blok.jpg" alt="Nožový blok a drobné úpravy v kuchyňce" style="width:100%; height:100%; object-fit:cover; display:block">
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Interiér</span>
         </div>
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 08</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kategorie 09</div>
           <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Interiér</h3>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Původní interiér Phoenixu byl i po deseti letech ve velmi dobrém stavu. Mým cílem proto nebyla kompletní přestavba, ale postupná modernizace a zvýšení komfortu při dlouhodobém cestování. Každá úprava musela mít praktický význam a zároveň zachovat původní charakter vozu.</p>
 
           <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Kuchyň</h4>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Jednou z prvních úprav byla výměna kuchyňské baterie za Reich Keramik Trend S, která nabízí jemnější regulaci vody, kvalitnější keramickou kartuši a modernější vzhled.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Za sporák jsem nechal vyrobit bílé kalené bezpečnostní sklo, které chrání stěnu před mastnotou a zároveň opticky výrazně rozjasnilo celý interiér.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Pro uložení kuchyňských nožů jsem zvolil profesionální magnetickou lištu Wüsthof místo levnějších magnetických lišt. Po dlouhém hledání se ukázalo, že právě tato lišta má mimořádně silné magnety a jako jedna z mála dokáže bezpečně udržet kvalitní kuchyňské nože i při vibracích obytného vozu.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Protože je bezpečnost na prvním místě, navrhl jsem k tomu vlastní jednoduché řešení — přes lištu se během jízdy natáhne silikonový bezpečnostní pásek, který nože mechanicky zajistí. Díky tomu nehrozí jejich uvolnění ani při prudkém brzdění.</p>
@@ -354,9 +427,212 @@
 
           <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Drobnosti, které zpříjemňují život</h4>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Do interiéru přibyly také designové držáky na sklenice vína, které umožňují bezpečné uložení skleniček během jízdy.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Na první pohled jde o drobnost, ale právě podobné detaily dělají z obytného vozu místo, kde člověk rád tráví týdny na cestách.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Na první pohled jde o drobnost, ale právě podobné detaily dělají z obytného vozu místo, kde člověk rád tráví týdny na cestách. LED markýza je další úprava, kterou postupně připravujeme.</p>
         </div>
       </article>
+
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGIE ============ -->
+  <section id="dily" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">03 — Technologie</div>
+        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technologie použité v tomto Phoenixu</h2>
+      </div>
+    </div>
+    <p style="font-size:16px; line-height:1.6; color:#5a564e; max-width:760px; margin:0 0 40px">Přehled hlavních komponent, které dnes ve voze skutečně jezdí. Nejde o katalog dílů, ale o výběr technologií, které se po testování a úpravách osvědčily v reálném provozu. Badge „Použito v" odkazuje na kapitolu ve Vývoji Phoenixu, kde je rozhodnutí popsané podrobněji.</p>
+    <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px">
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://www.victronenergy.com/upload/documents/PMP122305010_Multiplus-II%2012V%203kVA_120-32%20230V%20%28front%29.png" alt="Victron Energy MultiPlus-II 12/3000/120-32" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Elektro</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy MultiPlus-II 12/3000/120-32</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Měnič/nabíječ pro 230V systém vozu. Zajišťuje provoz spotřebičů z baterií, nabíjení ze sítě a integraci s celým Victron systémem.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+        <a href="https://www.victronenergy.cz/inverters-chargers/multiplus-ii" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 Victron Energy — specifikace</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Baterie</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">2× Victron Energy LiFePO₄ Battery NG 12,8 V / 200 Ah</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Nová generace lithium-železo-fosfátových baterií Victron NG. Celková kapacita 400 Ah výrazně zvýšila soběstačnost vozu.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">BMS</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy VE.Bus BMS NG</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Řídicí a ochranný systém pro baterie Victron NG. Hlídá provozní limity, komunikaci a bezpečné odpojení při nestandardních stavech.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://www.victronenergy.com/upload/documents/Cerbo%20GX%20%28front%29.png" alt="Victron Energy Cerbo GX" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Monitoring</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Cerbo GX</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Centrální displej a komunikační jednotka celého systému. Umožňuje sledovat baterie, měnič, solár i nabíjení v jednom rozhraní.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+        <a href="https://www.victronenergy.com/communication-centres/cerbo-gx" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 Victron Energy — specifikace</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Monitoring</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy SmartShunt 1000 A</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Přesné měření stavu baterií, proudu, napětí a spotřeby. Základní komponenta pro reálný přehled o energii ve voze.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Solár</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy BlueSolar MPPT 150/60-Tr</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Solární regulátor pro sérioparalelní zapojení panelů. Zpracovává sestavu 2× 220 Wp + 2× 170 Wp.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">DC-DC nabíjení</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Orion-Tr Smart 12/12-30A (360 W) Isolated</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Izolovaná DC-DC nabíječka pro bezpečné oddělení okruhů a řízené dobíjení trakčních baterií za jízdy.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">DC-DC nabíjení</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Orion-Tr Smart 12/12-50A Non-Isolated</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Neizolovaná DC-DC nabíječka pro další dobíjení z alternátoru. Společně s 30A jednotkou zvyšuje energetickou soběstačnost za jízdy.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">AC nabíjení</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Smart IP43 Charger 12 V / 50 A</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Záložní AC nabíječka pro nabíjení ze sítě nebo z elektrocentrály, hlavně při zimním provozu.</p>
+        <a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Elektro</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://data.svetkaravanu.cz/data/tmp/0/6/186236_0.jpg?1753006286_1" alt="Lilie IQflo 12.3" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Voda</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Lilie IQflow 12.3</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Čtyřkomorové inteligentní tlakové čerpadlo s plynulou regulací výkonu podle odběru vody. Vybráno po srovnání s Carawater SmartPump hlavně kvůli výrazně tiššímu provozu.</p>
+        <a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Voda</a>
+        <a href="https://www.svetkaravanu.cz/membranove-cerpadlo-lilie-iqflo_z105622/" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 SvětKaravanů.cz — produkt</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Testováno</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Carawater Intelligent SmartPump ISP-12-4K-15</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Testované čtyřkomorové čerpadlo s průtokem až 15 l/min, Bluetooth aplikací a třemi tlakovými režimy 1,4 / 1,8 / 2,2 bar. Technicky zajímavé, ale hlučnější než Lilie IQflow.</p>
+        <a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Voda</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Sprcha</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Oxygenics Fury RV</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Sprchová hlavice s úspornějším proudem vody bez pocitu slabé sprchy. Praktická úprava pro delší stání bez doplňování vody.</p>
+        <a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Voda</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Kuchyň</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Reich Keramik Trend S</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Kuchyňská baterie s jemnější regulací vody, keramickou kartuší a modernějším vzhledem.</p>
+        <a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Voda</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Klimatizace</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">SINCLAIR ASV-35BIS</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Doplňková střešní invertorová klimatizace. Díky upravené elektroinstalaci a Victron systému je možné ji efektivně používat i mimo klasickou přípojku.</p>
+        <a href="#vyvoj-topeni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Topení</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://eshop.sectron.cz/UserFiles/Product/Image/1739347526Teltonika-RUTX50-03-2025.jpg" alt="Teltonika RUTX50 5G router" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Konektivita</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Teltonika RUTX50 Industrial 5G Router</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Průmyslový 5G router se dvěma SIM kartami, externími anténami a možností failoveru mezi mobilní sítí a dalšími zdroji internetu.</p>
+        <a href="#vyvoj-konektivita" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Konektivita</a>
+        <a href="https://eshop.sectron.cz/teltonika-rutx50-5g-router/p-15475/" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 Sectron.cz — e-shop</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Konektivita</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Starlink Mini</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Satelitní internet pro místa bez mobilního signálu. Napájení řešené přes 12V systém vozu bez nutnosti samostatného měniče.</p>
+        <a href="#vyvoj-konektivita" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Konektivita</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Kamery</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">EufyCam S300 / eufyCam 3C 4K + HomeBase 3</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Bezdrátové bezpečnostní kamery pro hlídání okolí vozu. Boční kamery jsou řešené přes vlastní 3D držáky s GoPro uchycením.</p>
+        <a href="#vyvoj-bezpecnost" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Bezpečnost</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Světla</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">HELLA 90 mm Bi-LED Essential, 1AL 015 318-111</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">LED náhrada původních tlumených halogenových modulů. První krok modernizace předního osvětlení.</p>
+        <a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Osvětlení</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Světla</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">HELLA 90 mm Bi-LED Performance L45-65, 1AL 015 318-031</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Výkonné dálkové Bi-LED moduly. Montáž vyžadovala vlastní 3D tištěné adaptéry a úpravu elektroinstalace přes relé a MOSFET.</p>
+        <a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Osvětlení</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Světla</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">2× HELLA ValueFit LED Light Bar 522 mm s pozičním světlem</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Přídavné dálkové LED rampy na střeše kabiny. Ovládání je řešeno samostatným vypínačem a páčkou dálkových světel.</p>
+        <a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Osvětlení</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Klakson</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Stebel Nautilus Compact</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Výrazně hlasitější kompaktní klakson jako náhrada původního sériového klaksonu.</p>
+        <a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Osvětlení</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Podvozek</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Marquart Premium Shock Absorbers</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Zesílené tlumiče vyráběné na míru pro těžký obytný vůz. Jedna z úprav s největším vlivem na jízdní vlastnosti.</p>
+        <a href="#vyvoj-podvozek" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Podvozek</a>
+        <a href="https://www.marquartstossdaempfer.de/verstaerkte-stossdaempfer-fuer-iveco-daily-wohnmobile/" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 Marquart Stoßdämpfer — výrobce</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://cdn.myshoptet.com/usr/www.dinitrol.sk/user/shop/big/730_dinitrol-4941--car-1lit.jpg?ff=1&x=1024&y=1024&q=85&ts=65dd84b9&sg=38cb01fe" alt="Dinitrol 4941" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Antikoroze</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Dinitrol ML + Dinitrol 4941</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Dvoufázová antikorozní ochrana podvozku. Nejdříve penetrační ochrana dutin a spojů, poté odolná černá ochranná vrstva.</p>
+        <a href="#vyvoj-podvozek" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Podvozek</a>
+        <a href="https://www.dinitrol.sk/dinitrol-4941--car-1lit/" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 Dinitrol.sk — produkt</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://wusthof.com/cdn/shop/products/2059625650.png?v=1762441418" alt="Wüsthof Magnetic Knife Holder" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Interiér</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Wüsthof Magnetic Knife Holder</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Silná magnetická lišta na nože doplněná vlastním silikonovým bezpečnostním páskem pro zajištění během jízdy.</p>
+        <a href="#vyvoj-interier" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Použito v: Interiér</a>
+        <a href="https://wusthof.com/products/20-inch-magnetic-holder" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 Wüsthof.com — produkt</a>
+      </div>
+
+      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+        <img src="https://cdn.myshoptet.com/usr/www.mtt-brno.cz/user/shop/big/220717_skutr-segway-escooter-e300se.png?67c98e06" alt="Segway E300SE" loading="lazy" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Garáž</span>
+        <div style="font-size:17px; font-weight:600; color:#16140F">Segway E300SE</div>
+        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Elektrický skútr uložený v garáži vozu. Díky solárnímu systému a bateriím jej lze dobíjet přímo z energie vyrobené na střeše.</p>
+        <a href="https://www.mtt-brno.cz/skutr-segway-escooter-e300se/" target="_blank" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a">🔗 MTT Brno — e-shop</a>
+      </div>
 
     </div>
   </section>
@@ -366,7 +642,7 @@
     <div style="max-width:1280px; margin:0 auto; padding:96px 40px">
       <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:48px; border-bottom:1px solid #2a2824; padding-bottom:20px">
         <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">03 — Blog</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">04 — Blog</div>
           <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0; color:#F3F1EA">Krátké praktické články z cest</h2>
         </div>
         <a href="#blog" style="text-decoration:none; color:#F3F1EA; font-size:14px; font-weight:600; white-space:nowrap">Všechny články →</a>
@@ -398,170 +674,6 @@
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">14 min · únor 2026</span>
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ TECHNOLOGIE ============ -->
-  <section id="dily" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
-    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
-      <div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">04 — Technologie</div>
-        <h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technologie použité v tomto Phoenixu</h2>
-      </div>
-    </div>
-    <p style="font-size:16px; line-height:1.6; color:#5a564e; max-width:760px; margin:0 0 40px">Přehled hlavních komponent, které dnes ve voze skutečně jezdí. Nejde o katalog dílů, ale o výběr technologií, které se po testování a úpravách osvědčily v reálném provozu. Detailní příběh ke každé z nich najdete v sekci Úpravy a upgrady výše.</p>
-    <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px">
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Elektro</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy MultiPlus-II 12/3000/120-32</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Měnič/nabíječ pro 230V systém vozu. Zajišťuje provoz spotřebičů z baterií, nabíjení ze sítě a integraci s celým Victron systémem.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Baterie</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">2× Victron Energy LiFePO₄ Battery NG 12,8 V / 200 Ah</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Nová generace lithium-železo-fosfátových baterií Victron NG. Celková kapacita 400 Ah výrazně zvýšila soběstačnost vozu.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">BMS</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy VE.Bus BMS NG</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Řídicí a ochranný systém pro baterie Victron NG. Hlídá provozní limity, komunikaci a bezpečné odpojení při nestandardních stavech.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Monitoring</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Ekrano GX</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Centrální displej a komunikační jednotka celého systému. Umožňuje sledovat baterie, měnič, solár i nabíjení v jednom rozhraní.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Monitoring</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy SmartShunt 1000 A</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Přesné měření stavu baterií, proudu, napětí a spotřeby. Základní komponenta pro reálný přehled o energii ve voze.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Solár</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy BlueSolar MPPT 150/60-Tr</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Solární regulátor pro sérioparalelní zapojení panelů. Zpracovává sestavu 2× 220 Wp + 2× 170 Wp.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">DC-DC nabíjení</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Orion-Tr Smart 12/12-30A (360 W) Isolated</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Izolovaná DC-DC nabíječka pro bezpečné oddělení okruhů a řízené dobíjení trakčních baterií za jízdy.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">DC-DC nabíjení</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Orion-Tr Smart 12/12-50A Non-Isolated</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Neizolovaná DC-DC nabíječka pro další dobíjení z alternátoru. Společně s 30A jednotkou zvyšuje energetickou soběstačnost za jízdy.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">AC nabíjení</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Smart IP43 Charger 12 V / 50 A</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Záložní AC nabíječka pro nabíjení ze sítě nebo z elektrocentrály, hlavně při zimním provozu.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Voda</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Lilie IQflow 12.3</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Čtyřkomorové inteligentní tlakové čerpadlo s plynulou regulací výkonu podle odběru vody. Vybráno po srovnání s Carawater SmartPump hlavně kvůli výrazně tiššímu provozu.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Testováno</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Carawater Intelligent SmartPump ISP-12-4K-15</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Testované čtyřkomorové čerpadlo s průtokem až 15 l/min, Bluetooth aplikací a třemi tlakovými režimy 1,4 / 1,8 / 2,2 bar. Technicky zajímavé, ale hlučnější než Lilie IQflow.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Sprcha</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Oxygenics Fury RV</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Sprchová hlavice s úspornějším proudem vody bez pocitu slabé sprchy. Praktická úprava pro delší stání bez doplňování vody.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Kuchyň</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Reich Keramik Trend S</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Kuchyňská baterie s jemnější regulací vody, keramickou kartuší a modernějším vzhledem.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Klimatizace</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">SINCLAIR ASV-35BIS</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Doplňková střešní invertorová klimatizace. Díky upravené elektroinstalaci a Victron systému je možné ji efektivně používat i mimo klasickou přípojku.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Konektivita</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Teltonika RUTX50 Industrial 5G Router</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Průmyslový 5G router se dvěma SIM kartami, externími anténami a možností failoveru mezi mobilní sítí a dalšími zdroji internetu.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Konektivita</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Starlink Mini</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Satelitní internet pro místa bez mobilního signálu. Napájení řešené přes 12V systém vozu bez nutnosti samostatného měniče.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Kamery</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">EufyCam S300 / eufyCam 3C 4K + HomeBase 3</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Bezdrátové bezpečnostní kamery pro hlídání okolí vozu. Boční kamery jsou řešené přes vlastní 3D držáky s GoPro uchycením.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Světla</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">HELLA 90 mm Bi-LED Essential, 1AL 015 318-111</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">LED náhrada původních tlumených halogenových modulů. První krok modernizace předního osvětlení.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Světla</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">HELLA 90 mm Bi-LED Performance L45-65, 1AL 015 318-031</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Výkonné dálkové Bi-LED moduly. Montáž vyžadovala vlastní 3D tištěné adaptéry a úpravu elektroinstalace přes relé a MOSFET.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Světla</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">2× HELLA ValueFit LED Light Bar 522 mm s pozičním světlem</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Přídavné dálkové LED rampy na střeše kabiny. Ovládání je řešeno samostatným vypínačem a páčkou dálkových světel.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Klakson</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Stebel Nautilus Compact</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Výrazně hlasitější kompaktní klakson jako náhrada původního sériového klaksonu.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Podvozek</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Marquart Premium Shock Absorbers</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Zesílené tlumiče vyráběné na míru pro těžký obytný vůz. Jedna z úprav s největším vlivem na jízdní vlastnosti.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Antikoroze</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Dinitrol ML + Dinitrol 4941</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Dvoufázová antikorozní ochrana podvozku. Nejdříve penetrační ochrana dutin a spojů, poté odolná černá ochranná vrstva.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Interiér</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Wüsthof Magnetic Knife Holder</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Silná magnetická lišta na nože doplněná vlastním silikonovým bezpečnostním páskem pro zajištění během jízdy.</p>
-      </div>
-
-      <div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Garáž</span>
-        <div style="font-size:17px; font-weight:600; color:#16140F">Segway E300SE</div>
-        <p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Elektrický skútr uložený v garáži vozu. Díky solárnímu systému a bateriím jej lze dobíjet přímo z energie vyrobené na střeše.</p>
-      </div>
-
     </div>
   </section>
 

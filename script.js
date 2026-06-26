@@ -37,3 +37,17 @@ if (resetBtn) {
     form.style.display = 'flex';
   });
 }
+
+// Mobile nav: close menu after tapping a link
+var mainNav = document.getElementById('mainNav');
+var navToggle = document.getElementById('navToggle');
+
+if (mainNav && navToggle) {
+  mainNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mainNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+    });
+  });
+}
