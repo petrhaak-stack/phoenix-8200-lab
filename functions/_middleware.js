@@ -12,7 +12,7 @@
  *  3. Pokud je jazyk cs, jen doplní do originální stránky přepínač jazyků
  *     a hreflang tagy a vrátí ji (žádný překlad, žádné AI).
  *  4. Pokud je jazyk en/de/fr/es, zkusí ho najít v KV cache. Když tam není,
- *     vezme český originál (env.ASSETS.fetch), přeloží texty přes Workers AI
+ *     vezme český originál (env.ASSETS.fetch), přeloží texty přes Workers AI kla
  *     a výsledek uloží do KV, aby se příště už jen četlo z cache.
  *
  * Než se to nahraje na GitHub, je potřeba v Cloudflare dashboardu (Workers
