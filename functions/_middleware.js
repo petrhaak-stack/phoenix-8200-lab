@@ -245,14 +245,21 @@ async function translateBatch(batchTexts, lang, ai, errors) {
 
 // Rozdělí dlouhý seznam textů na menší dávky, ať se nenarazí na limity
 // kontextu/výstupu modelu, a přeloží je paralelně (max. 4 dávky najednou).
-async function translateAll(texts, lang, ai, errors) {
-  const BATCH_MAX_ITEMS = 25;
-  const BATCH_MAX_CHARS = 2500;
+async function translateAll(allTexts, lang, ai, errors) {
+  // Deduplikace: web obsahuje hodně opakujících se textů (popisky, štítky,
+  // nadpisy v menu...). Když je pošleme do jedné dávky vícekrát, model se
+  // na nich občas "zacyklí" (vrátí degenerovaný výstup) nebo spočítá délku
+  // špatně. Každý unikátní text proto přeložíme jen jednou a výsledek
+  // pak namapujeme zpátky na všechny výskyty.
+  const uniqueTexts = [...new Set(allTexts)];
+
+  const BATCH_MAX_ITEMS = 15;
+  const BATCH_MAX_CHARS = 2000;
   const batches = [];
   let current = [];
   let currentChars = 0;
 
-  for (const t of texts) {
+  for (const t of uniqueTexts) {
     if (current.length >= BATCH_MAX_ITEMS || currentChars + t.length > BATCH_MAX_CHARS) {
       batches.push(current);
       current = [];
@@ -263,14 +270,18 @@ async function translateAll(texts, lang, ai, errors) {
   }
   if (current.length > 0) batches.push(current);
 
-  const results = [];
+  const uniqueResults = [];
   const CONCURRENCY = 4;
   for (let i = 0; i < batches.length; i += CONCURRENCY) {
     const slice = batches.slice(i, i + CONCURRENCY);
     const translatedSlices = await Promise.all(slice.map((b) => translateBatch(b, lang, ai, errors)));
-    for (const s of translatedSlices) results.push(...s);
+    for (const s of translatedSlices) uniqueResults.push(...s);
   }
-  return results;
+
+  // Namapovat přeložené unikátní texty zpátky na původní (s duplicitami) pořadí.
+  const translationByOriginal = new Map();
+  uniqueTexts.forEach((t, i) => translationByOriginal.set(t, uniqueResults[i]));
+  return allTexts.map((t) => translationByOriginal.get(t));
 }
 
 // ---------------------------------------------------------------------
