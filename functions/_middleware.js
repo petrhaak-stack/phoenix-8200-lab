@@ -172,7 +172,7 @@ function extractJsonArray(raw) {
   }
 }
 
-async function translateBatch(batchTexts, lang, ai) {
+async function translateBatch(batchTexts, lang, ai, errors) {
   if (batchTexts.length === 0) return [];
   try {
     const result = await ai.run(MODEL, {
@@ -184,8 +184,23 @@ async function translateBatch(batchTexts, lang, ai) {
     if (Array.isArray(arr) && arr.length === batchTexts.length) {
       return arr.map((t, i) => (typeof t === "string" && t.length > 0 ? t : batchTexts[i]));
     }
+    if (errors) {
+      errors.push({
+        stage: "parse",
+        message: "AI response nebyla validní JSON array se správnou délkou",
+        rawPreview: typeof raw === "string" ? raw.slice(0, 300) : String(raw),
+        expectedLength: batchTexts.length,
+        gotLength: Array.isArray(arr) ? arr.length : null,
+      });
+    }
   } catch (err) {
-    // Necháváme degradovat na originál — viz komentář níže.
+    if (errors) {
+      errors.push({
+        stage: "ai.run",
+        message: err && err.message ? err.message : String(err),
+        stack: err && err.stack ? err.stack : null,
+      });
+    }
   }
   // Fail-safe: když se překlad nepovede / model vrátí nečekaný formát,
   // raději vrátíme nepřeložený (český) text, než abychom stránku rozbili
@@ -195,7 +210,7 @@ async function translateBatch(batchTexts, lang, ai) {
 
 // Rozdělí dlouhý seznam textů na menší dávky, ať se nenarazí na limity
 // kontextu/výstupu modelu, a přeloží je paralelně (max. 4 dávky najednou).
-async function translateAll(texts, lang, ai) {
+async function translateAll(texts, lang, ai, errors) {
   const BATCH_MAX_ITEMS = 25;
   const BATCH_MAX_CHARS = 2500;
   const batches = [];
@@ -217,7 +232,7 @@ async function translateAll(texts, lang, ai) {
   const CONCURRENCY = 4;
   for (let i = 0; i < batches.length; i += CONCURRENCY) {
     const slice = batches.slice(i, i + CONCURRENCY);
-    const translatedSlices = await Promise.all(slice.map((b) => translateBatch(b, lang, ai)));
+    const translatedSlices = await Promise.all(slice.map((b) => translateBatch(b, lang, ai, errors)));
     for (const s of translatedSlices) results.push(...s);
   }
   return results;
@@ -227,7 +242,7 @@ async function translateAll(texts, lang, ai) {
 // HTMLRewriter — extrakce textu/atributů do placeholderů a zpětné vložení
 // ---------------------------------------------------------------------
 
-async function translatePage(originResponse, lang, ai, { originPath }) {
+async function translatePage(originResponse, lang, ai, { originPath, errors }) {
   const texts = [];
   let skipDepth = 0;
 
@@ -320,7 +335,7 @@ async function translatePage(originResponse, lang, ai, { originPath }) {
 
   const templated = await rewriter.transform(originResponse).text();
 
-  const translations = await translateAll(texts, lang, ai);
+  const translations = await translateAll(texts, lang, ai, errors);
 
   let finalHtml = templated;
   for (let i = 0; i < translations.length; i++) {
@@ -408,11 +423,16 @@ export async function onRequest(context) {
     return decoratePage(originResponse, originPath);
   }
 
+  // DOČASNÉ DEBUG: ?debug=1 obejde KV cache (mohla v sobě mít zacachovaný
+  // "úspěšný", ale ve skutečnosti nepřeložený výsledek) a ukáže skutečné
+  // chyby z AI volání místo tichého fallbacku. Po vyřešení smazat.
+  const isDebug = url.searchParams.get("debug") === "1";
+
   // 4) Cizí jazyk — zkusíme cache
   const contentVersion = env.CONTENT_VERSION || "v1";
   const cacheKey = `${contentVersion}:${lang}:${originPath}`;
 
-  if (env.TRANSLATIONS_KV) {
+  if (env.TRANSLATIONS_KV && !isDebug) {
     try {
       const cached = await env.TRANSLATIONS_KV.get(cacheKey);
       if (cached) {
@@ -438,15 +458,14 @@ export async function onRequest(context) {
     return decoratePage(originResponse, originPath, lang);
   }
 
+  const translateErrors = [];
   let translatedHtml;
   try {
-    translatedHtml = await translatePage(originResponse, lang, env.AI, { originPath });
+    translatedHtml = await translatePage(originResponse, lang, env.AI, { originPath, errors: translateErrors });
   } catch (err) {
-    // DOČASNÉ DEBUG: ?debug=1 v URL ukáže skutečnou chybu místo tichého
-    // fallbacku. Po vyřešení problému tento blok smazat.
-    if (url.searchParams.get("debug") === "1") {
+    if (isDebug) {
       return new Response(
-        "TRANSLATE ERROR: " + (err && err.stack ? err.stack : String(err)),
+        "TRANSLATE ERROR (exception): " + (err && err.stack ? err.stack : String(err)),
         { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
       );
     }
@@ -456,7 +475,17 @@ export async function onRequest(context) {
     return decoratePage(fallbackResponse, originPath, lang);
   }
 
-  if (env.TRANSLATIONS_KV) {
+  if (isDebug && translateErrors.length > 0) {
+    return new Response(
+      "TRANSLATE ERRORS (" + translateErrors.length + "):\n\n" + JSON.stringify(translateErrors, null, 2),
+      { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
+    );
+  }
+
+  // Nikdy nezacachovávat výsledek, ve kterém se jedna nebo víc dávek
+  // přeložit nepovedlo — jinak by se "nepřeložený" obsah natrvalo uložil
+  // do KV jako kdyby šlo o platný překlad.
+  if (env.TRANSLATIONS_KV && translateErrors.length === 0) {
     context.waitUntil(
       env.TRANSLATIONS_KV.put(cacheKey, translatedHtml, { expirationTtl: 60 * 60 * 24 * 30 }).catch(() => {})
     );
