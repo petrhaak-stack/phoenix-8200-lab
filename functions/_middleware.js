@@ -454,6 +454,20 @@ export async function onRequest(context) {
   }
 
   if (!env.AI) {
+    if (isDebug) {
+      return new Response(
+        "DEBUG: env.AI binding chybí nebo není navázaný (typeof env.AI = " +
+          typeof env.AI +
+          "). env.TRANSLATIONS_KV = " +
+          typeof env.TRANSLATIONS_KV +
+          ".\n\n" +
+          "Zkontroluj v Cloudflare dashboardu Settings -> Bindings, že Workers AI " +
+          "binding má přesně název proměnné AI a že existuje deploy vytvořený AŽ PO " +
+          "jeho přidání (samotný 'Retry deployment' starého buildu bindingy nemusí " +
+          "natáhnout — zkus vyvolat úplně nový deploy, např. drobnou změnou + commit).",
+        { status: 500, headers: { "content-type": "text/plain;charset=UTF-8" } }
+      );
+    }
     // Workers AI binding chybí (nenastaveno v dashboardu) -> fail-safe na CZ originál
     return decoratePage(originResponse, originPath, lang);
   }
