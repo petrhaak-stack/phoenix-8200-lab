@@ -387,7 +387,15 @@ export async function onRequest(context) {
 
   // 1) Statické soubory (obrázky, CSS, JS, sitemap.xml, robots.txt...)
   //    necháváme projít beze zásahu — žádné AI, žádná cache, žádný switcher.
-  const isPageRequest = pathname === "/" || pathname.endsWith("/") || pathname.endsWith(".html");
+  //    POZOR: cesty jako "/en" nebo "/de" (BEZ koncového lomítka a BEZ .html)
+  //    musí být taky považované za stránku — jinak je tahle podmínka tiše
+  //    pošle přes next() a celá jazyková logika se nikdy nespustí. Proto
+  //    se díváme na to, jestli poslední segment cesty obsahuje příponu
+  //    (".jpg", ".css", ".xml"...) — pokud ne, jde o stránku.
+  const lastSegment = pathname.split("/").pop();
+  const hasFileExtension = lastSegment.includes(".");
+  const isPageRequest =
+    pathname === "/" || pathname.endsWith("/") || pathname.endsWith(".html") || !hasFileExtension;
   if (!isPageRequest) {
     return next();
   }
