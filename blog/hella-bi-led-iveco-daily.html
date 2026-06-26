@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jak jsme zkrotili HELLA Bi-LED Performance na Iveco Daily 60C18 — Phoenix 8200 Lab</title>
+<meta name="description" content="Technický deník přestavby předního osvětlení Phoenixu 8200 BML — dvě etapy HELLA Bi-LED, 3D tištěný adaptér do originálních držáků a boj s Bosch BCM, který skončil u MOSFETu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">Moje auto</a>
+        <a href="../index.html#upravy" style="text-decoration:none; color:#4a463f">Úpravy</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Databáze dílů</a>
+        <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Napiš mi</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zpět na blog</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Světla a elektroinstalace</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:44px; line-height:1.12; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Jak jsme zkrotili HELLA Bi-LED Performance na Iveco Daily 60C18</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Phoenix 8200 BML (2016) — technický deník přestavby předního osvětlení.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+        <span>13 min čtení</span>
+        <span>·</span>
+        <span>červen 2026</span>
+        <span>·</span>
+        <span>Iveco Daily · HELLA · Bosch BCM · MOSFET</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Cíl</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Původní přední světlomety Phoenixu byly řešené klasickou kombinací čtyř samostatných 90mm modulů HELLA — dvě tlumená a dvě dálková světla, všechna ještě s halogenovou technologií z výroby.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Po deseti letech provozu už jejich světelný výkon přestal vyhovovat. Na okresních silnicích, v dešti i při nočních přejezdech Alp neposkytovaly dostatečný světelný výkon.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 32px">Cílem ale nebylo jen zvýšit svítivost za každou cenu — chtěl jsem zachovat původní vzhled vozu a použít kvalitní komponenty stejné značky, HELLA. Modernizace proto proběhla ve dvou etapách.</p>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; margin:0 0 10px; color:#16140F">1. etapa — výměna tlumených světel</h3>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 28px">Nejprve jsem nahradil původní halogenová tlumená světla za <strong>HELLA Bi-LED Essential (1AL 015 318-111)</strong>. Už tahle změna znamenala výrazně lepší světelný výkon, ostřejší světelnou hranici a nižší spotřebu elektrické energie.</p>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; margin:0 0 10px; color:#16140F">2. etapa — výměna dálkových světel</h3>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Po několika měsících provozu jsem přestavbu dokončil výměnou původních halogenových dálkových světel za výkonnější <strong>HELLA 90 mm Bi-LED Performance L45-65 (1AL 015 318-031)</strong> — oproti Essential nabízí ještě vyšší světelný tok a lepší dosvit, což dává smysl právě u dálkových světel. Výsledkem je dnes kompletně LED přední osvětlení využívající nejmodernější technologii HELLA.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Nic ale nepasovalo…</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Přestože jde o světlomety stejného průměru 90 mm, jejich konstrukce se od původních halogenových modulů liší. Originální držáky, které Phoenix používal z výroby, se proto nedaly použít beze změny.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Nechtěl jsem ale jakkoliv nevratně zasahovat do původní konstrukce vozu. Navrhl jsem si tedy vlastní adaptér vytištěný na 3D tiskárně, který umožňuje namontovat nové Bi-LED moduly do originálních držáků Phoenixu bez jakékoliv nevratné úpravy. Díky tomu se kdykoliv můžu vrátit do původního stavu.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Přesné seřízení každého světlometu</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Současně jsem využil příležitosti a upravil i systém uchycení. Každý světlomet je dnes uchycen tak, že ho lze samostatně seřizovat pomocí tří stavěcích šroubů — umožňuje to mnohem přesnější nastavení výšky i směru světelného kuželu, než šlo u původního řešení.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Teprve poté přišla na řadu elektrická část celé přestavby, která se nakonec ukázala jako mnohem větší výzva než samotná mechanická montáž.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Jenže pak přišla elektronika…</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Skutečný problém začal ve chvíli, kdy jsme světlomety připojili k originální elektroinstalaci.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Phoenix stojí na podvozku Iveco Daily 60C18 (2016) vybaveném Bosch Body Control Module (BCM) 5801631470. A právě BCM se ukázal jako největší protivník celé přestavby.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Moderní LED světlomety mají úplně jiné elektrické vlastnosti než původní halogeny. Body Computer proto jejich chování vyhodnocoval jako nestandardní. Výsledkem bylo nesprávné přepínání světel a nestabilní funkce celé soustavy.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Co jsme všechno zkoušeli</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 18px">Nechtěli jsme řezat do originální elektroinstalace, proto jsme nejprve hledali řešení, které by zachovalo sériové zapojení. Vyzkoušeli jsme prakticky všechno:</p>
+    <ul style="list-style:none; padding:0; margin:0 0 28px">
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>různé výkonové odpory simulující zátěž halogenových žárovek,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>několik kombinací CAN-BUS odporů,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>měření proudových odběrů jednotlivých větví,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>konzultace možnosti přeprogramování BCM,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>hledání možnosti změny konfigurace přes diagnostiku ECU,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>různé způsoby zapojení LED modulů.</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Některá řešení fungovala částečně. Jiná odstranila jednu chybu a vytvořila dvě nové. Po několika dnech testování bylo jasné, že touto cestou se nikam neposuneme.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Rozhodnutí změnit filozofii</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Nakonec jsme udělali krok zpět. Místo snahy přinutit BCM napájet výkonné LED světlomety jsme změnili celou koncepci zapojení.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Originální BCM dnes světlomety vůbec nenapájí — pouze vysílá řídicí signál. Ten ovládá klasické automobilové relé. Samotné světlomety jsou napájeny novým dimenzovaným přívodem přímo od akumulátoru přes vlastní jištění.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Najednou bylo po problému. BCM „viděl" pouze cívku relé, zatímco světlomety dostaly stabilní napětí bez úbytků.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">A pak přišlo další překvapení</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Mysleli jsme si, že máme hotovo. Neměli.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Po přepnutí na dálková světla začalo relé nepříjemně cvakat. Nejdřív jsme hledali chybu v relé, potom v kabeláži. Nakonec jsme osciloskopem a měřením zjistili skutečnou příčinu: výstup z BCM neposkytoval dostatečný proud pro stabilní držení relé. Na sepnutí ještě stačil, na dlouhodobé udržení už ne. Relé se proto dostávalo na hranici sepnutí a rozepnutí — výsledkem bylo nepříjemné cvakání.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Řešení? MOSFET</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 18px">Nakonec jsme mezi BCM a relé vložili MOSFETový spínací stupeň. MOSFET prakticky nezatěžuje výstup BCM a současně umožní relé spínat plným proudem. Po této úpravě:</p>
+    <ul style="list-style:none; padding:0; margin:0 0 18px">
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>relé přestalo cvakat,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>přepínání tlumených a dálkových světel je okamžité,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>BCM nehlásí chyby,</li>
+      <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>světlomety dostávají plné napětí.</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Přesně takové řešení jsem hledal od začátku.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Přídavná dálková světla</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Když už byla přední část vozu kompletně přepracovaná, doplnil jsem ještě dvojici střešních HELLA ValueFit LED Light Bar 522 mm s pozičním světlem. V interiéru přibyl samostatný vypínač, takže si můžu zvolit dva režimy.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 8px"><strong>Režim 1</strong> — pouze hlavní světlomety HELLA Performance.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px"><strong>Režim 2</strong> — současně se aktivují i střešní LED rampy, které se pak ovládají originální páčkou dálkových světel stejně jako z výroby. Řidič tak nemusí přemýšlet nad žádným dalším ovládáním.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Výsledek po několika tisících kilometrech</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Dnes bych tuto úpravu udělal znovu. Noční jízda je nesrovnatelně bezpečnější, výkon světel je několikanásobně vyšší než u původních halogenů.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 48px">A co je pro mě nejdůležitější — systém funguje naprosto spolehlivě. Ne díky jednomu zázračnému dílu, ale díky tomu, že jsme pochopili, jak spolu komunikují Bosch BCM, relé, MOSFET a samotné LED světlomety.</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px">
+      <h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Použité komponenty</h2>
+      <ul style="list-style:none; padding:0; margin:0">
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>HELLA Bi-LED Essential — 1AL 015 318-111 <span style="color:#9a958c">(tlumená světla, 1. etapa)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>HELLA Bi-LED Performance L45-65 — 1AL 015 318-031 <span style="color:#9a958c">(dálková světla, 2. etapa)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>HELLA ValueFit LED Light Bar 522 mm s pozičním světlem <span style="color:#9a958c">(přídavná dálková světla na střeše)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Vlastní 3D tištěný adaptér pro uchycení do originálních držáků Phoenixu</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Seřizovací sada se třemi stavěcími šrouby na světlomet</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Bosch BCM 5801631470 <span style="color:#9a958c">(originální řídicí jednotka Iveco Daily)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Automobilové relé</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>MOSFETový spínací stupeň</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Nové jištěné napájení přímo od akumulátoru</li>
+      </ul>
+    </div>
+
+    <a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:56px">← Zpět na všechny články</a>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Deník jednoho Phoenixu · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
