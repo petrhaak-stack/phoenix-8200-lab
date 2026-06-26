@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Phoenix 8200 Lab</title>
-<meta name="description" content="Phoenix 8200 BML — úpravy, zkušenosti a technická řešení z praxe. Deník jednoho obytného auta.">
+<meta name="description" content="Phoenix 8200 BML (2016) — cesta za dokonalým obytným vozem. Žádná reklama, jen reálné zkušenosti, testování produktů a úpravy ověřené tisíci kilometrů na cestách.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -65,7 +65,8 @@
           <span style="height:1px; flex:1; background:linear-gradient(90deg, var(--gold), transparent)"></span>
         </div>
         <h1 style="font-family:var(--display); font-weight:400; font-size:64px; line-height:1.02; letter-spacing:-0.02em; margin:0 0 24px; max-width:16ch">Phoenix 8200 BML — úpravy, zkušenosti a&nbsp;technická řešení z&nbsp;praxe</h1>
-        <p style="font-size:18px; line-height:1.6; color:#B8B3A8; max-width:54ch; margin:0 0 36px">Neobyčejné obytné auto, které postupně ladím a&nbsp;testuji. Každá úprava jako technický článek: problém → řešení → použité díly → výsledek → co bych dnes udělal jinak.</p>
+        <p style="font-family:var(--display); font-style:italic; font-size:20px; line-height:1.4; color:var(--gold); max-width:48ch; margin:0 0 14px">Phoenix 8200 BML (2016) — cesta za dokonalým obytným vozem.</p>
+        <p style="font-size:18px; line-height:1.6; color:#B8B3A8; max-width:54ch; margin:0 0 36px">Žádná reklama, jen reálné zkušenosti, testování produktů a&nbsp;úpravy ověřené tisíci kilometrů na cestách. Každá kapitola jako technický deník: problém → proč zrovna toto řešení → co jsem testoval → proč jsem zvolil právě tohle → zkušenost po měsících provozu.</p>
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px">
           <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Elektro</a>
           <a href="#upravy" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Voda</a>
@@ -218,112 +219,131 @@
       <a href="#upravy" class="hover-bg" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">10</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Antikorozní ochrana</span></a>
     </div>
 
-    <!-- featured articles -->
-    <div class="grid-2" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:32px">
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden; margin-bottom:20px">
+    <!-- featured articles — technický deník, kapitola po kapitole -->
+    <div style="display:flex; flex-direction:column">
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:0 0 48px; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/elektro-mereni.jpg" alt="Victron měnič/nabíječ v rozvaděči" style="width:100%; height:100%; object-fit:cover; display:block">
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Elektro a LiFePO₄</span>
         </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Přechod na 400 Ah LiFePO₄</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Staré gelové baterie nestíhaly a ztrácely kapacitu. Vyměnil jsem je za dvě LiFePO₄ Victron 12,8 V/200 Ah (celkem 400 Ah), doplnil Victron MultiPlus-II 12V/3000VA a dvě DC-DC nabíječky Orion-Tr Smart — izolovanou 12/12-30 A a neizolovanou 12/12-50 A pro dobíjení z alternátoru při jízdě.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Problém → řešení</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 01</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Přechod na 400 Ah LiFePO₄</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Po letech provozu už staré gelové baterie nestíhaly pokrývat běžnou spotřebu — chladnička, čerpadlo a večerní osvětlení dokázaly banku vybít rychleji, než ji za den doplnily solární panely. Reálně využitelná kapacita gelu byla navíc jen zlomek udávaných hodnot.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Rozhodl jsem se pro kompletní přechod na LiFePO₄ chemii — dvě baterie Victron 12,8 V/200 Ah, celkem 400 Ah, ze kterých lze na rozdíl od gelu využít prakticky celou kapacitu bez rizika poškození. K tomu Victron MultiPlus-II 12V/3000VA, který v jednom boxu zvládá nabíjení ze sítě i invertor pro 230V spotřebiče.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Aby se trakční baterie dobíjely i za jízdy, doplnil jsem dvě DC-DC nabíječky Orion-Tr Smart — izolovanou 12/12-30 A pro hlavní okruh a neizolovanou 12/12-50 A. Bez nich by samotný solár v zimě nestačil. Po sezóně provozu už neřeším, jestli vydrží do rána — řeším jen, kam zase vyrazit.</p>
         </div>
       </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden; margin-bottom:20px">
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/solar-stresha.jpg" alt="Solární panely na střeše Phoenixu" style="width:100%; height:100%; object-fit:cover; display:block">
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Soláry a Victron</span>
         </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">780 Wp na střeše — sérioparalelní zapojení</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Na střeše jsou čtyři panely zapojené sérioparalelně — dva 220 Wp a dva 170 Wp, celkem 780 Wp. Regulaci řeší Victron SmartSolar MPPT, výkon sleduju přes VictronConnect.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Montáž → výsledek</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 02</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">780 Wp na střeše — sérioparalelní zapojení</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Čtyři panely na střeše musí dávat dost energie i v zatažených dnech a v zimě, kdy slunce stojí nízko a část plochy bývá ve stínu.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Zvolil jsem sérioparalelní zapojení dvou 220 Wp a dvou 170 Wp panelů, celkem 780 Wp. Sérioparalelní řazení snižuje proud (a tím ztráty na delším kabelovém vedení k regulátoru) a zároveň udržuje napětí v rozsahu, který Victron SmartSolar MPPT zvládá efektivně zpracovat i při částečném zastínění jedné větve.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Výkon sleduju přes VictronConnect, proč jsem zůstal u Victronu i u ostatních komponent místo levnější konkurence — kvůli spolehlivosti a tomu, že celý systém (baterie, měnič, solár) spolu mluví v jedné appce. Reálné denní výnosy v jednotlivých ročních obdobích popisuju v samostatném blogovém článku.</p>
         </div>
       </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — Starlink na střeše ]</span>
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Internet / Starlink / 5G</span>
-        </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Starlink a 5G router pro práci na cestě</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Páteří připojení je Teltonika RUTX50 v kombinaci se Starlink Mini — vysokorychlostní internet i v odlehlých lokacích. Starlink napájím přes 12V adaptér se speciálním kabelem upraveným na palubní síť.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Použité díly</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
-        </div>
-      </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden; margin-bottom:20px">
-          <img src="images/klimatizace.jpg" alt="Klimatizační jednotka a topení Alde" style="width:100%; height:100%; object-fit:cover; display:block">
-          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Topení / Alde</span>
-        </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Servis Alde a tišší cirkulace</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">V systému Alde jsem vyměnil kapalinu za G12+ a propojil okruh s chlazením motoru — teplo z jízdy teď pomáhá přitápět i v kabině.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Co bych udělal jinak</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
-        </div>
-      </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden; margin-bottom:20px">
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/sprchovy-sloup.jpg" alt="Sprchový sloup s hlavicí Oxygenics Fury" style="width:100%; height:100%; object-fit:cover; display:block">
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Voda a čerpadla</span>
         </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Tiché čerpadlo Lilie IQflow a sprcha Oxygenics Fury</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Srovnával jsem víc řešení — čerpadlo Car-Water fungovalo, ale bylo hlučné. Nakonec jsem zvolil Lilie IQflow 12.3, které je výrazně tišší a drží stabilní tlak. Sprchu jsem doplnil hlavicí Oxygenics Fury, která šetří vodu beze ztráty síly proudu.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Srovnání → výsledek</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 03</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Tiché čerpadlo Lilie IQflow a sprcha Oxygenics Fury</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Původní vodní čerpadlo bylo rušivě hlučné — hlavně večer, když je v autě klid — a tlak navíc kolísal podle toho, kolik odběrů bylo otevřených najednou.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Vyzkoušel jsem čerpadlo Car-Water. Funkčně bylo v pořádku, ale hlukem se od originálu nijak nelišilo — chod byl slyšet v celém obytném prostoru.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Nakonec jsem zvolil Lilie IQflow 12.3. Je výrazně tišší, drží stabilní tlak i při více odběrech najednou a v provozu je sotva slyšet. Sprchu jsem doplnil hlavicí Oxygenics Fury, která díky promíchávání vzduchu do proudu šetří vodu beze ztráty pocitu síly proudu — důležité, když je nádrž omezený zdroj.</p>
         </div>
       </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+          <img src="images/klimatizace.jpg" alt="Klimatizační jednotka a topení Alde" style="width:100%; height:100%; object-fit:cover; display:block">
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Topení / Alde</span>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 04</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Servis Alde a tišší cirkulace</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Po letech provozu byla původní kapalina v okruhu Alde zastaralá a systém běžel hlučněji a nahříval pomaleji než na začátku.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Vyměnil jsem kapalinu za G12+ a propojil okruh Alde s chladicím okruhem motoru. Teplo, které motor vyrobí při jízdě, tak teď pomáhá předehřívat topný okruh — po zastavení nemusí Alde topit úplně od nuly.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Výsledkem je tišší chod a rychlejší náběh tepla v kabině po delší jízdě. Co bych dnes udělal jinak — servis bych neodkládal a propojení s motorem řešil hned při první výměně kapaliny, ne až o pár let později.</p>
+        </div>
+      </article>
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — Starlink na střeše ]</span>
+          <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Internet / Starlink / 5G</span>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 05</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Starlink a 5G router pro práci na cestě</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Práce na cestě potřebuje stabilní a rychlé připojení i v místech bez mobilního signálu — a to se v odlehlejších lokacích stává běžně.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Páteří sítě ve voze je Teltonika RUTX50 namísto běžného LTE routeru — zvládá víc zdrojů připojení a failover mezi nimi, doplněný Starlink Mini pro satelitní připojení tam, kde mobilní síť nedosáhne.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Starlink napájím přes 12V adaptér se speciálním kabelem upraveným na palubní síť, takže nepotřebuje samostatný invertor jen pro sebe. Reálné rychlosti, spotřebu a kde to fungovalo nejlíp, jsem zaznamenal v samostatném blogovém článku.</p>
+        </div>
+      </article>
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
           <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — EufyCam S300 na GoPro držáku ]</span>
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Kamery a zabezpečení</span>
         </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">EufyCam S300 na hlídání auta</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Bezpečnost teď řeší dvě bezdrátové kamery EufyCam S300, přichycené na běžné GoPro držáky — žádné tahání kabeláže a snadné přemístění podle toho, kde zrovna stojím.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Instalace → výsledek</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 06</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">EufyCam S300 na hlídání auta</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Auto často stojí přes noc na neznámých místech a chtěl jsem mít přehled, co se kolem něj děje, bez nutnosti tahat kabeláž po karoserii.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Řešením jsou dvě bezdrátové kamery EufyCam S300, přichycené na běžné GoPro držáky. Žádné vrtání děr, žádné napájecí kabely — a snadné přemístění podle toho, kde zrovna stojím. Po sezóně provozu je tohle jedna z úprav, na kterou bych už nechtěl spoléhat méně.</p>
         </div>
       </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px; margin-bottom:20px">
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
           <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ FOTO — světla a klakson ]</span>
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Světla a elektroinstalace</span>
         </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">LED světlomety HELLA a klakson Stebel</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">Přední světlomety jsem vyměnil za HELLA Performance LED a doplnil LED blinkry, brzdová i couvací světla — výrazně lepší viditelnost za tmy. Původní klakson nahradil hlasitější Stebel.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Díly → výsledek</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 07</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">LED světlomety HELLA a klakson Stebel</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Originální světlomety a klakson už neodpovídaly tomu, co bych čekal od auta, se kterým jezdím i v noci a v běžném provozu.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Přední světlomety jsem vyměnil za HELLA Performance LED místo běžných LED náhrad — rozdíl je hlavně v kvalitě svazku světla a v tom, že neslepí protijedoucí — a doplnil LED blinkry, brzdová i couvací světla. Výrazně lepší viditelnost za tmy i lepší viditelnost auta pro ostatní. Původní klakson nahradil hlasitější Stebel.</p>
         </div>
       </article>
-      <article style="display:flex; flex-direction:column">
-        <div style="position:relative; height:280px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden; margin-bottom:20px">
+
+      <article style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0 0; align-items:start" class="grid-2">
+        <div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
           <img src="images/nozovy-blok.jpg" alt="Nožový blok a drobné úpravy v kuchyňce" style="width:100%; height:100%; object-fit:cover; display:block">
           <span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Interiér</span>
         </div>
-        <h3 style="font-family:var(--display); font-weight:500; font-size:25px; line-height:1.15; letter-spacing:-0.01em; margin:0 0 12px">Drobnosti, které nejvíc zlepšily provoz</h3>
-        <p style="font-size:15px; line-height:1.6; color:#5a564e; margin:0 0 18px">V interiéru přibyly držáky na sklenice, 3D tištěný držák na kapsle do Nespressa, kalené sklo a magnetická lišta na nože — malé úpravy, které jsou ale v běžném provozu znát nejvíc.</p>
-        <div style="margin-top:auto; display:flex; align-items:center; gap:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">
-          <span>Detaily → komfort</span>
-          <span style="height:3px; width:3px; border-radius:50%; background:#cfcabf"></span>
-          <a href="#upravy" style="text-decoration:none; color:#16140F; font-weight:500; font-family:'Archivo',sans-serif; font-size:14px">Číst článek →</a>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Kapitola 08</div>
+          <h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Interiér</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Původní interiér Phoenixu byl i po deseti letech ve velmi dobrém stavu. Mým cílem proto nebyla kompletní přestavba, ale postupná modernizace a zvýšení komfortu při dlouhodobém cestování. Každá úprava musela mít praktický význam a zároveň zachovat původní charakter vozu.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Kuchyň</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Jednou z prvních úprav byla výměna kuchyňské baterie za Reich Keramik Trend S, která nabízí jemnější regulaci vody, kvalitnější keramickou kartuši a modernější vzhled.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Za sporák jsem nechal vyrobit bílé kalené bezpečnostní sklo, které chrání stěnu před mastnotou a zároveň opticky výrazně rozjasnilo celý interiér.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Pro uložení kuchyňských nožů jsem zvolil profesionální magnetickou lištu Wüsthof místo levnějších magnetických lišt. Po dlouhém hledání se ukázalo, že právě tato lišta má mimořádně silné magnety a jako jedna z mála dokáže bezpečně udržet kvalitní kuchyňské nože i při vibracích obytného vozu.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Protože je bezpečnost na prvním místě, navrhl jsem k tomu vlastní jednoduché řešení — přes lištu se během jízdy natáhne silikonový bezpečnostní pásek, který nože mechanicky zajistí. Díky tomu nehrozí jejich uvolnění ani při prudkém brzdění.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Káva na cestách</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">K cestování neodmyslitelně patří kvalitní káva. Pro kávovar Nespresso jsem proto navrhl vlastní držák vytištěný na 3D tiskárně.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Držák nejen pevně fixuje kávovar během jízdy, ale jeho součástí je také zásobník na kapsle, takže je vše na jednom místě a nic necestuje po skříňkách.</p>
+
+          <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Drobnosti, které zpříjemňují život</h4>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Do interiéru přibyly také designové držáky na sklenice vína, které umožňují bezpečné uložení skleniček během jízdy.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Na první pohled jde o drobnost, ale právě podobné detaily dělají z obytného vozu místo, kde člověk rád tráví týdny na cestách.</p>
         </div>
       </article>
+
     </div>
   </section>
 
@@ -407,6 +427,12 @@
       </div>
       <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
         <span style="font-size:15px; font-weight:600; color:#16140F">Topení</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Alde Compact 3030</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">—</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Originál, po servisu výrazně tišší. Teplá voda i radiátory.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Kuchyňská baterie</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Reich Keramik Trend S</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">—</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Jemnější regulace vody, kvalitní keramická kartuše, modernější vzhled.</span>
+      </div>
+      <div class="hover-bg" style="display:grid; grid-template-columns:1.4fr 1fr 0.6fr 1.6fr; gap:24px; padding:20px 24px; border-top:1px solid #EFECE4; align-items:center">
+        <span style="font-size:15px; font-weight:600; color:#16140F">Magnetická lišta</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#5a564e">Wüsthof (profi řada)</span><span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold)">—</span><span style="font-size:14px; color:#5a564e; line-height:1.5">Nejsilnější magnety v testu, bezpečně drží nože i při vibracích. Doplněno vlastním silikonovým bezpečnostním páskem na jízdu.</span>
       </div>
     </div>
   </section>
