@@ -45,7 +45,7 @@
   .tech-box.skusenost{border-left-color:#2ecc71; background-color:#f2fbf5}
   @media (max-width: 900px){
     .nav-toggle{display:flex !important}
-    .main-nav{display:none; position:fixed; top:68px; left:0; right:0; bottom:0; height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; bottom:0; height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
     .main-nav.open{display:flex !important}
     .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
     .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
@@ -274,7 +274,7 @@
           <h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">780 Wp na střeše — sérioparalelní zapojení</h4>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Čtyři panely na střeše musí dávat dost energie i v zatažených dnech a v zimě, kdy slunce stojí nízko a část plochy bývá ve stínu.</p>
           <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Zvolil jsem sérioparalelní zapojení dvou 220 Wp a dvou 170 Wp panelů, celkem 780 Wp. Sérioparalelní řazení snižuje proud (a tím ztráty na delším kabelovém vedení k regulátoru) a zároveň udržuje napětí v rozsahu, který Victron BlueSolar MPPT zvládá efektivně zpracovat i při částečném zastínění jedné větve.</p>
-          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Výkon sleduju přes VictronConnect. U Victronu jsem zůstal i u ostatních komponent místo levnější konkurence — kvůli spolehlivosti a tomu, že celý systém (baterie, měnič, solár) spolu mluví v jedné appce. Reálné denní výnosy v jednotlivých ročních obdobích popisuju v samostatném blogovém článku.</p>
+          <p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Výkon sleduju přes VictronConnect. U Victronu jsem zůstal i u ostatních komponent místo levnější konkurence — kvůli spolehlivosti a tomu, že celý systém (baterie, měnič, solár) spolu mluví v jedné appce. Jak si tahle instalace vedla v ostrém zátěžovém testu se zátěží přes 4,4 kW, popisuju v samostatném <a href="blog/zatezovy-test-chorvatsko.html" style="color:var(--gold); text-decoration:underline">blogovém článku</a>.</p>
         </div>
       </article>
 
@@ -651,33 +651,38 @@
         <a href="#blog" style="text-decoration:none; color:#F3F1EA; font-size:14px; font-weight:600; white-space:nowrap">Všechny články →</a>
       </div>
       <div style="display:grid; grid-template-columns:1fr; gap:0">
-        <a href="blog/hella-bi-led-iveco-daily.html" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
+        <a href="blog/zatezovy-test-chorvatsko.html" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span>
+          <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Když technika poráží limity</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Brutální zátěžový test 12V elektrárny ve Phoenixu na cestě z Chorvatska — AC zátěž 4 446 W.</p></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">10 min · červen 2026</span>
+        </a>
+        <a href="blog/hella-bi-led-iveco-daily.html" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span>
           <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Když „plug &amp; play“ vůbec není plug &amp; play</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Jak jsme několik dní bojovali s instalací HELLA Bi-LED Performance do Phoenixu.</p></div>
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">13 min · červen 2026</span>
         </a>
         <a href="blog/carawater-vs-lilie-iqflow.html" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span>
           <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Proč jsem kupoval vodní čerpadlo dvakrát</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Carawater SmartPump fungoval bezvadně. Nestačilo to — zůstal hlučný.</p></div>
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">6 min · červen 2026</span>
         </a>
         <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span>
           <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Kolik reálně dá solár 780 Wp</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Naměřené hodnoty den po dni — jaro, léto, zataženo.</p></div>
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">12 min · květen 2026</span>
         </a>
         <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span>
           <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Starlink v obytném autě v Chorvatsku</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Rychlosti, spotřeba a kde to fungovalo nejlíp.</p></div>
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">9 min · duben 2026</span>
         </a>
         <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span>
           <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Jak dlouho vydrží voda pro čtyřčlennou rodinu</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Reálná spotřeba na 5 dní bez doplňování.</p></div>
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">7 min · březen 2026</span>
         </a>
         <a href="#blog" class="hover-row" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">07</span>
           <div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Co bych u Phoenixu po 10 letech změnil</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Pět věcí, které bych dnes řešil úplně jinak.</p></div>
           <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">14 min · únor 2026</span>
         </a>

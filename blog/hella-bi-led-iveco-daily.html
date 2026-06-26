@@ -19,12 +19,22 @@
   }
   a{transition:background .15s ease, border-color .15s ease}
   .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
   @media (max-width: 900px){
     .grid-2{grid-template-columns:1fr !important}
     h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; bottom:0; height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
   }
   @media (max-width: 700px){
     .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
   }
 </style>
 </head>
@@ -38,14 +48,15 @@
         <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
         <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
       </a>
-      <nav style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
-        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">Moje auto</a>
-        <a href="../index.html#upravy" style="text-decoration:none; color:#4a463f">Úpravy</a>
-        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">O voze</a>
+        <a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Vývoj Phoenixu</a>
         <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technologie</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
         <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
-        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Napiš mi</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
       </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
     </div>
   </header>
 

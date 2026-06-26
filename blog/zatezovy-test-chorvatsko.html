@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Když technika poráží limity. Brutální zátěžový test 12V elektrárny — Phoenix 8200 Lab</title>
+<meta name="description" content="Zátěžový test palubní elektroinstalace Victron Energy ve Phoenixu na cestě z Chorvatska — AC zátěž 4 446 W, PowerAssist, MultiPlus-II a denní bilance 780 Wp solárů.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; bottom:0; height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">O voze</a>
+        <a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Vývoj Phoenixu</a>
+        <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technologie</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zpět na blog</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Elektroinstalace · Victron Energy</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Když technika poráží limity</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Brutální zátěžový test 12V elektrárny ve Phoenixu na cestě z Chorvatska.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+        <span>10 min čtení</span>
+        <span>·</span>
+        <span>červen 2026</span>
+        <span>·</span>
+        <span>Victron Energy · MultiPlus-II · PowerAssist · LiFePO4</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Mít velký, luxusní liner je jedna věc. Mít ale na palubě naprostou energetickou svobodu, kdy nemusíte řešit, kolik spotřebičů naráz zapnete, to je úplně jiná liga. Na naší zpáteční cestě z chorvatského ostrova Pag jsem se rozhodl dát naší palubní instalaci od <strong>Victron Energy</strong> ultimátní zátěžový test. Žádné opatrné našlapování – zkrátka čistý hardcore test všeho, co systém dokáže uřídit.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Pokud vás zajímá, jak si poradí 400 Ah LiFePO4 baterie, 3000 VA měnič MultiPlus-II, 780 Wp solárů na střeše a dvě DC-DC nabíječky za jízdy s odběrem přes 4,4 kW, vítejte u dnešního technického reportu.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Fáze 1: Ranní ostrovní očistec (klimatizace, fén a výrobník ledu)</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Test začal hned po probuzení. Auto stálo kompletně odpojené od sítě, v čistém ostrovním režimu. Venku už od rána pálilo slunce, takže scénář byl jasný: posádka vyžaduje plný komfort.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 10px">Postupně se zapnulo:</p>
+    <ul style="margin:0 0 16px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+      <li>Obě střešní klimatizace (Sinclair i Dometic)</li>
+      <li>Kávovar na ranní restart</li>
+      <li>Výrobník ledu</li>
+      <li>Fén na vlasy</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Během dvou až tří hodin dostal systém solidní sodu a vycucal zhruba <strong>5 kWh</strong> čisté energie. Kapacita baterie spadla k padesáti procentům. Pro 95 % běžných obytňáků by to znamenalo energetickou smrt a okamžité vypínání všeho. U nás? Jen běžné dopoledne. Regulátor MPPT už začínal chytat první silné paprsky a na obzoru byl další krok.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Fáze 2: Odpolední grilovací masakr (AC zátěž 4 446 W!)</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Tohle byla ta nejšílenější pasáž, kterou jsem musel zaznamenat přes aplikaci VRM. Když jsme ještě stáli na místě a chystali jídlo, zapojili jsme elektrický kontaktní gril. K tomu běžely klimatizace a palubní zázemí. Výsledek? <strong>AC zátěž vystřelila na neskutečných 4 446 W!</strong></p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Podívejte se na screenshot, který jsem v tu chvíli v reálném čase vyfotil:</p>
+
+    <figure style="margin:0 0 32px">
+      <img src="../images/blog/zatezovy-test/vrm-grilovani-4446w.jpg" alt="VRM screenshot — AC zátěž 4 446 W, baterie 49,8 %, vybíjení -256,7 A" loading="lazy" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block">
+      <figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, 15:23 — AC zátěž 4 446 W, MultiPlus-II vybíjení -256,7 A / -3 260 W, baterie 12,70 V / 49,8 %, solár 448 W.</figcaption>
+    </figure>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Jak tenhle extrém systém uřídil přes Victron PowerAssist?</h3>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Náš měnič <strong>MultiPlus-II 12/3000/120</strong> má trvalý papírový výkon kolem 2 400 W (3000 VA). Jak je tedy možné, že utáhl 4,4 kW a nevyletěly pojistky?</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 10px">Zafungovala genialita funkce <strong>Victron PowerAssist (Asistence)</strong>:</p>
+    <ol style="margin:0 0 16px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+      <li>Kempový sloupek (síť) byl záměrně omezen na bezpečný limit <strong>7,8 A (1 682 W)</strong>, aby v kempu nevypadl jistič.</li>
+      <li>MultiPlus-II poznal, že odběr (4 446 W) je moc vysoký. Okamžitě se fázově synchronizoval se sítí a začal z baterie přes měnič „přicucávat“ zbývajících <strong>2 895 W</strong>!</li>
+      <li>Baterie v tu chvíli plivala krev — odběr z lithia byl šílených <strong>-256,7 A</strong> (čisté vybíjení zástavby -3 260 W). Obrovská zátěž srazila napětí baterie na <strong>12,70 V</strong>, což je ale při takovém proudu u LiFePO4 zdravý projev vnitřního odporu. Soláry v tu chvíli dotovaly situaci svými 448 W.</li>
+    </ol>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Tohle byl ultimátní test kabeláže, spojů a měniče za hranicí jeho nominálního trvalého výkonu. Všechno udržel, nic neshořelo a maso se v klidu dogrilovalo. Stav baterie se ustálil na <strong>49,8 %</strong>.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Fáze 3: Rychlá rekuperace po grilování</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Jakmile se gril vypnul, systém si hluboce oddechl, což ukazuje další screenshot pořízený o pouhých 6 minut později (v 15:29).</p>
+
+    <figure style="margin:0 0 24px">
+      <img src="../images/blog/zatezovy-test/vrm-rekuperace-1679w.jpg" alt="VRM screenshot — AC zátěž 1 679 W, nabíjení 37,5 A, napětí 13,19 V" loading="lazy" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block">
+      <figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, 15:29 — AC zátěž 1 679 W, asistence vypnutá, nabíjení 37,5 A, napětí 13,19 V.</figcaption>
+    </figure>
+
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">AC zátěž spadla na <strong>1 679 W</strong> (běžící klimy). Udělal jsem okamžitý manažerský tah — zvýšil jsem limit na sloupku na <strong>10 A (1 715 W)</strong>. MultiPlus okamžitě vypnul asistenci a přepnul se do masivního nabíjení. Napětí baterie vyskočilo zpět na zdravých <strong>13,19 V</strong> a do baterky začal téct regenerační proud <strong>37,5 A</strong>.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">O další 3 minuty později klesla zátěž klimošek na <strong>974 W</strong> (vnitřek už se vychladil) a volný výkon ze sítě (1 995 W / 9,3 A) spolu se soláry (445 W) vytvořil dokonalou symfonii: do baterie začal prát brutální <strong>nabíjecí proud 101 A (1 343 W)</strong>!</p>
+
+    <figure style="margin:0 0 40px">
+      <img src="../images/blog/zatezovy-test/vrm-nabijeni-101a.jpg" alt="VRM screenshot — nabíjecí proud 101 A / 1 343 W, síť 1 995 W" loading="lazy" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block">
+      <figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, 15:32 — AC zátěž 974 W, nabíjení 101 A / 1 343 W, síť 1 995 W / 9,3 A, solár 445 W.</figcaption>
+    </figure>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Fáze 4: Dálniční let s plným chlazením a síla alternátoru</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">A teď to hlavní — po sbalení kempu jsme vyrazili domů směr ČR. A tady přichází to nejdůležitější pravidlo: <strong>elektrický gril sice za jízdy samozřejmě neběží (bezpečnost a zdravý rozum především!), ale obě střešní klimatizace ano!</strong></p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Cesta po dálnici probíhala v naprostém chládku. V kabině jela motorová klima a v obytném prostoru běžely obě střešní klimatizace naplno přes měnič z baterky. Žádná přípojka, čistá dálnice. Jak je možné, že jsme nevybili baterii?</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Podívejte se na screenshot, který ukazuje denní bilanci solárního regulátoru MPPT 150/60:</p>
+
+    <figure style="margin:0 0 24px">
+      <img src="../images/blog/zatezovy-test/vrm-mppt-denni-vynos.jpg" alt="VRM screenshot — denní solární výnos 3 980 Wh, maximální výkon 654 W" loading="lazy" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block">
+      <figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, historie MPPT 150/60 — celkový denní výnos 3 980 Wh, maximální výkon 654 W.</figcaption>
+    </figure>
+
+    <ul style="margin:0 0 40px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+      <li><strong>Celkový solární výnos za den:</strong> <strong>3 980 Wh (téměř 4 kWh)</strong>. Proud vzduchu na dálnici panely krásně chladil, takže i v horku soláry dosáhly maximálního výkonu <strong>654 W</strong>.</li>
+      <li><strong>Tajemství úspěchu — 210A alternátor a dvě DC-DC nabíječky:</strong> Na motoru Iveca máme silný 210A alternátor. Ten krmí dvě chytře zapojené DC-DC nabíječky Victron (30 A + 50 A). Za jízdy tak do palubního systému stabilně přitékalo přes <strong>1 010 W</strong> čistého výkonu (v aplikaci zobrazeno jako záporný DC systém -1010 W).</li>
+      <li>Pro strach z blackoutu navíc vozím záložní elektrocentrálu, která je zapojená nezávisle přes samostatnou 50A AC-DC nabíječku přímo do baterie (mimo MultiPlus), takže v případě nouze dokáže baterii krmit čistě zespodu.</li>
+    </ul>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Konečné zúčtování: domů s plnou polní</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Když jsme večer dorazili do ČR, vyjel jsem si z VRM portálu kompletní denní graf, který celou tu dálniční jízdu krásně rekapituluje:</p>
+
+    <figure style="margin:0 0 24px">
+      <img src="../images/blog/zatezovy-test/vrm-denni-graf-final.jpg" alt="VRM denní graf — spotřeba 5,6 kWh, solární zisk 4,0 kWh, bilance ze sítě 0 kWh" loading="lazy" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block">
+      <figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, denní souhrn — spotřeba 5,6 kWh, solární zisk 4,0 kWh, bilance ze sítě 0 kWh.</figcaption>
+    </figure>
+
+    <ul style="margin:0 0 16px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+      <li><strong>Celková spotřeba za den:</strong> <strong>5,6 kWh</strong> (obrovské množství energie spotřebované na chlazení celého 8,35metrového auta za jízdy).</li>
+      <li><strong>Celkový solární zisk:</strong> <strong>4,0 kWh</strong>.</li>
+      <li><strong>Bilance ze sítě:</strong> <strong>0 kWh</strong> (čistá nula zvenčí).</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Podívejte se na tu modrou křivku stavu baterie. Kolem 14:00 sice kvůli odběru obou klimatizací klesla na cca <strong>60 %</strong>, ale jakmile klimy ubraly, kombinace solárů a hlavně <strong>80A dobíjení z alternátoru</strong> dokázala i za jízdy dotlačit baterii zpět k <strong>100 %</strong>. Dokonce i solární regulátor na konci dne stihl přejít do fáze absorpce a krásně zbalancoval články.</p>
+    <p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 20px">Závěr? Domů jsme přijeli v dokonale vychlazeném autě, vyzkoušeli jsme si extrémní 4,4kW zátěž na místě, spotřebovali přes 5,5 kWh elektřiny, a přesto parkujeme před domem s naprosto plnou, stoprocentně nabitou baterií.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 48px">Tenhle systém postavený na komponentech Victron Energy stál každý jeden haléř. Tohle totiž není obyčejný obytňák — je to nezávislá, nezničitelná elektrárna na kolech! 🚐☀️🔋</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px">
+      <h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Použité komponenty</h2>
+      <ul style="list-style:none; padding:0; margin:0">
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron MultiPlus-II 12/3000/120-32 <span style="color:#9a958c">(měnič/nabíječ s funkcí PowerAssist)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron BlueSolar MPPT 150/60 <span style="color:#9a958c">(solární regulátor)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>2× Victron 12,8 V / 200 Ah LiFePO4 <span style="color:#9a958c">(celkem 400 Ah)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>780 Wp solární panely na střeše <span style="color:#9a958c">(sérioparalelní zapojení)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>2× Victron Orion-Tr Smart DC-DC <span style="color:#9a958c">(izolovaná 30 A + neizolovaná 50 A)</span></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>VRM Portal / VictronConnect <span style="color:#9a958c">(monitoring a vzdálená správa)</span></li>
+      </ul>
+    </div>
+
+    <a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:56px">← Zpět na všechny články</a>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Deník jednoho Phoenixu · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
