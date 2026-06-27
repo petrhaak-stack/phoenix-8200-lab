@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>When "plug &amp; play" isn't plug &amp; play at all — Phoenix 8200 Lab</title>
+<meta content="How we fought for several days with the installation of HELLA Bi-LED Performance into the Phoenix 8200 BML — a 3D-printed adapter for the original mounts and a battle with the Bosch BCM that ended with a MOSFET." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+<!-- ============ NAV ============ -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+<div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+<a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit"><span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span></a>
+<nav class="main-nav" id="mainNav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+<a href="../index.html#auto" style="text-decoration:none; color:#4a463f">About the vehicle</a>
+<a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Phoenix development</a>
+<a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technology</a>
+<a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+<a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Gallery</a>
+<a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Contact</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="nav-toggle" id="navToggle" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+</div>
+</header>
+<!-- ============ ARTICLE HERO ============ -->
+<section style="background:#111010; color:#F3F1EA">
+<div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+<a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Back to blog</a>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Lights and wiring</div>
+<h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">When "plug &amp; play" isn't plug &amp; play at all</h1>
+<p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">How we fought for several days with installing HELLA Bi-LED Performance into the Phoenix.</p>
+<div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+<span>13 min read</span>
+<span>·</span>
+<span>June 2026</span>
+<span>·</span>
+<span>Iveco Daily · HELLA · Bosch BCM · MOSFET</span>
+</div>
+</div>
+</section>
+<!-- ============ ARTICLE BODY ============ -->
+<article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">When I decided to modernize the lighting on my Phoenix 8200 BML, built on the Iveco Daily 60C18 (2016) chassis, I thought it would be one of the simplest modifications.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 12px">The original front lights consisted of four separate 90mm HELLA halogen modules.</p>
+<ul style="list-style:none; padding:0; margin:0 0 20px">
+<li style="position:relative; padding-left:22px; margin-bottom:8px; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>two low beams,</li>
+<li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15.5px; line-height:1.7; color:#3d3a34"><span style="position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>two high beams.</li>
+</ul>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">At first glance, an ideal situation. HELLA also makes modern Bi-LED modules of the same 90 mm size, so I assumed it would be a simple swap.</p>
+<p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 44px">I was wrong.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">First step — low beams</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">First I replaced the original halogen low beams with <strong>HELLA Bi-LED Essential (1AL 015 318-111)</strong>. I wanted to first verify that everything would work.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The difference was huge. Suddenly the lights had a sharp light cutoff, several times higher luminous intensity, and a noticeably more pleasant light color.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 8px">I told myself that the second stage would be exactly the same.</p>
+<p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 44px">It wasn't.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Second step — Performance</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">After a few months I decided to also replace the original high beams. This time the choice fell on <strong>HELLA 90 mm Bi-LED Performance L45-65 (1AL 015 318-031)</strong> — modules with significantly higher light output and range than the Essential version.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">I wanted to turn the Phoenix into a vehicle that would be a joy to drive at night too.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">The first surprise</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The first problem arrived even before we connected a single wire.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Although the new headlights have the same 90 mm diameter as the original halogens, their construction is different. The original Phoenix mounts therefore couldn't be used.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">However, I didn't want to drill new holes or modify the original structure. In the end we designed our own 3D-printed adapter, which allowed us to use the Phoenix's original mounting points — so the new headlights could be installed without any irreversible intervention in the vehicle.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">In addition, we redesigned the entire mount so that each headlight could be individually adjusted using three set screws.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">That was the first small win.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">And then came the electronics…</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">After the mechanical installation, I expected we would simply wire up the lights. But the Phoenix is built on the Iveco Daily 60C18 chassis, and the lighting electronics are controlled by a Body Control Module (BCM). And that's exactly where a multi-day battle began.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">LED headlights have completely different electrical characteristics than the original halogen bulbs. The BCM noticed this immediately — problems with light control started appearing, and it was clear that a simple swap wouldn't be possible.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Searching for a solution</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">I didn't want to hack together the first solution that came to mind. The goal was for the whole system to work just as reliably as it would from the factory. So we gradually tried almost everything that seemed plausible.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">We tested various power resistors that were supposed to simulate the current draw of the original halogen bulbs. We measured currents. Calculated the load on individual circuits. Investigated the configuration options of the control unit. Searched for information on foreign forums. We consulted on possible changes to the BCM and the ECU.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Some attempts worked partially. Others created additional problems. After several days it was clear that the path through resistors was leading nowhere.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">A change of philosophy</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">In the end, we stopped thinking about how to force the BCM to power the LED headlights. And we changed the whole concept.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Today the BCM doesn't power the headlights at all — it only controls a relay. All the power runs through new cables directly from the battery via its own fuse protection.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Suddenly everything started working.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">We thought we had won…</h2>
+<p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 20px">We hadn't.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">After switching to high beams, the relay started clicking unpleasantly. At first we suspected a faulty relay, then a bad ground connection.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">In the end we found the real cause: the BCM's output had such a low current that the relay could engage, but could no longer hold reliably. The relay was hovering right at the boundary between engaging and disengaging — which is why it kept clicking constantly.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">The solution? A MOSFET.</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">In the end we inserted a MOSFET switching circuit between the BCM and the relay. This practically eliminated the load on the BCM's output, and the relay received a stable control signal.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 8px">From that moment on, the problem was gone.</p>
+<p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 44px">No clicking. No errors. Just perfectly functioning lights.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">If you're doing lights, do them properly</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Since the entire front of the vehicle was already disassembled, I decided to also add a pair of <strong>HELLA ValueFit LED Light Bar 522 mm</strong> units with position lights. A separate illuminated switch was added to the dashboard — so I can choose whether to drive on just the main headlights, or also activate the roof-mounted light bars.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Their operation, meanwhile, remained completely intuitive — the high beams are switched using the original lever under the steering wheel, just like on a standard production vehicle.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Was it worth it?</h2>
+<p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 20px">Definitely.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">When I drive today at night on back roads or across the Alps, the difference compared to the original halogens is enormous.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 48px">But what brings me the greatest joy isn't how the lights shine. I'm happy because of the story behind them — a story of several days of searching, measuring, trying dead ends, and finally a solution that works exactly the way I imagined it would.</p>
+<div style="border-top:1px solid #E7E4DC; padding-top:32px">
+<h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Components used</h2>
+<ul style="list-style:none; padding:0; margin:0">
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>HELLA Bi-LED Essential — 1AL 015 318-111 <span style="color:#9a958c">(low beams, stage 1)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>HELLA Bi-LED Performance L45-65 — 1AL 015 318-031 <span style="color:#9a958c">(high beams, stage 2)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>HELLA ValueFit LED Light Bar 522 mm with position light <span style="color:#9a958c">(additional high beams on the roof)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Custom 3D-printed adapter for mounting into the original Phoenix mounts</li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Adjustment kit with three set screws per headlight</li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Bosch BCM 5801631470 <span style="color:#9a958c">(original Iveco Daily control unit)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Automotive relay</li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>MOSFET switching stage</li>
+<li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>New fused power supply directly from the battery</li>
+</ul>
+</div>
+<a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:56px">← Back to all articles</a>
+</article>
+<footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+<div style="display:flex; align-items:center; gap:12px">
+<span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+</div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Diary of a Phoenix · © 2026</span>
+</footer>
+</div>
+</body>
+</html>

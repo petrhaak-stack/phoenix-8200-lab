@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Wie ich die Lichtmaschine besiegt habe — Phoenix 8200 Lab</title>
+<meta content="Der Umstieg auf LiFePO4-Batterien bedeutete, dass die originale Lichtmaschine die Batteriebank nicht mehr so aufladen konnte, wie es möglich wäre. Die Lösung war eine 210A-Lichtmaschine von Bosch und zwei Victron Orion-Tr Smart DC-DC-Ladegeräte." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+<!-- ============ NAV ============ -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+<div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+<a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit"><span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span></a>
+<nav class="main-nav" id="mainNav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+<a href="../index.html#auto" style="text-decoration:none; color:#4a463f">Über das Fahrzeug</a>
+<a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Entwicklung des Phoenix</a>
+<a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technik</a>
+<a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+<a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+<a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+</nav>
+<button aria-expanded="false" aria-label="Menü öffnen" class="nav-toggle" id="navToggle" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+</div>
+</header>
+<!-- ============ ARTICLE HERO ============ -->
+<section style="background:#111010; color:#F3F1EA">
+<div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+<a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zurück zum Blog</a>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Elektrik</div>
+<h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Wie ich die Lichtmaschine besiegt habe</h1>
+<p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Umstieg auf eine 210 A Bosch-Lichtmaschine und zwei Victron Orion-Tr Smart DC-DC-Ladegeräte beim Umbau des Phoenix auf LiFePO4.</p>
+<div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+<span>8 Min. Lesezeit</span>
+<span>·</span>
+<span>Juni 2026</span>
+<span>·</span>
+<span>Elektrik · Bosch 210A-Lichtmaschine</span>
+</div>
+</div>
+</section>
+<!-- ============ ARTICLE BODY ============ -->
+<article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Der Umstieg auf LiFePO4-Batterien hat viele Dinge auf einmal gelöst — mehr nutzbare Kapazität, schnelleres Laden, keine Angst mehr vor Tiefentladung. Allerdings brachte er auch ein Problem mit sich, an das ich vorher nicht vollständig gedacht hatte: Die originale Lichtmaschine des Iveco war darauf ausgelegt, die Starterbatterie zu laden und eine kleinere Last zu bedienen, nicht aber darauf, gleich nach dem Motorstart mit voller Kraft Strom in eine große LiFePO4-Batteriebank zu pumpen.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">LiFePO4-Batterien können Ladestrom nämlich deutlich aggressiver aufnehmen als Gel- oder Bleibatterien — aber nur, wenn die Ladequelle genug Leistung hat, um das auch auszunutzen. Ohne Anpassung wäre die Lichtmaschine das limitierende Glied im gesamten System gewesen.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Warum die originale Lichtmaschine nicht ausreichte</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Die serienmäßige Lichtmaschine ist auf den normalen Verbrauch des Fahrzeugs ausgelegt — Beleuchtung, Lenkung, Bordelektronik und das Laden der Starterbatterie. Eine Versorgungsbatteriebank mit großer LiFePO4-Kapazität braucht während der Fahrt jedoch deutlich höheren Strom, wenn sie in vernünftiger Zeit geladen werden soll. Ohne eine leistungsfähigere Quelle hätten die DC-DC-Ladegeräte nur einen Bruchteil dessen zur Verfügung, was sie sonst verarbeiten könnten.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Die Lösung bestand also nicht nur im Austausch der Batterien, sondern der gesamten Ladekette während der Fahrt — von der Lichtmaschine bis zu den DC-DC-Ladegeräten.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">210 A Bosch — warum gerade diese Lichtmaschine</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Ich habe mich für die Bosch-Lichtmaschine 210 A (0 986 085 510) entschieden — ein kompatibler Ersatz für das Originalteil, aber mit deutlich größerer Leistungsreserve. Mit höherem Strom am Eingang haben die DC-DC-Ladegeräte tatsächlich etwas, woraus sie schöpfen können, sodass das Laden der LiFePO4-Bank während der Fahrt nicht nur auf dem Papier, sondern auch in der Praxis besser funktioniert.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Zwei Orion-Tr Smart DC-DC-Ladegeräte</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Zwischen der Lichtmaschine und der Versorgungsbatteriebank habe ich zwei Victron Orion-Tr Smart Ladegeräte eingebaut — ein isoliertes 12/12-30 A für den Hauptkreis und ein nicht isoliertes 12/12-50 A als Ergänzung. Die isolierte Version hält den Starter- und den Versorgungskreis elektrisch getrennt, während die nicht isolierte Version zusätzlichen Strom dort liefert, wo eine galvanische Trennung nicht nötig ist. Zusammen bewältigen sie das Laden während der Fahrt deutlich besser, als es ein einzelnes Gerät allein könnte.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Beide Ladegeräte kommunizieren zudem über Bluetooth und VictronConnect, sodass ich die Ladekurve und den aktuellen Strom auf dem Handy sehe und nicht nur schätzen muss.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 0; color:#16140F">Wie das Ganze zusammen funktioniert</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:16px 0 0">Die Lichtmaschine, die beiden DC-DC-Ladegeräte und die Victron-LiFePO4-Bank bilden jetzt eine einzige Kette, die die Batterien während der Fahrt tatsächlich schneller lädt, als es das ursprüngliche Gel-System je konnte. In der Praxis bedeutet das, dass die Bank nach ein paar Stunden Fahrt wieder voll ist, selbst wenn ich sie in der Nacht zuvor ordentlich beansprucht habe — Kühlschrank, Licht, beide Klimaanlagen. Kein Nachrechnen mehr, ob es bis zum Morgen reicht.</p>
+<div style="border-top:1px solid #E7E4DC; padding-top:32px; margin-top:48px">
+<h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Verwendete Komponenten</h2>
+<ul style="list-style:none; padding:0; margin:0">
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Bosch 210 A Lichtmaschine, OEM 0 986 085 510 <a href="https://www.boschaftermarket.com/" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— Kompatibilität und technische Daten</a></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy Orion-Tr Smart 12/12-30 A Isolated <a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— Spezifikationen</a></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy Orion-Tr Smart 12/12-50 A Non-Isolated <a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— Spezifikationen</a></li>
+<li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy LiFePO4 Battery NG <a href="https://www.victronenergy.com/lithium-battery-system/lithium-ng-battery" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— Spezifikationen</a></li>
+</ul>
+</div>
+<a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Zurück zu allen Artikeln</a>
+</article>
+<footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+<div style="display:flex; align-items:center; gap:12px">
+<span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+</div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Tagebuch eines Phoenix · © 2026</span>
+</footer>
+</div>
+</body>
+</html>

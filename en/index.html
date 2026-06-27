@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../favicon.svg" rel="alternate icon"/>
+<link href="../favicon.svg" rel="apple-touch-icon"/>
+<title>PHOENIX MIDI 8200 BML — Phoenix 8200 Lab</title>
+<meta content="PHOENIX MIDI 8200 BML (2016) — the journey toward the perfect motorhome. No advertising, just real-world experience, product testing, and modifications proven over thousands of kilometers on the road." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://phoenix7.vip/" property="og:url"/>
+<meta content="PHOENIX MIDI 8200 BML — Phoenix 8200 Lab" property="og:title"/>
+<meta content="PHOENIX MIDI 8200 BML (2016) — the journey toward the perfect motorhome. No advertising, just real-world experience, product testing, and modifications proven over thousands of kilometers on the road." property="og:description"/>
+<meta content="https://phoenix7.vip/images/hero.jpg" property="og:image"/>
+<meta content="1195" property="og:image:width"/>
+<meta content="896" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="PHOENIX MIDI 8200 BML — Phoenix 8200 Lab" name="twitter:title"/>
+<meta content="PHOENIX MIDI 8200 BML (2016) — the journey toward the perfect motorhome." name="twitter:description"/>
+<meta content="https://phoenix7.vip/images/hero.jpg" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-bg:hover{background:#fbfaf6}
+  .hover-row:hover{background:#161513}
+  .hover-border:hover{border-color:#16140F}
+  input:focus, select:focus, textarea:focus{border-color:var(--gold) !important}
+  .filter-btn{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.04em; padding:9px 16px; border-radius:999px; cursor:pointer;}
+  .tech-box{padding:20px; margin:20px 0; border-left:5px solid; border-radius:4px; background-color:#f9f9f9}
+  .tech-box h4{margin-top:0; margin-bottom:10px; font-size:1.05rem; font-family:'Archivo',-apple-system,sans-serif}
+  .tech-box p{margin:0; font-size:15px; line-height:1.7; color:#3f3c36}
+  .tech-box.problem{border-left-color:#e74c3c; background-color:#fdf2f2}
+  .tech-box.reseni{border-left-color:#3498db; background-color:#f2f7fb}
+  .tech-box.skusenost{border-left-color:#2ecc71; background-color:#f2fbf5}
+  @media (max-width: 900px){
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+    .grid-2{grid-template-columns:1fr !important}
+    .grid-4{grid-template-columns:repeat(2,1fr) !important}
+    .grid-5{grid-template-columns:repeat(2,1fr) !important}
+    .grid-3{grid-template-columns:repeat(2,1fr) !important}
+    h1{font-size:38px !important}
+    h2{font-size:30px !important}
+    .contact-grid{grid-template-columns:1fr !important}
+    .contact-grid > div{border-right:none !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:25px !important}
+    h3{font-size:21px !important}
+    .grid-3{grid-template-columns:1fr !important}
+    .grid-4{grid-template-columns:1fr 1fr !important}
+    .grid-5{grid-template-columns:1fr 1fr !important}
+    .hover-row{grid-template-columns:1fr !important; gap:6px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+<!-- ============ NAV ============ -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+<div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+<a href="#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit"><span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span></a>
+<nav class="main-nav" id="mainNav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+<a href="#auto" style="text-decoration:none; color:#4a463f">About the Vehicle</a>
+<a href="#vyvoj" style="text-decoration:none; color:#4a463f">Phoenix Build</a>
+<a href="#dily" style="text-decoration:none; color:#4a463f">Technology</a>
+<a href="#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+<a href="#galerie" style="text-decoration:none; color:#4a463f">Gallery</a>
+<a href="#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Contact</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="nav-toggle" id="navToggle" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="display:none; align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+</div>
+</header>
+<!-- ============ HERO ============ -->
+<section id="top" style="position:relative">
+<div style="background:#111010; color:#F3F1EA; position:relative; overflow:hidden">
+<div style="max-width:1280px; margin:0 auto; padding:72px 40px 0; display:grid; grid-template-columns:1fr; gap:0">
+<div style="display:flex; align-items:center; gap:14px; margin-bottom:24px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase">Diary of a Phoenix</span>
+<span style="height:1px; flex:1; background:linear-gradient(90deg, var(--gold), transparent)"></span>
+</div>
+<h1 style="font-family:var(--display); font-weight:400; font-size:64px; line-height:1.02; letter-spacing:-0.02em; margin:0 0 24px; max-width:16ch">PHOENIX MIDI 8200 BML — modifications, experience, and technical solutions from real-world use</h1>
+<p style="font-family:var(--display); font-style:italic; font-size:20px; line-height:1.4; color:var(--gold); max-width:48ch; margin:0 0 14px">PHOENIX MIDI 8200 BML (2016) — the journey toward the perfect motorhome.</p>
+<p style="font-size:18px; line-height:1.6; color:#B8B3A8; max-width:54ch; margin:0 0 36px">No advertising, just real-world experience, product testing, and modifications proven over thousands of kilometers on the road. Every chapter is written like a technical diary: the problem → why this particular solution → what I tested → why I chose exactly this → the experience after months of use.</p>
+<div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px">
+<a href="#vyvoj-elektro" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Electrical</a>
+<a href="#vyvoj-voda" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Water</a>
+<a href="#vyvoj-topeni" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Heating</a>
+<a href="#vyvoj-konektivita" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Connectivity</a>
+<a href="#vyvoj-bezpecnost" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Safety</a>
+<a href="#vyvoj-interier" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Interior</a>
+<a href="#vyvoj-podvozek" style="text-decoration:none; color:#F3F1EA; font-size:13.5px; font-weight:500; padding:9px 16px; border:1px solid rgba(243,241,234,0.22); border-radius:999px">Service</a>
+</div>
+</div>
+<div style="max-width:1280px; margin:0 auto; padding:0 40px 0">
+<div style="position:relative; height:440px; border-radius:6px 6px 0 0; overflow:hidden; border:1px solid #2a2824; border-bottom:none">
+<img alt="Phoenix 8200 BML on the road" src="../images/hero.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/>
+</div>
+</div>
+<!-- spec strip -->
+<div style="background:#0b0a0a; border-top:1px solid #2a2824">
+<div class="grid-4" style="max-width:1280px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:repeat(4, 1fr)">
+<div style="padding:22px 0; border-right:1px solid #211f1c">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Model</div>
+<div style="font-size:20px; font-weight:600; color:#F3F1EA">PHOENIX MIDI 8200 BML</div>
+</div>
+<div style="padding:22px 0; border-right:1px solid #211f1c">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Chassis</div>
+<div style="font-size:20px; font-weight:600; color:#F3F1EA">Iveco Daily</div>
+</div>
+<div style="padding:22px 0; border-right:1px solid #211f1c">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Length</div>
+<div style="font-size:20px; font-weight:600; color:#F3F1EA">8.35 m</div>
+</div>
+<div style="padding:22px 0; border-right:1px solid #211f1c">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#75716a; text-transform:uppercase; margin-bottom:8px">Mileage</div>
+<div style="font-size:20px; font-weight:600; color:#F3F1EA">75,000 km</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ MOJE AUTO ============ -->
+<section id="auto" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+<div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">01 — My Vehicle</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technical Data &amp; Current Condition</h2>
+</div>
+<a href="#auto" style="text-decoration:none; color:#16140F; font-size:14px; font-weight:600; white-space:nowrap">Full specification →</a>
+</div>
+<div class="grid-2" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:32px; align-items:stretch">
+<div style="border:1px solid #E7E4DC; border-radius:6px; min-height:360px; overflow:hidden">
+<img alt="Phoenix 8200 BML — aerial view with roof equipment" src="../images/moje-auto.jpg" style="width:100%; height:100%; object-fit:cover; display:block; min-height:360px"/>
+</div>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E7E4DC; border:1px solid #E7E4DC; border-radius:6px; overflow:hidden">
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Model</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">Phoenix 8200 BML Midi Liner</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Year of manufacture</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">2016</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Category</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">M1 — motor caravan</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Color</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">White</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Chassis</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">Iveco Daily — Iveco S.p.A., Torino</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Body conversion</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">Fahrzeugbau Meier GmbH</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Engine</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">3.0 / 150 kW (204 hp)</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Emission standard / fuel</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">EURO 5M · diesel</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Top speed</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">120 km/h</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Length × width × height</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">8.35 × 2.35 × 3.48 m</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Wheelbase</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">4.55 m</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Operating weight</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">5,170 kg</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Max. permitted weight</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">5,990 kg</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Real-world payload</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">820 kg</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Max. trailer weight</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">3,500 kg</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Max. combined weight</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">10,500 kg</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Tires / axles</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">225/75 R16 C · rear-driven, twin-mounted</div>
+</div>
+<div style="background:#fff; padding:22px 20px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#9a958c; text-transform:uppercase; margin-bottom:9px">Seats / sleeping places</div>
+<div style="font-size:18px; font-weight:600; color:#16140F">4</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ VÝVOJ PHOENIXU ============ -->
+<section id="vyvoj" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+<div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">02 — Phoenix Build</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technical Conversion Diary</h2>
+</div>
+</div>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; max-width:74ch; margin:0 0 40px">Modifications divided into categories — inside each one you'll find individual chapters: the problem, what I tested, and why I chose exactly this solution. The section keeps growing with more chapters and articles over time.</p>
+<!-- category index -->
+<div class="grid-5" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:1px; background:#E7E4DC; border:1px solid #E7E4DC; border-radius:6px; overflow:hidden; margin-bottom:48px">
+<a class="hover-bg" href="#vyvoj-elektro" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Electrical</span></a>
+<a class="hover-bg" href="#vyvoj-voda" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Water</span></a>
+<a class="hover-bg" href="#vyvoj-topeni" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Heating</span></a>
+<a class="hover-bg" href="#vyvoj-osvetleni" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Lighting</span></a>
+<a class="hover-bg" href="#vyvoj-konektivita" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Connectivity</span></a>
+<a class="hover-bg" href="#vyvoj-bezpecnost" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Safety</span></a>
+<a class="hover-bg" href="#vyvoj-podvozek" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">07</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Chassis</span></a>
+<a class="hover-bg" href="#vyvoj-servis" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">08</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Service</span></a>
+<a class="hover-bg" href="#vyvoj-interier" style="text-decoration:none; background:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:14px; min-height:118px; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">09</span><span style="font-size:15px; font-weight:600; line-height:1.25; color:#16140F">Interior</span></a>
+</div>
+<!-- kategorie — technický deník po kapitolách -->
+<div style="display:flex; flex-direction:column">
+<article class="grid-2" id="vyvoj-elektro" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:0 0 48px; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+<img alt="Victron inverter/charger in the electrical cabinet" src="../images/elektro-mereni.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Electrical</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 01</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Electrical &amp; LiFePO₄</h3>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Switching to 400 Ah LiFePO₄</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">After years of use, the old gel batteries could no longer keep up with everyday consumption — the fridge, the water pump, and evening lighting could drain the bank faster than the solar panels could recharge it during the day. On top of that, the gel batteries' usable capacity was only a fraction of their rated values.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">I decided to make a complete switch to LiFePO₄ chemistry — two Victron 12.8 V/200 Ah batteries, 400 Ah in total, from which — unlike with gel — you can use practically the entire capacity without risking damage. I added a Victron MultiPlus-II 12V/3000VA, which in a single unit handles both charging from the grid and acts as an inverter for 230V appliances.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">So that the traction batteries also recharge while driving, I added two Orion-Tr Smart DC-DC chargers — an isolated 12/12-30 A unit for the main circuit and a non-isolated 12/12-50 A unit. Without them, the solar alone wouldn't be enough in winter. After a season of use, I no longer worry about whether the battery will last until morning — I only worry about where to head off to next.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">However, the DC-DC chargers only had as much current available as the original alternator could supply — and it wasn't sized for a large LiFePO₄ bank. Why I therefore switched to a 210 A Bosch alternator, and how it affected the charging speed while driving, I describe in a separate <a href="blog/bosch-210a-alternator-lifepo4.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">780 Wp on the roof — series-parallel wiring</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Four panels on the roof have to deliver enough energy even on overcast days and in winter, when the sun sits low and part of the surface is often in shade.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">I chose a series-parallel arrangement of two 220 Wp and two 170 Wp panels, 780 Wp in total. Series-parallel wiring reduces current (and thus losses on the longer cable run to the controller) while keeping the voltage within the range that the Victron BlueSolar MPPT can handle efficiently, even with partial shading of one branch.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">I monitor the output through VictronConnect. I stuck with Victron for the other components too, instead of cheaper competitors — for reliability, and because the whole system (batteries, inverter, solar) talks to each other in a single app. How this installation performed in a hard load test with a load over 4.4 kW, I describe in a separate <a href="blog/zatezovy-test-chorvatsko.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-voda" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+<img alt="Shower column with Oxygenics Fury head" src="../images/sprchovy-sloup.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Water</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 02</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Water &amp; Pumps</h3>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Carawater vs Lilie IQflow 12.3</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">The original water pump was disturbingly noisy — especially in the evening, when it's quiet in the van — and on top of that, the pressure fluctuated depending on how many outlets were open at once.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">I tried the Carawater Intelligent SmartPump ISP-12-4K-15. Functionally it was fine, but in terms of noise it was no different from the original — you could hear it running throughout the whole living area.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">In the end I chose the Lilie IQflow 12.3. It's significantly quieter, holds stable pressure even with multiple outlets open at once, and in operation it's barely audible. The full comparison of both pumps, and why specs matter less than what you actually hear, is in a separate <a href="blog/carawater-vs-lilie-iqflow.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Oxygenics Fury — shower head</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">I upgraded the shower with an Oxygenics Fury head, which thanks to the Venturi effect (mixing air into the stream) saves water without losing the feeling of a strong stream — important when the tank is a limited resource. Why I chose the Fury over the long-standing legend BodySpa, I describe in a separate <a href="blog/oxygenics-fury-vs-bodyspa.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Reich Keramik Trend S kitchen faucet</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">One of the first modifications was replacing the kitchen faucet with a Reich Keramik Trend S, which offers finer water regulation, a higher-quality ceramic cartridge, and a more modern look.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-topeni" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+<img alt="Air conditioning unit and Alde heating" src="../images/klimatizace.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Heating</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 03</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Heating &amp; Air Conditioning</h3>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Alde service and quieter circulation</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">After years of use, the original fluid in the Alde circuit had become old, and the system ran noisier and heated up more slowly than at the start.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">I replaced the fluid with G12+ and connected the Alde circuit to the engine's cooling circuit. The heat the engine generates while driving now helps pre-warm the heating circuit, so after stopping, the Alde doesn't have to heat completely from zero.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">The result is quieter operation and a faster rise in cabin temperature after a longer drive. What I'd do differently today — I wouldn't postpone the service, and I'd connect it to the engine right at the first fluid change, not a few years later.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Second air conditioner — SINCLAIR ASV-35BIS</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">The rear roof air conditioner, a Dometic FreshWell, cools the rear living area well, but it's not enough for an eight-meter-long vehicle — the cool air doesn't reach the front. So I added a second, inverter-driven SINCLAIR ASV-35BIS unit above the front bed. Why I chose an inverter unit, and how the two air conditioners work together as two independent zones, I describe in a separate <a href="blog/dve-klimatizace-sinclair.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-osvetleni" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ PHOTO — lights and horn ]</span>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Lighting</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 04</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Lights &amp; Wiring</h3>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Converting the front headlights to HELLA Bi-LED</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">The original headlights no longer matched what I'd expect from a vehicle I drive at night and in everyday traffic. I replaced the front headlights with HELLA Bi-LED Essential and Performance modules — the difference is mainly in the quality of the light beam and the fact that they don't blind oncoming traffic — and added LED turn signals, brake lights, and reverse lights.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">The installation, however, was anything but plug &amp; play — the whole story with 3D-printed adapters, a solution using a relay and MOSFET, and night testing is in a separate <a href="blog/hella-bi-led-iveco-daily.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">HELLA ValueFit LED Light Bar</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Additional LED high-beam light bars on the cab roof. Control is handled via a separate switch and the high-beam lever.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Stebel Nautilus Compact horn</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">After ten years of use, the original horn was weak and sounded more like a scooter than a six-ton motorhome. I replaced it with a significantly louder electro-pneumatic fanfare horn, the Stebel Nautilus Compact — why this is one of the best modifications from a safety standpoint, I describe in a separate <a href="blog/stebel-nautilus-compact-klakson.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-konektivita" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden; background:#0d0d0d">
+<img alt="Starlink Mini" src="https://starlink.com/assets-new/images/marketing/mini-product-us/mini_productpage_component1_m.webp" style="width:100%; height:100%; object-fit:cover; display:block"/>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Connectivity</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 05</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Starlink and a 5G router for working on the road</h3>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Working on the road needs a stable, fast connection even in places without mobile signal — and that happens regularly in more remote locations.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">The backbone of the network in the van is a Teltonika RUTX50 instead of an ordinary LTE router — it can handle more connection sources and failover between them — complemented by a Starlink Mini for satellite connectivity where mobile networks don't reach. The relevant tariff for a motorhome is Starlink Roam (unlike the Residential one, which is tied to a fixed address) — currently in the Czech Republic from about 1,250 CZK/month for 50 GB, or about 1,850 CZK/month with no data cap.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">I power the Starlink through a 12V adapter with a special cable adapted to the onboard network, so it doesn't need its own separate inverter. According to Starlink, you need a charger with a USB-C PD output of at least 100 W — a weaker one can cause it to cycle. The full wiring setup with automatic failover between Starlink and two SIM cards, plus the story of hunting for the right charger, I describe in a separate <a href="blog/starlink-mini-teltonika-rutx50.html" style="color:var(--gold); text-decoration:underline">blog article</a>.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-bezpecnost" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ PHOTO — EufyCam S300 on a GoPro mount ]</span>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Safety</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 06</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">EufyCam S300 for watching over the vehicle</h3>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">The van often stands overnight in unfamiliar places, and I wanted to keep an eye on what's happening around it without having to run cabling through the bodywork.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">The solution is two wireless EufyCam S300 cameras, attached to ordinary GoPro mounts. No drilling holes, no power cables — and easy repositioning depending on where I happen to be parked. After a season of use, this is one of the modifications I'd be least willing to give up.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-podvozek" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+<img alt="Chassis and axle" src="../images/podvozek-naprava.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Chassis</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 07</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 20px">Shock absorbers and anti-corrosion protection</h3>
+<h4 id="podvozek-tlumice" style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Marquart shock absorbers</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 16px">Our Phoenix is built on the robust 6-ton Iveco Daily chassis. The rear axle with twin-mounted wheels ("super singles") runs entirely on air suspension bellows, which provides excellent comfort on the highway and the ability to level the vehicle at the campsite. The factory shock absorbers from Iveco, however, have one fundamental weakness: they're designed for ordinary vans, not for a motorhome that constantly runs at the limit of its maximum technical weight and has a high center of gravity.</p>
+<div class="tech-box problem">
+<h4>⚠️ Problem: swaying, crosswind, and instability in corners</h4>
+<p>At highway speeds around 100 km/h, the vehicle was extremely sensitive to crosswinds and to the pressure wave when overtaking trucks. When exiting the highway or on roundabouts, the vehicle leaned noticeably. Worst of all, though, were transverse bumps and rutted road surfaces, where the chassis tended to set off secondary rocking of the vehicle (the so-called "yachting effect"). Steering therefore required constant concentration and corrections at the wheel.</p>
+</div>
+<div class="tech-box reseni">
+<h4>🛠️ Solution: reinforced Marquart shock absorbers (Germany)</h4>
+<p>The only effective solution was a complete replacement of the original shock absorbers with custom, hand-assembled shock absorbers from the German specialist <a href="https://www.marquartstossdaempfer.de/" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank"><strong>Marquart</strong></a>. These shock absorbers have a significantly larger piston rod diameter, a greater oil volume, and above all, much stiffer damping characteristics in both rebound and compression. They're designed specifically for heavy expedition vehicles and liners. The installation was carried out at an authorized Iveco service center, with replacement on both the front and rear axle.</p>
+</div>
+<div class="tech-box skusenost">
+<h4>💡 Real-world experience: a completely different vehicle</h4>
+<p>The difference is noticeable right from the first few kilometers. The Phoenix stopped behaving like a clumsy box, and the chassis stiffened up incredibly — in a good sense. Body lean in corners dropped by an estimated 50%, the reaction to crosswind has almost disappeared, and the vehicle settles immediately after a bump, with no follow-on rocking whatsoever. Investing in Marquart shock absorbers is an absolute necessity for comfort and safety on long routes.</p>
+</div>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:20px 0 10px; color:#16140F">Dinitrol anti-corrosion protection</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 16px">The chassis is over 10 years old, and years of winter use and road salt have taken their toll on it. I was therefore looking for a solution that would stop further corrosion — mainly because of the expensive hydraulic chassis legs, which would lose value and functionality if they rusted through. I considered various options for a long time, until I settled on the two-component Dinitrol <a href="https://www.dinitrol.cz/o-nas" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">coating</a>.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">Two-stage anti-corrosion protection for the chassis — first, penetrating protection for cavities and joints with Dinitrol ML, then a durable black protective layer with Dinitrol 4941.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-servis" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0; border-bottom:1px solid #E7E4DC; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:18px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ PHOTO — service log ]</span>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Service</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 08</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Service log</h3>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0">Coming soon — an ongoing service log (oil changes, filters, chassis inspections) will be added gradually.</p>
+</div>
+</article>
+<article class="grid-2" id="vyvoj-interier" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; padding:48px 0 0; align-items:start">
+<div style="position:relative; height:320px; border-radius:6px; border:1px solid #E7E4DC; overflow:hidden">
+<img alt="Knife block and small kitchen upgrades" src="../images/nozovy-blok.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/>
+<span style="position:absolute; top:16px; left:16px; background:#16140F; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; padding:6px 11px; border-radius:999px">Interior</span>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.14em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">Category 09</div>
+<h3 style="font-family:var(--display); font-weight:500; font-size:28px; line-height:1.18; letter-spacing:-0.01em; margin:0 0 16px">Interior</h3>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">The original Phoenix interior was in very good condition even after ten years. My goal therefore wasn't a complete overhaul, but a gradual modernization and increase in comfort for long-term travel. Every modification had to have a practical purpose while preserving the vehicle's original character.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Kitchen</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Behind the stove, I had a white tempered safety glass panel made, which protects the wall from grease and at the same time visually brightened up the whole interior considerably.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">For storing kitchen knives, I chose a professional Wüsthof magnetic strip instead of cheaper magnetic strips. After a long search, it turned out that this particular strip has exceptionally strong magnets and is one of the few that can safely hold quality kitchen knives even with the vibrations of a moving motorhome.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">Since safety comes first, I designed a simple solution of my own for this — during driving, a silicone safety strap is stretched across the rack, which mechanically secures the knives. Thanks to this, there's no risk of them coming loose even under hard braking.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Coffee on the road</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">Good coffee is an essential part of traveling. For the Nespresso coffee machine, I therefore designed my own holder, printed on a 3D printer.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 20px">The holder not only firmly secures the coffee machine while driving, but it also includes a capsule storage compartment, so everything is in one place and nothing rattles around in the cupboards.</p>
+<h4 style="font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-0.005em; margin:0 0 10px; color:#16140F">Small things that make life nicer</h4>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 14px">The interior also gained designer wine glass holders, which allow glasses to be stored safely while driving.</p>
+<p style="font-size:15.5px; line-height:1.7; color:#5a564e; margin:0 0 0">At first glance it's a small thing, but it's exactly details like this that make a motorhome a place where you genuinely enjoy spending weeks on the road. An LED awning light is another modification I'm gradually working on.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- ============ TECHNOLOGIE ============ -->
+<section id="dily" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+<div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">03 — Technology</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Technology used in this Phoenix</h2>
+</div>
+</div>
+<p style="font-size:16px; line-height:1.6; color:#5a564e; max-width:760px; margin:0 0 40px">An overview of the main components that are actually in the vehicle today. This isn't a catalog of parts, but a selection of technologies that have proven themselves in real-world use after testing and modification. The "Used in" badge links to the chapter in the Phoenix Build section, where the decision is described in more detail.</p>
+<div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px">
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Victron Energy MultiPlus-II 12/3000/120-32" loading="lazy" src="https://www.victronenergy.com/upload/documents/PMP122305010_Multiplus-II%2012V%203kVA_120-32%20230V%20%28front%29.png" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Electrical</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy MultiPlus-II 12/3000/120-32</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Inverter/charger for the vehicle's 230V system. Powers appliances from the batteries, charges from the grid, and integrates with the entire Victron system.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+<a href="https://www.victronenergy.cz/inverters-chargers/multiplus-ii" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Victron Energy — specifications</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Battery</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">2× Victron Energy LiFePO₄ Battery NG 12.8 V / 200 Ah</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">New generation lithium-iron-phosphate batteries from Victron NG. Total capacity of 400 Ah significantly increased the vehicle's self-sufficiency.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+<a href="https://www.victronenergy.com/lithium-battery-system/lithium-ng-battery" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Victron Energy — specifications</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">BMS</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy VE.Bus BMS NG</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Control and protection system for the Victron NG batteries. Monitors operating limits, communication, and safe disconnection in non-standard conditions.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Victron Energy Cerbo GX" loading="lazy" src="https://www.victronenergy.com/upload/documents/Cerbo%20GX%20%28front%29.png" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Monitoring</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Cerbo GX</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Central display and communication unit for the whole system. Lets you monitor the batteries, inverter, solar, and charging in one interface.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+<a href="https://www.victronenergy.com/communication-centres/cerbo-gx" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Victron Energy — specifications</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Monitoring</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy SmartShunt 1000 A</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Precise measurement of battery state, current, voltage, and consumption. A fundamental component for a real-world overview of energy in the vehicle.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Solar</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy BlueSolar MPPT 150/60-Tr</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Solar charge controller for the series-parallel panel array. Handles a configuration of 2× 220 Wp + 2× 170 Wp.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">DC-DC charging</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Orion-Tr Smart 12/12-30A (360 W) Isolated</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Isolated DC-DC charger for safe circuit separation and controlled recharging of the traction batteries while driving.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+<a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Victron Energy — specifications</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">DC-DC charging</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Orion-Tr Smart 12/12-50A Non-Isolated</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Non-isolated DC-DC charger for additional recharging from the alternator. Together with the 30A unit, it increases energy self-sufficiency while driving.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+<a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Victron Energy — specifications</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Charging while driving</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Bosch 210 A alternator (0 986 085 510)</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">A more powerful replacement for the original alternator. Gives the DC-DC chargers enough current to actually recharge the LiFePO₄ bank quickly while driving, not just on paper.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+<a href="https://www.boschaftermarket.com/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Bosch Aftermarket — compatibility and technical data</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">AC charging</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Victron Energy Smart IP43 Charger 12 V / 50 A</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Backup AC charger for charging from the grid or a generator, mainly during winter use.</p>
+<a href="#vyvoj-elektro" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Electrical</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Lilie IQflo 12.3" loading="lazy" src="https://data.svetkaravanu.cz/data/tmp/0/6/186236_0.jpg?1753006286_1" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Water</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Lilie IQflow 12.3</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Four-chamber intelligent pressure pump with smooth output regulation based on water draw. Chosen after comparison with the Carawater SmartPump, mainly for its significantly quieter operation.</p>
+<a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Water</a>
+<a href="https://www.svetkaravanu.cz/membranove-cerpadlo-lilie-iqflo_z105622/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 SvětKaravanů.cz — product</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Tested</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Carawater Intelligent SmartPump ISP-12-4K-15</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Tested four-chamber pump with a flow rate of up to 15 l/min, a Bluetooth app, and three pressure modes of 1.4 / 1.8 / 2.2 bar. Technically interesting, but noisier than the Lilie IQflow.</p>
+<a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Water</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Oxygenics Fury RV" loading="lazy" src="https://oxygenics.com/wp-content/uploads/2018/01/Fury_RV_CH_Front_657x802.png" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Shower</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Oxygenics Fury RV</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Shower head with a more water-efficient stream without the feeling of a weak shower (Venturi effect, 5 modes, 1.8 GPM). A practical modification for longer stays without refilling the water tank.</p>
+<a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Water</a>
+<a href="https://oxygenics.com/products/fury-rv-handheld/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Oxygenics.com — product</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Reich Ceramic Trend SR" loading="lazy" src="https://cdn.myshoptet.com/usr/www.vseprokaravan.cz/user/shop/big/42506_pakova-vodovodni-baterie-reich-ceramic-trend-sr-www-vseprokaravan-cz.jpg?6579bcae" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Kitchen</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Reich Keramik Trend S</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Kitchen faucet with finer water regulation, a ceramic cartridge, and a more modern look. Single-lever faucet with microswitch, chrome-plated finish, connection nozzles for 10–12 mm hoses, weight 0.35 kg.</p>
+<a href="#vyvoj-voda" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Water</a>
+<a href="https://www.vseprokaravan.cz/pakove-a-kohoutkove-baterie/pakova-vodovodni-baterie-reich-ceramic-trend-sr/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 VšeProKaravan.cz — product</a>
+<a href="https://www.campingwagner.de/de/p/reich-trend-sr-einhebelmischer-o33mm-mikroschalter-chrom-schwarz_121823?info=p121823" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 CampingWagner.de — product (DE)</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Air conditioning</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">SINCLAIR ASV-35BIS</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Additional inverter-driven roof air conditioner. Thanks to the modified wiring and the Victron system, it can be used efficiently even without a classic shore power connection.</p>
+<a href="#vyvoj-topeni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Heating</a>
+<a href="https://www.sinclair-solutions.com/cs/produkty/karavany-a-lode/stresni-klimatizace/15908-asv-35bis-wifi-053141000000070.html" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Sinclair Solutions — product</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Teltonika RUTX50 5G router" loading="lazy" src="https://eshop.sectron.cz/UserFiles/Product/Image/1739347526Teltonika-RUTX50-03-2025.jpg" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Connectivity</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Teltonika RUTX50 Industrial 5G Router</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Industrial 5G router with two SIM cards, external antennas, and failover capability between the mobile network and other internet sources.</p>
+<a href="#vyvoj-konektivita" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Connectivity</a>
+<a href="https://eshop.sectron.cz/teltonika-rutx50-5g-router/p-15475/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Sectron.cz — online store</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Connectivity</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Starlink Mini</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Satellite internet for places without mobile signal. Powered via the vehicle's 12V system without the need for a separate inverter.</p>
+<a href="#vyvoj-konektivita" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Connectivity</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Cameras</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">EufyCam S300 / eufyCam 3C 4K + HomeBase 3</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Wireless security cameras for watching over the area around the vehicle. The side cameras are mounted using custom 3D-printed brackets with a GoPro fitting.</p>
+<a href="#vyvoj-bezpecnost" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Safety</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Lights</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">HELLA 90 mm Bi-LED Essential, 1AL 015 318-111</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">LED replacement for the original dimmed halogen modules. The first step in modernizing the front lighting.</p>
+<a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Lighting</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Lights</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">HELLA 90 mm Bi-LED Performance L45-65, 1AL 015 318-031</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Powerful high-beam Bi-LED modules. Installation required custom 3D-printed adapters and a wiring modification using a relay and MOSFET.</p>
+<a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Lighting</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Lights</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">2× HELLA ValueFit LED Light Bar 522 mm with position light</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Additional LED high-beam light bars on the cab roof. Control is handled via a separate switch and the high-beam lever.</p>
+<a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Lighting</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Horn</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Stebel Nautilus Compact</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Electro-pneumatic fanfare horn with its own compressor, a harmonized dual tone of 530+680 Hz, ~115 dB/2 m, ECE homologation. Replacement for the weak factory horn.</p>
+<a href="#vyvoj-osvetleni" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Lighting</a>
+<a href="https://www.auto-majaky.cz/sk/p/stebel-nautilus-compact-chrom-12v" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#5a564e" target="_blank">🔗 Auto-Majáky.cz — product</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Chassis</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Marquart Premium Shock Absorbers</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Reinforced shock absorbers custom-made for a heavy motorhome. One of the modifications with the biggest impact on handling.</p>
+<a href="#vyvoj-podvozek" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Chassis</a>
+<a href="https://www.marquartstossdaempfer.de/verstaerkte-stossdaempfer-fuer-iveco-daily-wohnmobile/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Marquart Stoßdämpfer — manufacturer</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Dinitrol 4941" loading="lazy" src="https://cdn.myshoptet.com/usr/www.dinitrol.sk/user/shop/big/730_dinitrol-4941--car-1lit.jpg?ff=1&amp;x=1024&amp;y=1024&amp;q=85&amp;ts=65dd84b9&amp;sg=38cb01fe" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Anti-corrosion</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Dinitrol ML + Dinitrol 4941</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Two-stage anti-corrosion protection for the chassis. First, penetrating protection for cavities and joints, then a durable black protective layer.</p>
+<a href="#vyvoj-podvozek" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Chassis</a>
+<a href="https://www.dinitrol.sk/dinitrol-4941--car-1lit/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Dinitrol.sk — product</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Wüsthof Magnetic Knife Holder" loading="lazy" src="https://wusthof.com/cdn/shop/products/2059625650.png?v=1762441418" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Interior</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Wüsthof Magnetic Knife Holder</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Strong magnetic knife strip, complemented by a custom silicone safety strap to secure the knives while driving.</p>
+<a href="#vyvoj-interier" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold)">✅ Used in: Interior</a>
+<a href="https://wusthof.com/products/20-inch-magnetic-holder" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 Wüsthof.com — product</a>
+</div>
+<div class="hover-bg" style="border:1px solid #E7E4DC; border-radius:6px; padding:24px; background:#fff; display:flex; flex-direction:column; gap:12px">
+<img alt="Segway E300SE" loading="lazy" src="https://cdn.myshoptet.com/usr/www.mtt-brno.cz/user/shop/big/220717_skutr-segway-escooter-e300se.png?67c98e06" style="width:100%; height:130px; object-fit:contain; background:#F8F7F3; border-radius:4px"/>
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase">Garage</span>
+<div style="font-size:17px; font-weight:600; color:#16140F">Segway E300SE</div>
+<p style="font-size:14.5px; line-height:1.6; color:#5a564e; margin:0">Electric scooter stored in the vehicle's garage. Thanks to the solar system and batteries, it can be recharged directly from the energy generated on the roof.</p>
+<a href="https://www.mtt-brno.cz/skutr-segway-escooter-e300se/" rel="noopener" style="text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a857a" target="_blank">🔗 MTT Brno — online store</a>
+</div>
+</div>
+</section>
+<!-- ============ BLOG ============ -->
+<section id="blog" style="background:#111010; color:#F3F1EA; margin-top:104px">
+<div style="max-width:1280px; margin:0 auto; padding:96px 40px">
+<div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:48px; border-bottom:1px solid #2a2824; padding-bottom:20px">
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">04 — Blog</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0; color:#F3F1EA">Short practical articles from the road</h2>
+</div>
+<a href="#blog" style="text-decoration:none; color:#F3F1EA; font-size:14px; font-weight:600; white-space:nowrap">All articles →</a>
+</div>
+<div style="display:grid; grid-template-columns:1fr; gap:0">
+<a class="hover-row" href="blog/bosch-210a-alternator-lifepo4.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">01</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">How I Beat the Alternator</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Switching to a 210 A Bosch alternator and a pair of Victron Orion-Tr Smart units during the conversion to LiFePO₄.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">8 min · June 2026</span></a>
+<a class="hover-row" href="blog/dve-klimatizace-sinclair.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">02</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Two Air Conditioners Are Better Than One</h3><p style="font-size:14.5px; color:#9b968c; margin:0">How I solved cooling the motorhome along its entire length.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">7 min · June 2026</span></a>
+<a class="hover-row" href="blog/starlink-mini-teltonika-rutx50.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">03</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">How I Solved Internet in a Motorhome</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Starlink Mini + Teltonika RUTX50 — a connection that works almost everywhere.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">9 min · June 2026</span></a>
+<a class="hover-row" href="blog/oxygenics-fury-vs-bodyspa.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">04</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Does It Make Sense to Change the Shower Head in a Motorhome?</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Oxygenics Fury vs. BodySpa — a comparison of the two best-known RV shower heads.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">7 min · June 2026</span></a>
+<a class="hover-row" href="blog/stebel-nautilus-compact-klakson.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">05</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">I Replaced the Horn — and It's One of the Best Modifications for Safety</h3><p style="font-size:14.5px; color:#9b968c; margin:0">Stebel Nautilus Compact instead of the weak factory horn — why it matters more than you'd expect.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">8 min · June 2026</span></a>
+<a class="hover-row" href="blog/zatezovy-test-chorvatsko.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">06</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">When Technology Beats the Limits</h3><p style="font-size:14.5px; color:#9b968c; margin:0">A brutal load test of the 12V power plant in the Phoenix on a trip from Croatia — an AC load of 4,446 W.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">10 min · June 2026</span></a>
+<a class="hover-row" href="blog/hella-bi-led-iveco-daily.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">07</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">When "Plug &amp; Play" Isn't Plug &amp; Play at All</h3><p style="font-size:14.5px; color:#9b968c; margin:0">How we battled for several days to install the HELLA Bi-LED Performance into the Phoenix.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">13 min · June 2026</span></a>
+<a class="hover-row" href="blog/carawater-vs-lilie-iqflow.html" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:90px 1fr auto; gap:28px; align-items:center; padding:28px 0; border-bottom:1px solid #2a2824"><span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)">08</span>
+<div><h3 style="font-family:var(--display); font-weight:400; font-size:27px; line-height:1.2; margin:0 0 8px; color:#F3F1EA">Why I Bought a Water Pump Twice</h3><p style="font-size:14.5px; color:#9b968c; margin:0">The Carawater SmartPump worked flawlessly. That wasn't enough — it stayed noisy.</p></div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a; white-space:nowrap">6 min · June 2026</span></a>
+</div>
+</div>
+</section>
+<!-- ============ FOTOGALERIE ============ -->
+<section id="galerie" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+<div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:28px; border-bottom:1px solid #E7E4DC; padding-bottom:20px">
+<div>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">05 — Photo Gallery</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Before / After &amp; installation details</h2>
+</div>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px">
+<button class="filter-btn" data-filter="Vše" style="border:1px solid #16140F; background:#16140F; color:#F3F1EA">All</button>
+<button class="filter-btn" data-filter="Elektro" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Electrical</button>
+<button class="filter-btn" data-filter="Voda" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Water</button>
+<button class="filter-btn" data-filter="Topení" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Heating</button>
+<button class="filter-btn" data-filter="Konektivita" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Connectivity</button>
+<button class="filter-btn" data-filter="Interiér" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Interior</button>
+<button class="filter-btn" data-filter="Podvozek" style="border:1px solid #E7E4DC; background:#fff; color:#5a564e">Chassis</button>
+</div>
+<div class="grid-3" id="gallery-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px">
+<div class="gallery-item" data-tag="Elektro" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Victron inverter/charger in the electrical cabinet" src="../images/elektro-mereni.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Electrical</span></div>
+<div class="gallery-item" data-tag="Voda" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="CaraWater water pump" src="../images/vodni-cerpadlo.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Water</span></div>
+<div class="gallery-item" data-tag="Topení" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Air conditioning unit" src="../images/klimatizace.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Heating</span></div>
+<div class="gallery-item" data-tag="Konektivita" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #ECEAE3 0 2px, transparent 2px 16px), #F3F1EA; border:1px solid #E7E4DC; display:flex; align-items:flex-end; padding:14px"><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Connectivity</span><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#9a958c">[ Starlink on the roof ]</span></div>
+<div class="gallery-item" data-tag="Interiér" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Kitchen faucet" src="../images/kuchynska-baterie.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Interior</span></div>
+<div class="gallery-item" data-tag="Podvozek" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Chassis and axle" src="../images/podvozek-naprava.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Chassis</span></div>
+<div class="gallery-item" data-tag="Elektro" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Solar panels on the roof" src="../images/solarni-panely.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Electrical</span></div>
+<div class="gallery-item" data-tag="Interiér" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Knife block in the kitchen" src="../images/nozovy-blok.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Interior</span></div>
+<div class="gallery-item" data-tag="Voda" style="position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden; border:1px solid #E7E4DC"><img alt="Shower column" src="../images/sprchovy-sloup.jpg" style="width:100%; height:100%; object-fit:cover; display:block"/><span style="position:absolute; top:12px; left:12px; background:rgba(22,20,15,0.86); color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; padding:5px 10px; border-radius:999px">Water</span></div>
+</div>
+</section>
+<!-- ============ KE STAŽENÍ ============ -->
+<section id="ke-stazeni" style="max-width:1280px; margin:0 auto; padding:104px 40px 0">
+<div style="border-bottom:1px solid #E7E4DC; padding-bottom:20px; margin-bottom:36px">
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:12px">06 — Downloads</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.05; letter-spacing:-0.015em; margin:0">Diagrams, checklists, and service notes</h2>
+</div>
+<div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px">
+<a class="hover-border" href="#ke-stazeni" style="text-decoration:none; color:inherit; border:1px solid #E7E4DC; border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:18px; min-height:188px"><div style="display:flex; align-items:center; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); padding:4px 9px; border-radius:4px">PDF</span><span style="font-size:20px; color:#16140F">↓</span></div>
+<div style="margin-top:auto"><h3 style="font-size:18px; font-weight:600; line-height:1.25; margin:0 0 8px">Pre-trip checklist</h3><p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin:0">A4 · 2 pages · v3</p></div></a>
+<a class="hover-border" href="#ke-stazeni" style="text-decoration:none; color:inherit; border:1px solid #E7E4DC; border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:18px; min-height:188px"><div style="display:flex; align-items:center; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); padding:4px 9px; border-radius:4px">PDF</span><span style="font-size:20px; color:#16140F">↓</span></div>
+<div style="margin-top:auto"><h3 style="font-size:18px; font-weight:600; line-height:1.25; margin:0 0 8px">List of Victron components used</h3><p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin:0">Table · prices · links</p></div></a>
+<a class="hover-border" href="#ke-stazeni" style="text-decoration:none; color:inherit; border:1px solid #E7E4DC; border-radius:6px; padding:26px; display:flex; flex-direction:column; gap:18px; min-height:188px"><div style="display:flex; align-items:center; justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); padding:4px 9px; border-radius:4px">XLSX</span><span style="font-size:20px; color:#16140F">↓</span></div>
+<div style="margin-top:auto"><h3 style="font-size:18px; font-weight:600; line-height:1.25; margin:0 0 8px">Phoenix 8200 service history</h3><p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin:0">Records 2016–2026</p></div></a>
+</div>
+</section>
+<!-- ============ DOTAZY / FORMULÁŘ ============ -->
+<section id="dotazy" style="max-width:1280px; margin:104px auto 0; padding:0 40px">
+<div class="contact-grid" style="background:#111010; color:#F3F1EA; border-radius:8px; overflow:hidden; display:grid; grid-template-columns:0.85fr 1.15fr">
+<div style="padding:56px 48px; border-right:1px solid #2a2824">
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:18px">07 — Get in touch</div>
+<h2 style="font-family:var(--display); font-weight:400; font-size:36px; line-height:1.1; margin:0 0 18px; color:#F3F1EA">Got a question about a modification or about the Phoenix?</h2>
+<p style="font-size:15.5px; line-height:1.65; color:#9b968c; margin:0 0 28px">Planning a similar build, dealing with a specific part, or want to know how something holds up after years of use? Write to me and I'll get back to you — I'll include the best questions in the blog too.</p>
+<div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#75716a; line-height:2">
+<div>↳ I usually reply within 48 h</div>
+<div>↳ technical details welcome</div>
+</div>
+</div>
+<div style="padding:56px 48px">
+<div id="form-success" style="display:none; height:100%; flex-direction:column; justify-content:center; align-items:flex-start; gap:16px; min-height:300px">
+<span style="display:inline-flex; width:48px; height:48px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-size:22px">✓</span>
+<h3 style="font-family:var(--display); font-weight:400; font-size:28px; margin:0; color:#F3F1EA">Thanks, your question has arrived.</h3>
+<p style="font-size:15px; color:#9b968c; margin:0">I'll get back to you at the email address you provided. In the meantime, check out the blog and the parts database.</p>
+<button id="form-reset" style="margin-top:8px; background:none; border:1px solid #2a2824; color:#F3F1EA; font-family:'JetBrains Mono',monospace; font-size:13px; padding:11px 20px; border-radius:999px; cursor:pointer" type="button">Send another ↺</button>
+</div>
+<form id="contact-form" style="display:flex; flex-direction:column; gap:18px">
+<div class="grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:18px">
+<label style="display:flex; flex-direction:column; gap:8px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Name</span>
+<input name="name" placeholder="Your name" required="" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none"/>
+</label>
+<label style="display:flex; flex-direction:column; gap:8px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Email</span>
+<input name="email" placeholder="you@email.com" required="" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none" type="email"/>
+</label>
+</div>
+<label style="display:flex; flex-direction:column; gap:8px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Subject</span>
+<select name="topic" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none">
+<option>Elektro a LiFePO₄</option>
+<option>Soláry a Victron</option>
+<option>Voda a čerpadla</option>
+<option>Topení / Alde / klima</option>
+<option>Internet / Starlink / 5G</option>
+<option>Interiér</option>
+<option>Servis podvozku</option>
+<option>Něco jiného</option>
+</select>
+</label>
+<label style="display:flex; flex-direction:column; gap:8px">
+<span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#75716a; text-transform:uppercase">Question</span>
+<textarea name="message" placeholder="What are you interested in?" rows="4" style="background:#1a1916; border:1px solid #2a2824; border-radius:5px; padding:13px 14px; color:#F3F1EA; font-family:'Archivo',sans-serif; font-size:15px; outline:none; resize:vertical"></textarea>
+</label>
+<button style="background:var(--gold); color:#16140F; border:none; border-radius:5px; padding:15px; font-family:'Archivo',sans-serif; font-size:15px; font-weight:700; cursor:pointer; letter-spacing:0.01em" type="submit">Send question</button>
+</form>
+</div>
+</div>
+</section>
+<!-- ============ FOOTER ============ -->
+<footer style="max-width:1280px; margin:80px auto 0; padding:48px 40px 64px; border-top:1px solid #E7E4DC; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+<div style="display:flex; align-items:center; gap:12px">
+<span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+</div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Diary of a Phoenix · © 2026</span>
+</footer>
+</div>
+<script src="../script.js"></script>
+</body>
+</html>

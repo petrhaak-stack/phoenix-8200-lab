@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>How I Defeated the Alternator — Phoenix 8200 Lab</title>
+<meta content="Switching to LiFePO4 batteries meant the original alternator could no longer keep up with charging the bank to its full potential. The solution was a 210A Bosch alternator and a pair of Victron Orion-Tr Smart DC-DC chargers." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+<!-- ============ NAV ============ -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+<div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+<a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit"><span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span></a>
+<nav class="main-nav" id="mainNav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+<a href="../index.html#auto" style="text-decoration:none; color:#4a463f">About the vehicle</a>
+<a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Phoenix development</a>
+<a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technology</a>
+<a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+<a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Gallery</a>
+<a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Contact</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="nav-toggle" id="navToggle" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+</div>
+</header>
+<!-- ============ ARTICLE HERO ============ -->
+<section style="background:#111010; color:#F3F1EA">
+<div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+<a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Back to blog</a>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Electrical</div>
+<h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">How I Defeated the Alternator</h1>
+<p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Switching to a 210 A Bosch alternator and a pair of Victron Orion-Tr Smart DC-DC chargers during the Phoenix's conversion to LiFePO4.</p>
+<div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+<span>8 min read</span>
+<span>·</span>
+<span>June 2026</span>
+<span>·</span>
+<span>Electrical · Bosch 210A alternator</span>
+</div>
+</div>
+</section>
+<!-- ============ ARTICLE BODY ============ -->
+<article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Switching to LiFePO4 batteries solved a lot of things at once — more usable capacity, faster charging, no fear of deep discharge. But it also brought along one problem I hadn't fully thought through in advance: the original Iveco alternator was designed to charge the starter battery and handle a smaller load, not to push current at full strength into a large LiFePO4 bank right after the engine starts.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">LiFePO4 batteries can actually accept charging current much more aggressively than gel or lead-acid — but only if the charging source has enough power to make use of that. Without modification, the alternator would have been the limiting link in the entire system.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Why the original alternator wasn't enough</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The factory alternator is sized for the vehicle's normal consumption — lights, steering, onboard electronics, and charging the starter battery. But a large-capacity LiFePO4 traction bank needs significantly higher current while driving if it's to be charged in a reasonable time. Without a more powerful source, the DC-DC chargers would only have a fraction of what they could otherwise process available to them.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">So the solution wasn't just replacing the batteries, but the entire charging chain while driving — from the alternator all the way to the DC-DC chargers.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">210 A Bosch — why this particular alternator</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">I chose the Bosch 210 A alternator (0 986 085 510) — a compatible replacement for the original part, but with a significantly larger power reserve. With higher current available at the input, the DC-DC chargers actually have something to draw from, so charging the LiFePO4 bank while driving doesn't stay limited on paper — it shows up in practice too.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Two Orion-Tr Smart DC-DC chargers</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Between the alternator and the traction bank, I installed two Victron Orion-Tr Smart chargers — an isolated 12/12-30 A unit for the main circuit and a non-isolated 12/12-50 A unit as a supplement. The isolated version keeps the starter and traction circuits electrically separated, while the non-isolated one adds extra current where galvanic isolation isn't necessary. Together they handle charging while driving far better than a single unit could on its own.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Both chargers also communicate via Bluetooth and VictronConnect, so I can see the charging curve and the current draw on my phone, not just estimate it.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 0; color:#16140F">How it all works together</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:16px 0 0">The alternator, the two DC-DC chargers, and the Victron LiFePO4 bank now form a single chain that charges the batteries while driving genuinely faster than the original gel-based system ever could. In practice, this means that after a few hours of driving the bank is full again, even if I drained it pretty hard the night before — fridge, lights, both air conditioning units. No more counting whether it will last until morning.</p>
+<div style="border-top:1px solid #E7E4DC; padding-top:32px; margin-top:48px">
+<h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Components used</h2>
+<ul style="list-style:none; padding:0; margin:0">
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Bosch 210 A alternator, OEM 0 986 085 510 <a href="https://www.boschaftermarket.com/" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— compatibility and technical data</a></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy Orion-Tr Smart 12/12-30 A Isolated <a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— specifications</a></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy Orion-Tr Smart 12/12-50 A Non-Isolated <a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— specifications</a></li>
+<li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy LiFePO4 Battery NG <a href="https://www.victronenergy.com/lithium-battery-system/lithium-ng-battery" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">— specifications</a></li>
+</ul>
+</div>
+<a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Back to all articles</a>
+</article>
+<footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+<div style="display:flex; align-items:center; gap:12px">
+<span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+</div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Diary of a Phoenix · © 2026</span>
+</footer>
+</div>
+</body>
+</html>

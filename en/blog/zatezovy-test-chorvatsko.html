@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>When technology beats the limits. A brutal stress test of the 12V power plant — Phoenix 8200 Lab</title>
+<meta content="Stress test of the Victron Energy onboard electrical system in the Phoenix on the way back from Croatia — AC load of 4,446 W, PowerAssist, MultiPlus-II and a daily balance of 780 Wp of solar panels." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+<!-- ============ NAV ============ -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+<div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+<a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit"><span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span></a>
+<nav class="main-nav" id="mainNav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+<a href="../index.html#auto" style="text-decoration:none; color:#4a463f">About the Vehicle</a>
+<a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Phoenix Development</a>
+<a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technology</a>
+<a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+<a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Gallery</a>
+<a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Contact</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="nav-toggle" id="navToggle" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+</div>
+</header>
+<!-- ============ ARTICLE HERO ============ -->
+<section style="background:#111010; color:#F3F1EA">
+<div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+<a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Back to blog</a>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Electrical System · Victron Energy</div>
+<h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">When technology beats the limits</h1>
+<p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">A brutal stress test of the 12V power plant in the Phoenix on the way back from Croatia.</p>
+<div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+<span>10 min read</span>
+<span>·</span>
+<span>June 2026</span>
+<span>·</span>
+<span>Victron Energy · MultiPlus-II · PowerAssist · LiFePO4</span>
+</div>
+</div>
+</section>
+<!-- ============ ARTICLE BODY ============ -->
+<article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Having a big, luxurious liner is one thing. But having absolute energy freedom on board, where you don't have to worry about how many appliances you switch on at once, is a completely different league. On our way back from the Croatian island of Pag, I decided to give our onboard installation from <strong>Victron Energy</strong> the ultimate stress test. No cautious tip-toeing — just a pure hardcore test of everything the system can handle.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">If you're curious how a 400 Ah LiFePO4 battery, a 3000 VA MultiPlus-II inverter, 780 Wp of rooftop solar panels, and two DC-DC chargers handle a draw of over 4.4 kW while driving, welcome to today's technical report.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Phase 1: Morning island purgatory (air conditioning, hair dryer and ice maker)</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The test started right after waking up. The vehicle stood completely disconnected from the grid, in pure island mode. The sun had already been blazing since morning, so the scenario was clear: the crew demands full comfort.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 10px">Gradually switched on were:</p>
+<ul style="margin:0 0 16px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+<li>Both roof air conditioners (Sinclair and Dometic)</li>
+<li>Coffee machine for the morning restart</li>
+<li>Ice maker</li>
+<li>Hair dryer</li>
+</ul>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Within two to three hours the system took a solid hit and sucked up roughly <strong>5 kWh</strong> of pure energy. Battery capacity dropped to fifty percent. For 95% of ordinary motorhomes, that would mean energy death and immediate shutdown of everything. For us? Just an ordinary morning. The MPPT controller was already starting to catch the first strong rays, and the next step was on the horizon.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Phase 2: Afternoon grilling massacre (AC load of 4,446 W!)</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">This was the craziest passage I had to record via the VRM app. While we were still parked and preparing food, we plugged in the electric contact grill. On top of that, the air conditioners and the onboard equipment were running. The result? <strong>The AC load shot up to an unbelievable 4,446 W!</strong></p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Take a look at the screenshot I took in real time at that very moment:</p>
+<figure style="margin:0 0 32px">
+<img alt="VRM screenshot — AC load 4,446 W, battery 49.8%, discharge -256.7 A" loading="lazy" src="../../images/blog/zatezovy-test/vrm-grilovani-4446w.jpg" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block"/>
+<figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, 3:23 PM — AC load 4,446 W, MultiPlus-II discharging -256.7 A / -3,260 W, battery 12.70 V / 49.8%, solar 448 W.</figcaption>
+</figure>
+<h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">How did the system handle this extreme via Victron PowerAssist?</h3>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Our <strong>MultiPlus-II 12/3000/120</strong> inverter has a continuous rated output on paper of around 2,400 W (3000 VA). So how is it possible that it handled 4.4 kW and the fuses didn't blow?</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 10px">The genius of the <strong>Victron PowerAssist (Assist mode)</strong> function kicked in:</p>
+<ol style="margin:0 0 16px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+<li>The campsite pillar (grid) was deliberately limited to a safe limit of <strong>7.8 A (1,682 W)</strong>, so the breaker at the campsite wouldn't trip.</li>
+<li>The MultiPlus-II recognized that the draw (4,446 W) was too high. It immediately synchronized phase with the grid and started "sipping" the remaining <strong>2,895 W</strong> from the battery via the inverter!</li>
+<li>The battery was spitting blood at that moment — the draw from the lithium was a crazy <strong>-256.7 A</strong> (pure discharge of the installation -3,260 W). The enormous load knocked the battery voltage down to <strong>12.70 V</strong>, which, at such a current, is actually a healthy sign of internal resistance for LiFePO4. The solar panels were subsidizing the situation at that moment with their 448 W.</li>
+</ol>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">This was the ultimate test of the wiring, connections and the inverter beyond its nominal continuous output. It held everything, nothing burned out, and the meat finished grilling calmly. The battery state settled at <strong>49.8%</strong>.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Phase 3: Rapid recovery after grilling</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">As soon as the grill was switched off, the system breathed a deep sigh of relief, as shown by another screenshot taken just 6 minutes later (at 3:29 PM).</p>
+<figure style="margin:0 0 24px">
+<img alt="VRM screenshot — AC load 1,679 W, charging 37.5 A, voltage 13.19 V" loading="lazy" src="../../images/blog/zatezovy-test/vrm-rekuperace-1679w.jpg" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block"/>
+<figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, 3:29 PM — AC load 1,679 W, assist mode off, charging 37.5 A, voltage 13.19 V.</figcaption>
+</figure>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The AC load dropped to <strong>1,679 W</strong> (running air conditioners). I made an immediate managerial move — I increased the shore limit to <strong>10 A (1,715 W)</strong>. The MultiPlus immediately switched off assist mode and switched to massive charging. The battery voltage jumped back up to a healthy <strong>13.19 V</strong>, and a regenerative current of <strong>37.5 A</strong> began flowing into the battery.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Another 3 minutes later, the load from the air conditioners dropped to <strong>974 W</strong> (the interior had already cooled down), and the free output from the grid (1,995 W / 9.3 A) together with the solar panels (445 W) created a perfect symphony: a brutal <strong>charging current of 101 A (1,343 W)</strong> started pouring into the battery!</p>
+<figure style="margin:0 0 40px">
+<img alt="VRM screenshot — charging current 101 A / 1,343 W, grid 1,995 W" loading="lazy" src="../../images/blog/zatezovy-test/vrm-nabijeni-101a.jpg" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block"/>
+<figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, 3:32 PM — AC load 974 W, charging 101 A / 1,343 W, grid 1,995 W / 9.3 A, solar 445 W.</figcaption>
+</figure>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Phase 4: Highway flight with full cooling and the power of the alternator</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">And now the main event — after packing up the campsite, we set off for home, heading for the Czech Republic. And here comes the most important rule: <strong>the electric grill obviously doesn't run while driving (safety and common sense come first!), but both roof air conditioners certainly do!</strong></p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The highway drive went by in complete coolness. The cab ran the engine's air conditioning, and in the living area both roof air conditioners ran at full blast through the inverter from the battery. No shore connection, pure highway. How is it possible that we didn't drain the battery?</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Take a look at the screenshot showing the daily balance of the MPPT 150/60 solar controller:</p>
+<figure style="margin:0 0 24px">
+<img alt="VRM screenshot — daily solar yield 3,980 Wh, peak output 654 W" loading="lazy" src="../../images/blog/zatezovy-test/vrm-mppt-denni-vynos.jpg" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block"/>
+<figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, MPPT 150/60 history — total daily yield 3,980 Wh, maximum output 654 W.</figcaption>
+</figure>
+<ul style="margin:0 0 40px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+<li><strong>Total solar yield for the day:</strong> <strong>3,980 Wh (almost 4 kWh)</strong>. The airflow on the highway cooled the panels nicely, so even in the heat the solar panels reached a maximum output of <strong>654 W</strong>.</li>
+<li><strong>The secret to success — a 210A alternator and two DC-DC chargers:</strong> Our Iveco engine has a powerful 210A alternator. It feeds two cleverly connected Victron DC-DC chargers (30 A + 50 A). While driving, this consistently fed over <strong>1,010 W</strong> of pure output into the onboard system (shown in the app as a negative DC system value of -1010 W).</li>
+<li>For fear of a blackout, I also carry a backup generator, which is connected independently via a separate 50A AC-DC charger directly to the battery (bypassing the MultiPlus), so in an emergency it can feed the battery purely from the bottom up.</li>
+</ul>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Final tally: home at full strength</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">When we arrived in the Czech Republic in the evening, I pulled up the complete daily chart from the VRM portal, which beautifully recaps that entire highway drive:</p>
+<figure style="margin:0 0 24px">
+<img alt="VRM daily chart — consumption 5.6 kWh, solar yield 4.0 kWh, grid balance 0 kWh" loading="lazy" src="../../images/blog/zatezovy-test/vrm-denni-graf-final.jpg" style="width:100%; border-radius:8px; border:1px solid #E7E4DC; display:block"/>
+<figcaption style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c; margin-top:10px">VRM, daily summary — consumption 5.6 kWh, solar yield 4.0 kWh, grid balance 0 kWh.</figcaption>
+</figure>
+<ul style="margin:0 0 16px; padding-left:22px; font-size:16px; line-height:1.75; color:#3d3a34">
+<li><strong>Total consumption for the day:</strong> <strong>5.6 kWh</strong> (an enormous amount of energy consumed cooling the entire 8.35-meter vehicle while driving).</li>
+<li><strong>Total solar yield:</strong> <strong>4.0 kWh</strong>.</li>
+<li><strong>Grid balance:</strong> <strong>0 kWh</strong> (a clean zero from the outside).</li>
+</ul>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Take a look at that blue battery state curve. Around 2:00 PM it did drop to about <strong>60%</strong> due to the draw of both air conditioners, but as soon as the air conditioners eased off, the combination of the solar panels and, above all, the <strong>80A charging from the alternator</strong> managed to push the battery back up to <strong>100%</strong> even while driving. Even the solar controller managed to switch into the absorption phase by the end of the day and nicely balanced the cells.</p>
+<p style="font-family:var(--display); font-style:italic; font-size:19px; color:#16140F; margin:0 0 20px">The conclusion? We arrived home in a perfectly cooled vehicle, tested an extreme 4.4 kW load on site, consumed over 5.5 kWh of electricity, and yet we're parking in front of the house with a completely full, one-hundred-percent charged battery.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 48px">This system built on Victron Energy components was worth every single penny. Because this is no ordinary motorhome — it's an independent, indestructible power plant on wheels.</p>
+<div style="border-top:1px solid #E7E4DC; padding-top:32px">
+<h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Components used</h2>
+<ul style="list-style:none; padding:0; margin:0">
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron MultiPlus-II 12/3000/120-32 <span style="color:#9a958c">(inverter/charger with PowerAssist function)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron BlueSolar MPPT 150/60 <span style="color:#9a958c">(solar charge controller)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>2× Victron 12.8 V / 200 Ah LiFePO4 <span style="color:#9a958c">(400 Ah total)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>780 Wp solar panels on the roof <span style="color:#9a958c">(series-parallel connection)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>2× Victron Orion-Tr Smart DC-DC <span style="color:#9a958c">(isolated 30 A + non-isolated 50 A)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>VRM Portal / VictronConnect <span style="color:#9a958c">(monitoring and remote management)</span></li>
+</ul>
+</div>
+<a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:56px">← Back to all articles</a>
+</article>
+<footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+<div style="display:flex; align-items:center; gap:12px">
+<span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+</div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Diary of a Phoenix · © 2026</span>
+</footer>
+</div>
+</body>
+</html>

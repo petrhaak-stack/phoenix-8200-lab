@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Internet im Wohnmobil: Starlink Mini + Teltonika RUTX50 — Phoenix 8200 Lab</title>
+<meta content="Wie ich zuverlässiges Internet im Wohnmobil gelöst habe — Starlink Mini, der Industrierouter Teltonika RUTX50 und automatischer Failover zwischen zwei SIM-Karten. Eine Verbindung, die fast überall funktioniert." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=Archivo:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+<!-- ============ NAV ============ -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+<div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+<a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit"><span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span></a>
+<nav class="main-nav" id="mainNav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+<a href="../index.html#auto" style="text-decoration:none; color:#4a463f">Über das Fahrzeug</a>
+<a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Ausbau des Phoenix</a>
+<a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technik</a>
+<a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+<a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+<a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+</nav>
+<button aria-expanded="false" aria-label="Menü öffnen" class="nav-toggle" id="navToggle" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+</div>
+</header>
+<!-- ============ ARTICLE HERO ============ -->
+<section style="background:#111010; color:#F3F1EA">
+<div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+<a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zurück zum Blog</a>
+<div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Konnektivität</div>
+<h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Wie ich das Internet im Wohnmobil gelöst habe</h1>
+<p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Starlink Mini + Teltonika RUTX50 — eine Verbindung, die fast überall funktioniert.</p>
+<div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+<span>9 Min. Lesezeit</span>
+<span>·</span>
+<span>Juni 2026</span>
+<span>·</span>
+<span>Konnektivität · Starlink Mini &amp; Teltonika RUTX50</span>
+</div>
+</div>
+</section>
+<!-- ============ ARTICLE BODY ============ -->
+<article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Nach mehreren Jahren des Reisens habe ich eines erkannt — das größte Problem ist nicht die Geschwindigkeit des Internets, sondern seine Zuverlässigkeit. Ich arbeite remote, nutze GitHub, KI-Tools, Videoanrufe und die Cloud, und gleichzeitig möchte ich im Fahrzeug Online-Kameras, einen Router und WLAN für die ganze Besatzung haben. Lange Zeit kam ich mit einem tragbaren 5G-Router von Zyxel aus. Er funktionierte gut, aber mit der Zeit traten Probleme auf, und nach mehreren Jahren versagte zudem sein Akku — er blähte sich auf, was bei Li-Ion-Akkus leider ein bekanntes Phänomen ist.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Genau in diesem Moment habe ich beschlossen, die gesamte Lösung völlig anders aufzubauen.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Die ursprüngliche Lösung — ein tragbarer 5G-Router</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Ich nutzte den tragbaren Router Zyxel NR2301. Es ist ein hochwertiges Gerät — 5G-Unterstützung, Wi-Fi 6, interner Akku, theoretische Geschwindigkeiten bis 3,4 Gb/s und die Möglichkeit, externe Antennen über TS-9-Anschlüsse anzuschließen.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Doch ein tragbarer Router hat einen entscheidenden Nachteil: Er ist als mobiler Hotspot konzipiert, nicht als Gerät, das 365 Tage im Jahr dauerhaft im Wohnmobil eingeschaltet ist. Nach mehreren Jahren Dauerbetrieb blähte sich der Akku auf, und es war klar, dass es Zeit für eine Änderung war.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Warum ich mich letztlich für die Teltonika RUTX50 entschieden habe</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Die Teltonika RUTX50 ist kein gewöhnlicher Heimrouter mehr. Es ist ein Industriegerät, das für Wohnmobile, Busse, Züge, industrielle Anwendungen und den durchgehenden 24/7-Betrieb ausgelegt ist. Zu den wichtigsten Vorteilen zählen:</p>
+<ul style="padding:0 0 0 20px; margin:0 0 40px; font-size:16px; line-height:1.8; color:#3d3a34">
+<li>Dual-SIM mit automatischem Failover</li>
+<li>Robuste Metallausführung</li>
+<li>Stromversorgung direkt aus dem 12V-System</li>
+<li>VPN und Fernverwaltung</li>
+<li>Fünf Gigabit-Ethernet-Ports</li>
+<li>Sehr stabiles Betriebssystem RutOS</li>
+</ul>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Warum ich nicht das neuere Modell mit Wi-Fi 6 gekauft habe</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Auf den ersten Blick klingt das verlockend — das neuere Modell bietet Wi-Fi 6. Doch im Wohnmobil sieht die Realität ganz anders aus. Der Innenraum ist nur ein paar Meter groß, und den Unterschied zwischen einem guten Wi-Fi 5 und Wi-Fi 6 merkt man bei alltäglicher Nutzung (Laptop, Handys, Fernseher, Kameras) praktisch nicht.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Der Flaschenhals ist nämlich nicht das WLAN. Der Flaschenhals ist immer das Mobilfunknetz oder der Satellit. Deshalb habe ich der bewährten RUTX50 den Vorzug gegeben und den Preisunterschied lieber anderswo investiert.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Die größte Veränderung? Starlink Mini</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Dieses Gerät hat das Reisen für mich verändert. Früher habe ich mir Gedanken gemacht, wo das beste LTE ist, wo es 5G gibt, ob überhaupt Signal vorhanden ist und ob der Betreiber gerade funktioniert. Heute lege ich den Starlink aufs Dach des Fahrzeugs und bin nach ein paar Minuten online.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Starlink Mini bietet einen sehr niedrigen Stromverbrauch, kompakte Abmessungen, einen integrierten WLAN-Router und Gleichstromversorgung. Die Geschwindigkeiten liegen üblicherweise über 100 Mb/s, unter guten Bedingungen sogar über 300 Mb/s.</p>
+<figure style="margin:0 0 40px">
+<img alt="Starlink Mini" loading="lazy" src="https://starlink.com/assets-new/images/marketing/mini-product-us/mini_productpage_component1_m.webp" style="width:100%; height:auto; border-radius:8px; display:block; background:#0d0d0d"/>
+<figcaption style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.04em; color:#9a958c; margin-top:8px; text-align:center">Starlink Mini — die gesamte Antenne und der WLAN-Router in einem flachen Panel</figcaption>
+</figure>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Starlink-Tarife in Tschechien</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Starlink bietet in Tschechien im Grunde zwei Tarifkategorien an. Der Residential-Tarif ist günstiger, ist aber an eine feste Adresse gebunden — für ein Wohnmobil, das zwischen Campingplätzen und Parkplätzen wechselt, ist das formal nicht das richtige Produkt. Für das Reisen ist der Roam-Tarif gedacht, der ohne Standortbindung funktioniert.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Die aktuellen Preise in Tschechien (Stand 2026) sehen ungefähr so aus:</p>
+<ul style="padding:0 0 0 20px; margin:0 0 16px; font-size:16px; line-height:1.8; color:#3d3a34">
+<li>Residential 100 Mb/s — ca. 699 Kč/Monat, unbegrenzte Daten</li>
+<li>Residential 200 Mb/s — ca. 949 Kč/Monat, unbegrenzte Daten</li>
+<li>Roam 50 GB — ca. 1.250 Kč/Monat</li>
+<li>Roam ohne Datenlimit — ca. 1.850 Kč/Monat</li>
+</ul>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Die Preise und Mietbedingungen für die Hardware ändern sich bei Starlink im Laufe der Zeit ziemlich häufig, deshalb empfehle ich, vor der Bestellung das aktuelle Angebot direkt auf starlink.com/cz zu prüfen — dies ist nur der ungefähre Stand zum Zeitpunkt des Schreibens dieses Artikels.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Kroatien hat mich endgültig überzeugt</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Das war die Situation, in der mir klar wurde, dass Satelliten-Internet eine völlig andere Liga ist. An der Küste und auf den Inseln ist LTE oft überlastet, 5G schwach, das Signal schwankt, und Anrufe brechen ab. Über Starlink Mini lief das Internet jedoch stabil.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Und was mich am meisten überrascht hat? Ich habe auf dem iPhone WLAN-Anrufe aktiviert und genauso telefoniert, als würde ich zu Hause in Tschechien sitzen — ohne Unterbrechungen, ohne Rauschen, ohne Signalsuche.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Und das ist nicht nur ein Vorteil in Kroatien. Es funktioniert genauso gut in den Bergen, an Gletschern, in Skandinavien, in der Wildnis und auf abgelegenen Parkplätzen — praktisch überall, wo Starlink freie Sicht auf den Himmel hat.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Eine clevere Verbindungs-Sicherung</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 24px">Doch das Beste kommt erst noch. Ich habe die gesamte Lösung als Kette mit drei Sicherungsebenen aufgebaut:</p>
+<div style="border:1px solid #E7E4DC; border-radius:6px; padding:28px 24px; margin:0 0 32px; background:#F8F7F3; font-family:'JetBrains Mono',monospace; font-size:13.5px; line-height:2; color:#3d3a34; text-align:center">
+      Starlink Mini <span style="color:#9a958c">(Hauptverbindung)</span><br/>
+      ↓<br/>
+      Teltonika RUTX50 <span style="color:#9a958c">(zentraler Router, Failover)</span><br/>
+      ↓<br/>
+      SIM 1 — T-Mobile <span style="color:#9a958c">→</span> SIM 2 — Vodafone
+    </div>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Der Router überwacht die Verbindung ständig. Wenn ich den Starlink trenne, ihm den Strom abschalte oder der Satellit keine Sicht auf den Himmel hat, schaltet der Router automatisch auf SIM 1 — T-Mobile um. Funktioniert auch diese nicht, schaltet er automatisch auf SIM 2 — Vodafone um. Das alles innerhalb von wenigen Sekunden, ohne manuellen Eingriff.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Der Grund für zwei SIM-Karten ist einfach — jeder Betreiber hat irgendwo eine bessere Abdeckung. Mal gewinnt T-Mobile, mal Vodafone. Zwei SIM-Karten bedeuten eine deutlich höhere Wahrscheinlichkeit, dass das Internet auch an einem Ort funktioniert, an dem ein einzelnes Netz allein nicht ausreichen würde.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Vorteile der gesamten Lösung</h2>
+<ul style="padding:0 0 0 20px; margin:0 0 40px; font-size:16px; line-height:1.8; color:#3d3a34">
+<li>Internet funktioniert fast überall</li>
+<li>Automatisches Umschalten ohne Eingriff des Nutzers</li>
+<li>Kein aufgeblähter Akku</li>
+<li>Industrierouter für den Dauerbetrieb ausgelegt</li>
+<li>Ideal für Remote-Arbeit und Online-Kameras</li>
+<li>VPN und Fernverwaltung</li>
+<li>Stabiles WLAN im gesamten Wohnmobil</li>
+</ul>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Stromversorgung über die 12V-Steckdose — und warum man beim Ladegerät nicht sparen sollte</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Starlink Mini wird im Karton mit einem gewöhnlichen 230V-Netzladegerät ausgeliefert. Im Wohnmobil bedeutet das jedoch, den Wechselrichter unnötig für nur ein einziges Gerät zu belasten. Die Lösung besteht darin, den Starlink direkt aus dem 12V-Bordnetz zu versorgen — über ein USB-C-Kabel mit Adapter für den Starlink-Anschluss und ein hochwertiges USB-C-PD-Ladegerät, das in die 12V-Steckdose eingesteckt wird.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Laut Starlinks eigener Spezifikation benötigt diese Stromversorgung ein Ladegerät mit einem USB-C-PD-Ausgang von mindestens 100 W (20V/5A). Ein gewöhnliches Handyladegerät mit 18–30 W reicht dafür nicht aus — das habe ich am eigenen Leib erfahren. Zuerst kaufte ich ein teureres Markenladegerät fürs Auto mit USB-C PD, das aber leistungsmäßig nicht ausreichte — der Starlink taktete regelmäßig, schaltete sich von selbst aus und wieder ein, sodass er praktisch unbrauchbar war. Erst als ich das UGREEN 35025 (130 W, zweiter USB-C-Port bis zu 100 W) ausprobierte, läuft es seitdem ohne einen einzigen Ausfall.</p>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Es geht nicht nur um die Leistung, sondern auch um die Sicherheit — unterdimensionierte Ladegeräte erhitzen sich bei länger anhaltender Belastung, und bei billigeren Modellen besteht die Gefahr, dass das Kunststoffgehäuse in der 12V-Steckdose regelrecht schmilzt und auch die Steckdose selbst beschädigt, die dann nicht einfach auszutauschen ist. Trotz identischer Angaben auf dem Papier arbeitet ohnehin nicht jedes Ladegerät gleich gut mit dem Starlink zusammen, daher lohnt es sich, das gewählte Modell vor einer längeren Reise gründlich zu testen — und nicht erst irgendwo auf einem Campingplatz ohne Signal.</p>
+<h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Meine Empfehlung</h2>
+<p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 48px">Nach meinen Erfahrungen würde ich heute genau diese Kombination wieder kaufen: Starlink Mini als Hauptverbindung, Teltonika RUTX50 als zentralen Router, SIM 1 T-Mobile und SIM 2 Vodafone als Backup. Dadurch habe ich praktisch überall Internet — von den tschechischen Bergen über die kroatischen Inseln bis hin zu abgelegenen Orten, an denen es kaum Mobilfunksignal gibt. Und wenn ich telefonieren muss, funktionieren WLAN-Anrufe über Starlink genauso komfortabel wie zu Hause. Für mich ist das eine der besten Investitionen in diesen Phoenix, denn sie bringt Ruhe — ich muss nicht überlegen, ob ich Signal habe, und kann mich auf Arbeit und Reisen konzentrieren.</p>
+<div style="border-top:1px solid #E7E4DC; padding-top:32px">
+<h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Verwendete Komponenten</h2>
+<ul style="list-style:none; padding:0; margin:0">
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Starlink Mini <span style="color:#9a958c">(Satelliten-Internet, integrierter WLAN-Router, 12V-Stromversorgung)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Teltonika RUTX50 <span style="color:#9a958c">(industrieller 5G-Router, Dual-SIM, Failover, RutOS)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Zyxel NR2301 <span style="color:#9a958c">(vorheriger tragbarer 5G-Router, ausgemustert nach aufgeblähtem Akku)</span></li>
+<li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>UGREEN 35025 <span style="color:#9a958c">(130W-Autoladegerät, USB-C PD bis zu 100W — Stromversorgung des Starlink über die 12V-Steckdose)</span> <a href="https://www.mironet.cz/ugreen-35025-130w-3port-fast-car-charger-nabijecka-do-auta-130-w-2x-usbc-1x-usba+dp705059/" rel="noopener" style="color:var(--gold); text-decoration:underline" target="_blank">Produkt</a></li>
+</ul>
+</div>
+<a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Zurück zu allen Artikeln</a>
+</article>
+<footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+<div style="display:flex; align-items:center; gap:12px">
+<span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+</div>
+<span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Tagebuch eines Phoenix · © 2026</span>
+</footer>
+</div>
+</body>
+</html>
