@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jak jsem porazil alternátor — Phoenix 8200 Lab</title>
+<meta name="description" content="Přechod na LiFePO₄ baterie znamenal, že původní alternátor už nestíhal dobíjet banku tak, jak by mohl. Řešením byl 210A Bosch alternátor a dvojice DC-DC nabíječek Victron Orion-Tr Smart.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">O voze</a>
+        <a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Vývoj Phoenixu</a>
+        <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technologie</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zpět na blog</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Elektro</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Jak jsem porazil alternátor</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Přechod na 210 A Bosch alternátor a dvojici DC-DC nabíječek Victron Orion-Tr Smart při přestavbě Phoenixu na LiFePO₄.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+        <span>8 min čtení</span>
+        <span>·</span>
+        <span>červen 2026</span>
+        <span>·</span>
+        <span>Elektro · Bosch 210A alternátor</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Přechod na LiFePO₄ baterie vyřešil spoustu věcí najednou — víc využitelné kapacity, rychlejší nabíjení, žádný strach z hluboké vybíječky. Jenže s sebou přinesl i jeden problém, na který jsem dopředu úplně nemyslel: originální alternátor Iveca byl navržený na dobíjení startovací baterie a menší zátěž, ne na to, aby plnou silou tlačil proud do velké LiFePO₄ banky hned po startu motoru.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">LiFePO₄ baterie totiž umí přijímat nabíjecí proud mnohem agresivněji než gel nebo olovo — ale jen pokud má dobíjecí zdroj dost výkonu na to, aby to využil. Bez úpravy by alternátor byl limitujícím článkem celého systému.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Proč původní alternátor nestačil</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Sériový alternátor je dimenzovaný na běžnou spotřebu vozu — světla, řízení, palubní elektronika a dobíjení startovací baterie. Trakční banka s velkou kapacitou LiFePO₄ ale za jízdy potřebuje výrazně vyšší proud, pokud se má dobíjet v rozumném čase. Bez výkonnějšího zdroje by DC-DC nabíječky měly k dispozici jen zlomek toho, co by jinak uměly zpracovat.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Řešením tak nebyla jen výměna baterií, ale celého dobíjecího řetězce za jízdy — od alternátoru až po DC-DC nabíječky.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">210 A Bosch — proč zrovna tento alternátor</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Zvolil jsem alternátor Bosch 210 A (0 986 085 510) — kompatibilní náhradu za originální díl, ale s výrazně větší rezervou výkonu. S vyšším proudem na vstupu mají DC-DC nabíječky reálně z čeho brát, takže nabíjení LiFePO₄ banky za jízdy nezůstává limitované na papíře, ale projeví se i v praxi.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">Dvě DC-DC nabíječky Orion-Tr Smart</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Mezi alternátor a trakční banku jsem zapojil dvě nabíječky Victron Orion-Tr Smart — izolovanou 12/12-30 A pro hlavní okruh a neizolovanou 12/12-50 A jako doplněk. Izolovaná verze udržuje startovací a trakční okruh elektricky oddělené, neizolovaná pak přidává další proud tam, kde galvanické oddělení není nutné. Společně tak nabíjení za jízdy zvládá výrazně víc, než by dala jedna jednotka samotná.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Obě nabíječky navíc komunikují přes Bluetooth a VictronConnect, takže nabíjecí křivku i aktuální proud vidím v telefonu, ne jen jako odhad.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 0; color:#16140F">Jak to dohromady funguje</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:16px 0 0">Alternátor, dvě DC-DC nabíječky a Victron LiFePO₄ banka teď tvoří jeden řetězec, který za jízdy dobíjí baterie reálně rychleji, než to uměl původní systém s gelem. V praxi to znamená, že po pár hodinách jízdy je banka znovu plná, i když jsem v noci předtím pořádně čerpal — chladničku, světla, obě klimatizace. Žádné počítání, jestli to do rána vydrží.</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px; margin-top:48px">
+      <h2 style="font-family:var(--display); font-weight:500; font-size:22px; margin:0 0 18px; color:#16140F">📦 Použité komponenty</h2>
+      <ul style="list-style:none; padding:0; margin:0">
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Bosch 210 A alternátor, OEM 0 986 085 510 <a href="https://www.boschaftermarket.com/" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:underline">— kompatibilita a technické údaje</a></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy Orion-Tr Smart 12/12-30 A Isolated <a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:underline">— specifikace</a></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:11px; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy Orion-Tr Smart 12/12-50 A Non-Isolated <a href="https://www.victronenergy.com/dc-dc-converters/orion-tr-smart" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:underline">— specifikace</a></li>
+        <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px; line-height:1.65; color:#3d3a34"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)"></span>Victron Energy LiFePO₄ Battery NG <a href="https://www.victronenergy.com/lithium-battery-system/lithium-ng-battery" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:underline">— specifikace</a></li>
+      </ul>
+    </div>
+
+    <a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Zpět na všechny články</a>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Deník jednoho Phoenixu · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
