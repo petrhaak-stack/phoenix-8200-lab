@@ -485,6 +485,30 @@ function decoratePage(response, originPath, lang = "cs") {
 }
 
 // ---------------------------------------------------------------------
+// Spolehlivé načtení statického souboru přes env.ASSETS.fetch (na rozdíl
+// od context.next(), které se na produkci u podstránek chovalo nestabilně
+// — u CZ verze vracelo místo skutečné podstránky obsah homepage, viz
+// oprava v onRequest níž). Sdílené pro CZ i cizí jazyky.
+// ---------------------------------------------------------------------
+
+async function fetchStaticAsset(env, request, url, requestPathname, hasFileExtension) {
+  let staticPath = requestPathname;
+  if (!hasFileExtension && !staticPath.endsWith("/")) {
+    staticPath = `${staticPath}/`;
+  }
+  const staticUrl = new URL(staticPath, url.origin);
+  let response = await env.ASSETS.fetch(new Request(staticUrl, request));
+  if (response.status >= 300 && response.status < 400) {
+    const redirectLocation = response.headers.get("Location");
+    if (redirectLocation) {
+      const redirectUrl = new URL(redirectLocation, staticUrl);
+      response = await env.ASSETS.fetch(new Request(redirectUrl, request));
+    }
+  }
+  return response;
+}
+
+// ---------------------------------------------------------------------
 // onRequest — vstupní bod Pages Function
 // ---------------------------------------------------------------------
 
@@ -547,8 +571,21 @@ export async function onRequest(context) {
   }
 
   // 3) CZ verze — žádný překlad, jen vložíme přepínač a hreflang tagy
+  //
+  // POZOR — historie bugu: dřív se tu volalo jen `await next()`, což na
+  // produkci u podstránek (např. servisni-denik-iveco-daily.html,
+  // servisni-plan-obytneho-vozu.html) nespolehlivě vracelo obsah
+  // HOMEPAGE (status 200, ale špatný obsah) místo skutečné podstránky —
+  // odsud bug, kdy se po kliknutí na "Stáhnout jako PDF" (resp. už po
+  // přechodu na danou podstránku) uživateli zobrazil titulek webu.
+  // env.ASSETS.fetch() na stejnou cestu se chová spolehlivě (stejně jako
+  // u cizích jazyků níž), takže CZ větev teď používá tu samou cestu a
+  // `next()` slouží jen jako fail-safe, kdyby ASSETS binding chyběl.
   if (lang === "cs") {
-    const originResponse = await next();
+    let originResponse = await fetchStaticAsset(env, request, url, pathname, hasFileExtension);
+    if (!originResponse || !originResponse.ok) {
+      originResponse = await next();
+    }
     return decoratePage(originResponse, originPath);
   }
 
@@ -567,19 +604,7 @@ export async function onRequest(context) {
   // byl důvod, proč /en/ a /de/ na produkci dál ukazovaly český originál,
   // přestože /en/index.html i /de/index.html na GitHubu existovaly. Proto
   // necháváme adresářovou cestu beze změny a dovolíme i jeden redirect.
-  let staticPath = pathname;
-  if (!hasFileExtension && !staticPath.endsWith("/")) {
-    staticPath = `${staticPath}/`;
-  }
-  const staticUrl = new URL(staticPath, url.origin);
-  let staticResponse = await env.ASSETS.fetch(new Request(staticUrl, request));
-  if (staticResponse.status >= 300 && staticResponse.status < 400) {
-    const redirectLocation = staticResponse.headers.get("Location");
-    if (redirectLocation) {
-      const redirectUrl = new URL(redirectLocation, staticUrl);
-      staticResponse = await env.ASSETS.fetch(new Request(redirectUrl, request));
-    }
-  }
+  const staticResponse = await fetchStaticAsset(env, request, url, pathname, hasFileExtension);
   if (staticResponse.ok) {
     return decoratePage(staticResponse, originPath, lang);
   }
