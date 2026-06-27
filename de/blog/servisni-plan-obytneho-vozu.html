@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wartungsplan fürs Wohnmobil — der komplette Leitfaden zur vorbeugenden Instandhaltung — Phoenix 8200 Lab</title>
+<meta name="description" content="Vollständiger Überblick zur vorbeugenden Wartung eines Wohnmobils — Checklisten vor und nach der Fahrt, Wartungsintervalle nach Kilometern und Alter, und ein Vergleich der Kosten von Vorbeugung und Reparatur bei Vernachlässigung.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  .check-list{list-style:none; padding:0; margin:0}
+  .check-list li{position:relative; padding-left:30px; margin-bottom:10px; font-size:15.5px; line-height:1.6; color:#3d3a34}
+  .check-list li::before{content:""; position:absolute; left:0; top:3px; width:16px; height:16px; border:1.5px solid var(--gold); border-radius:3px}
+  .dot-list{list-style:none; padding:0; margin:0}
+  .dot-list li{position:relative; padding-left:22px; margin-bottom:9px; font-size:15.5px; line-height:1.6; color:#3d3a34}
+  .dot-list li::before{content:""; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)}
+  .svc-table{width:100%; border-collapse:collapse; font-size:14.5px}
+  .svc-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9a958c; font-weight:500; padding:0 14px 10px 0; border-bottom:1px solid #E7E4DC}
+  .svc-table td{padding:14px 14px 14px 0; border-bottom:1px solid #EEEBE2; color:#3d3a34; line-height:1.5; vertical-align:top}
+  .svc-table td:first-child{font-weight:600; color:#16140F; white-space:nowrap}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+    .svc-table{font-size:13px}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">Über das Fahrzeug</a>
+        <a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Entwicklung des Phoenix</a>
+        <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technik</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zurück zum Blog</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Wartung</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Wartungsplan fürs Wohnmobil — der komplette Leitfaden zur vorbeugenden Instandhaltung</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">Die teuersten Reparaturen sind die, die man hätte verhindern können.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+        <span>14 Min. Lesezeit</span>
+        <span>·</span>
+        <span>Juni 2026</span>
+        <span>·</span>
+        <span>Wartung · Servicetagebuch</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Ein Wohnmobil ist nicht nur ein Fahrzeug.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Es ist ein Lkw, ein Haus, eine Wasserversorgung, ein Kraftwerk, eine Gasanlage, eine Heizung, eine Klimaanlage und oft auch ein rollendes Büro. Jeder dieser Bereiche braucht regelmäßige Pflege.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Trotzdem kümmern sich die meisten Besitzer erst um die Wartung, wenn schon etwas kaputt ist.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Der Fahrgestellhersteller empfiehlt die Motorwartung. Der Aufbauhersteller behandelt Fenster, Dach oder Möbel. Victron beschreibt Batterien und Wechselrichter. Alde erklärt die Heizung. Dometic den Kühlschrank.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Aber niemand bringt all diese Informationen zusammen.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Genau deshalb entsteht diese Serie.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Ihr Ziel ist nicht, Ihnen beizubringen, einen Motor zu reparieren oder ein Getriebe zu zerlegen. Es geht darum zu zeigen, was zu kontrollieren ist, wann eine vorbeugende Wartung sinnvoll ist und warum Vorbeugung immer günstiger ist als Reparatur.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">So benutzen Sie diesen Leitfaden</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Jedes Kapitel enthält:</p>
+    <ul class="dot-list" style="margin:0 0 20px">
+      <li>das Funktionsprinzip des Systems,</li>
+      <li>die häufigsten Verschleißursachen,</li>
+      <li>empfohlene Wartungsintervalle,</li>
+      <li>eine Checkliste,</li>
+      <li>die ungefähren Kosten der vorbeugenden Wartung,</li>
+      <li>die ungefähren Reparaturkosten bei vernachlässigter Wartung.</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 0">So können Sie sich einen eigenen Wartungsplan erstellen — egal, ob Sie einen Phoenix, einen Morelo, einen Concorde, einen Carthago, einen Hymer oder ein anderes Wohnmobil besitzen.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:48px 0 24px; color:#16140F">Schnellübersicht zur Wartung</h2>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Vor jeder Fahrt</h3>
+    <ul class="check-list" style="margin:0 0 32px">
+      <li>Motorölstand kontrollieren.</li>
+      <li>Kühlmittel kontrollieren.</li>
+      <li>Scheibenwaschflüssigkeit kontrollieren.</li>
+      <li>Reifendruck inklusive Reserverad kontrollieren.</li>
+      <li>Reifen auf Risse oder Beschädigungen prüfen.</li>
+      <li>Funktion sämtlicher Beleuchtung prüfen.</li>
+      <li>Fahrzeug auf eventuelle Flüssigkeitslecks von unten kontrollieren.</li>
+      <li>Alle Dachfenster schließen.</li>
+      <li>Schränke und Schubladen verriegeln.</li>
+      <li>Markise sichern.</li>
+      <li>Hydraulische Stützen einfahren.</li>
+      <li>Elektrische Trittstufe einfahren.</li>
+      <li>Garagenklappen verriegeln.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Nach Rückkehr von einer längeren Fahrt</h3>
+    <ul class="check-list" style="margin:0 0 32px">
+      <li>Abwassertank entleeren.</li>
+      <li>Toilettenkassette bzw. Keramik-WC durchspülen.</li>
+      <li>Alle Batterien auf 100 % laden.</li>
+      <li>Fahrgestell auf Flüssigkeitslecks kontrollieren.</li>
+      <li>Solarmodule reinigen.</li>
+      <li>Kühlschrank reinigen.</li>
+      <li>Innenraum lüften.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Jeden Monat</h3>
+    <ul class="check-list" style="margin:0 0 32px">
+      <li>Reifendruck erneut prüfen.</li>
+      <li>Zustand der Starterbatterie kontrollieren.</li>
+      <li>LiFePO₄-Batterien kontrollieren.</li>
+      <li>Fehlerstromschutzschalter (FI) testen.</li>
+      <li>Alarme des Victron-Systems kontrollieren.</li>
+      <li>Korrekte Funktion von Wechselrichter und Ladegerät prüfen.</li>
+      <li>Keilriemen kontrollieren.</li>
+      <li>Lichtmaschine kontrollieren.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 20.000 km oder 1 Jahr</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Motoröl.</li>
+      <li>Ölfilter.</li>
+      <li>Kontrolle des Fahrgestells.</li>
+      <li>Bremsenkontrolle.</li>
+      <li>Lenkungskontrolle.</li>
+      <li>Kontrolle der Stoßdämpfer.</li>
+      <li>Schlauchkontrolle.</li>
+      <li>Kontrolle der Motordichtungen.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 40.000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Kraftstofffilter.</li>
+      <li>Innenraumfilter.</li>
+      <li>Kontrolle der Bremsbeläge.</li>
+      <li>Kontrolle der Bremsscheiben.</li>
+      <li>Kontrolle der Achsgeometrie.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 60.000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Luftfilter.</li>
+      <li>Kontrolle der Riemen.</li>
+      <li>Kontrolle der Spannrollen.</li>
+      <li>Kontrolle des Turboladers.</li>
+      <li>Kontrolle des Ansaugtrakts.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 80.000–100.000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Ölwechsel des Automatikgetriebes.</li>
+      <li>Filterwechsel des Automatikgetriebes.</li>
+      <li>Kontrolle des Getriebekühlers.</li>
+      <li>Getriebeadaption nach der Wartung (falls vom Hersteller empfohlen).</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 100.000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Ölwechsel im Differenzial.</li>
+      <li>Kontrolle der Gelenkwelle.</li>
+      <li>Lagerkontrolle.</li>
+      <li>Kontrolle der Kreuzgelenke.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 2 Jahre</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Bremsflüssigkeit.</li>
+      <li>Klimaservice.</li>
+      <li>Desinfektion der Wasseranlage.</li>
+      <li>Kontrolle der Gasanlage.</li>
+      <li>Kontrolle der Heizungsanlage.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Alle 3–5 Jahre</h3>
+    <ul class="dot-list" style="margin:0 0 0">
+      <li>Kühlmittel (gemäß Herstellerspezifikation).</li>
+      <li>Kontrolle aller Gummischläuche.</li>
+      <li>Kontrolle der Gummilager.</li>
+      <li>Kontrolle der Dachabdichtung.</li>
+      <li>Kontrolle aller Dachdurchführungen.</li>
+    </ul>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:48px 0 20px; color:#16140F">Was kostet die Vorbeugung, was kostet die Reparatur?</h2>
+    <div style="overflow-x:auto; margin-bottom:8px">
+      <table class="svc-table">
+        <thead>
+          <tr><th>Bauteil</th><th>Vorbeugende Wartung</th><th>Reparatur bei Vernachlässigung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Motoröl</td><td>160–320 €</td><td>6.000–20.000 €</td></tr>
+          <tr><td>Automatikgetriebe</td><td>480–800 €</td><td>4.800–10.000 €</td></tr>
+          <tr><td>Differenzial</td><td>120–240 €</td><td>2.400–4.800 €</td></tr>
+          <tr><td>Bremsflüssigkeit</td><td>40–120 €</td><td>Risiko einer deutlich verminderten Bremswirkung</td></tr>
+          <tr><td>Dachabdichtung</td><td>Einige Hundert Euro</td><td>Mehrere Zehntausend Euro bei langfristigem Wassereintritt</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:48px 0 16px; color:#16140F">Wie geht es weiter?</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Dieser Artikel ist die Einleitung zur gesamten Serie.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">In den folgenden Kapiteln widmen wir uns ausführlich jedem System des Wohnmobils:</p>
+    <ul class="dot-list" style="margin:0 0 24px; columns:2; column-gap:32px">
+      <li>Motor</li>
+      <li>Automatikgetriebe</li>
+      <li>Differenzial</li>
+      <li>Bremsen</li>
+      <li>Fahrgestell</li>
+      <li>Reifen</li>
+      <li>Elektrik</li>
+      <li>LiFePO₄-Batterien</li>
+      <li>Solaranlage</li>
+      <li>Victron</li>
+      <li>Wasseranlage</li>
+      <li>Gasanlage</li>
+      <li>Heizung Alde und Truma</li>
+      <li>Klimaanlage</li>
+      <li>Dachfenster</li>
+      <li>Markise</li>
+      <li>Korrosionsschutz</li>
+      <li>Einwintern</li>
+      <li>Frühjahrs-Inbetriebnahme</li>
+      <li>Komplettes Servicetagebuch</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 0">Unser Ziel ist es, den umfassendsten Leitfaden zur vorbeugenden Wartung von Wohnmobilen zu erstellen — einen, der Besitzern hilft, die Lebensdauer ihrer Fahrzeuge zu verlängern, die Zuverlässigkeit auf Reisen zu erhöhen und unnötig teure Reparaturen zu vermeiden.</p>
+
+    <a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Zurück zu allen Artikeln</a>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Tagebuch eines Phoenix · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
