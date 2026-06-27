@@ -583,8 +583,31 @@ export async function onRequest(context) {
   // `next()` slouží jen jako fail-safe, kdyby ASSETS binding chyběl.
   if (lang === "cs") {
     let originResponse = await fetchStaticAsset(env, request, url, pathname, hasFileExtension);
-    if (!originResponse || !originResponse.ok) {
+    const viaAssets = !!(originResponse && originResponse.ok);
+    if (!viaAssets) {
       originResponse = await next();
+    }
+    // DOČASNÉ DEBUG: ?debug=1 vrátí info o tom, jak se podařilo (nebo
+    // nepodařilo) najít statický soubor pro tuhle CZ stránku, místo aby
+    // se to potichu zabalilo do decoratePage(). Po vyřešení bugu s PDF
+    // tlačítkem smazat.
+    if (url.searchParams.get("debug") === "1") {
+      return new Response(
+        "CS DEBUG\n\n" +
+          JSON.stringify(
+            {
+              pathname,
+              hasFileExtension,
+              viaAssets,
+              status: originResponse ? originResponse.status : null,
+              ok: originResponse ? originResponse.ok : null,
+              envASSETS: typeof env.ASSETS,
+            },
+            null,
+            2
+          ),
+        { status: 200, headers: { "content-type": "text/plain;charset=UTF-8", "Cache-Control": "no-store" } }
+      );
     }
     return decoratePage(originResponse, originPath);
   }
