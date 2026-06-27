@@ -66,6 +66,11 @@ const GLOSSARY = [
 const MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8-fast";
 const SITE_ORIGIN = "https://phoenix7.vip";
 
+// Zlatá barva pro mobilní přepínač jazyků (vedle hamburger ikony) — má ho
+// vizuálně odlišit od běžných odkazů, na rozdíl od desktopové verze v menu,
+// která zůstává v neutrálních barvách webu.
+const GOLD = "#C9A227";
+
 // ---------------------------------------------------------------------
 // Pomocné funkce — cookies, Accept-Language, detekce jazyka
 // ---------------------------------------------------------------------
@@ -121,9 +126,13 @@ function absoluteUrl(code, originPath) {
 // ---------------------------------------------------------------------
 
 function buildSwitcherHtml(originPath, currentLang) {
-  // Desktopová verze (uvnitř rozbalovacího <details> panelu) — beze změny,
-  // zobrazuje plný název jazyka.
-  const desktopItems = ["cs", ...SUPPORTED_LANGS]
+  // Tohle je VÝHRADNĚ desktopová verze (rozbalovací <details> panel uvnitř
+  // nav#mainNav) — beze změny barev/vzhledu, protože ta uživateli vyhovuje.
+  // Na mobilu (<=900px) se podle CSS níž celá schová — mobil má od teď
+  // úplně jiný, samostatný přepínač přímo v hlavičce vedle hamburger ikony
+  // (viz buildMobileLangSwitcherHtml + NavToggleMobileSwitcherInjector),
+  // takže tady už žádnou mobilní variantu řešit nemusíme.
+  const items = ["cs", ...SUPPORTED_LANGS]
     .map((code) => {
       const isActive = code === currentLang;
       const style = isActive
@@ -133,49 +142,56 @@ function buildSwitcherHtml(originPath, currentLang) {
     })
     .join("");
 
-  // Mobilní verze — krátké "pilulky" (CS/EN/DE/FR/ES), které jsou v DOMu
-  // vždycky přítomné a vždycky vykreslené, jen pomocí media query je na
-  // desktopu schováme a na mobilu zobrazíme. Žádné <details>/<summary>,
-  // žádné klikání na rozbalení, žádné samostatné okno.
-  const mobileItems = ["cs", ...SUPPORTED_LANGS]
+  return `<style>@media (max-width:900px){#langSwitcher{display:none !important}}</style><div id="langSwitcher" style="display:flex;align-items:center;margin-left:6px"><details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #E7E4DC;border-radius:999px;color:#4a463f;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid #E7E4DC;border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.18);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${items}</div></details></div>`;
+}
+
+// ---------------------------------------------------------------------
+// Mobilní přepínač jazyků — žije v hlavičce VEDLE hamburger tlačítka
+// (#navToggle), ne uvnitř rozbalovacího menu. Tím se úplně obejde
+// problém s tím, že #mainNav se na mobilu měnil na svislý panel přes
+// celou obrazovku a cokoliv uvnitř bylo buď mimo obrazovku, nebo skryté
+// (viz historie oprav výš u buildSwitcherHtml). Hlavička je vždy jen
+// tak široká jako viewport, takže rozbalovací panel zakotvený "right:0"
+// vedle hamburgeru zůstává v zobrazitelné oblasti.
+// Písmo je zlaté (GOLD), aby šlo vizuálně hned poznat od ostatní
+// navigace — to je čistě estetická volba na přání, na desktopu se
+// barva neměnila.
+// ---------------------------------------------------------------------
+
+function buildMobileLangSwitcherHtml(originPath, currentLang) {
+  const items = ["cs", ...SUPPORTED_LANGS]
     .map((code) => {
       const isActive = code === currentLang;
       const style = isActive
-        ? "padding:7px 12px;border-radius:999px;text-decoration:none;color:#16140F;font-weight:600;background:#F2EFE6;border:1px solid #E7E4DC;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em"
-        : "padding:7px 12px;border-radius:999px;text-decoration:none;color:#4a463f;border:1px solid #E7E4DC;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em";
-      const shortCode = LANG_LABELS[code].split(" — ")[0];
-      return `<a href="${langHref(code, originPath)}" style="${style}">${shortCode}</a>`;
+        ? `padding:8px 10px;border-radius:6px;text-decoration:none;color:${GOLD};font-weight:700;background:rgba(201,162,39,0.14);display:block`
+        : `padding:8px 10px;border-radius:6px;text-decoration:none;color:${GOLD};opacity:.7;display:block`;
+      return `<a href="${langHref(code, originPath)}" style="${style}">${LANG_LABELS[code]}</a>`;
     })
     .join("");
 
-  // POZOR (mobil, historie oprav):
-  // 1) Nejdřív vyčuhoval celý rozbalovací panel mimo obrazovku, protože byl
-  //    "position:absolute;right:0" vázaný na úzký badge na levém okraji
-  //    full-width mobilního menu.
-  // 2) Po zarovnání badge doprava se panel sice vešel "pod" řádek, ale byl
-  //    to znovu samostatný malý vyskakovací rámeček — uživatel chtěl
-  //    přesně tohle NE: žádné další okno/rámeček.
-  // 3) Pak jsme zkusili na mobilu donutit skrytý obsah <details> (přes
-  //    "display:flex !important") aby se zobrazil v řádku rovnou bez
-  //    klikání. To se ALE ukázalo nespolehlivé — moderní mobilní
-  //    prohlížeče (zejména Mobile Safari) skrývají obsah zavřeného
-  //    <details> jiným mechanismem než prostým "display:none" (např.
-  //    "content-visibility"), takže autorské CSS přes display nešlo
-  //    přebít. Výsledek: na mobilu nešlo vidět vůbec nic.
-  // Finální (robustní) řešení: <details>/<summary> dropdown necháváme jen
-  // pro desktop a na mobilu ho úplně skryjeme. Vedle něj je v DOMu druhý,
-  // úplně samostatný řádek s krátkými odkazy na všechny jazyky — ten je
-  // normální <div> (žádné <details>), defaultně schovaný přes "display:
-  // none" a na mobilu ho médiovým dotazem prostě zviditelníme. Tohle je
-  // čistě CSS přepínání viditelnosti, bez závislosti na nejistém chování
-  // <details> v různých prohlížečích.
-  return `<style>
-@media (max-width:900px){
-  #langSwitcher{width:100% !important;margin:14px 0 0 !important}
-  #langSwitcher .lsDesktop{display:none !important}
-  #langSwitcher .lsMobile{display:flex !important}
+  return `<details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:4px;padding:6px 10px;border:1px solid ${GOLD};border-radius:999px;color:${GOLD};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid ${GOLD};border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.25);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${items}</div></details>`;
 }
-</style><div id="langSwitcher" style="display:flex;align-items:center;margin-left:6px"><div class="lsDesktop" style="display:flex;align-items:center"><details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #E7E4DC;border-radius:999px;color:#4a463f;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid #E7E4DC;border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.18);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${desktopItems}</div></details></div><div class="lsMobile" style="display:none;align-items:center;flex-wrap:wrap;gap:8px;width:100%">${mobileItems}</div></div>`;
+
+// Tahle třída se napíchne na #navToggle a "obalí" ho (+ náš přepínač)
+// do společného <div>: el.before() vloží otevírací tag wrapperu a obsah
+// přepínače hned PŘED hamburger tlačítko, el.after() pak přidá uzavírací
+// tag wrapperu hned ZA tlačítko — výsledkem je platné
+// <div id="mobileLangWrap">...switcher...<button id="navToggle">...</button></div>,
+// i když HTMLRewriter žádné "obalení" existujícího elementu přímo
+// nepodporuje. Wrapper je defaultně display:none (na desktopu se nic
+// neděje) a médiovým dotazem na <=900px se změní na display:flex, takže
+// se přepínač i hamburger zobrazí těsně vedle sebe.
+class NavToggleMobileSwitcherInjector {
+  constructor(originPath, lang) {
+    this.originPath = originPath;
+    this.lang = lang;
+  }
+  element(el) {
+    const style = `<style>@media (max-width:900px){#mobileLangWrap{display:flex !important;align-items:center;gap:10px}}</style>`;
+    const switcherHtml = buildMobileLangSwitcherHtml(this.originPath, this.lang);
+    el.before(`${style}<div id="mobileLangWrap" style="display:none">${switcherHtml}`, { html: true });
+    el.after(`</div>`, { html: true });
+  }
 }
 
 function buildHreflangTags(originPath, currentLang) {
@@ -414,6 +430,7 @@ async function translatePage(originResponse, lang, ai, { originPath, errors, deb
     .on("html", new HtmlLangSetter())
     .on("head", new HeadInjector())
     .on("nav#mainNav", new HeaderSwitcherInjector())
+    .on("#navToggle", new NavToggleMobileSwitcherInjector(originPath, lang))
     .on("script, style, noscript, code, pre", new SkipTracker())
     .on('meta[name="description"]', new MetaContentCollector())
     .on('meta[property="og:title"]', new MetaContentCollector())
@@ -459,6 +476,7 @@ function decoratePage(response, originPath, lang = "cs") {
         el.append(buildSwitcherHtml(originPath, lang), { html: true });
       },
     })
+    .on("#navToggle", new NavToggleMobileSwitcherInjector(originPath, lang))
     .transform(response);
   // DOČASNÉ DEBUG: vypnout cache, ať nás při ladění nemate stará odpověď.
   const headers = new Headers(transformed.headers);
