@@ -121,20 +121,30 @@ function absoluteUrl(code, originPath) {
 // ---------------------------------------------------------------------
 
 function buildSwitcherHtml(originPath, currentLang) {
-  const items = ["cs", ...SUPPORTED_LANGS]
+  // Desktopová verze (uvnitř rozbalovacího <details> panelu) — beze změny,
+  // zobrazuje plný název jazyka.
+  const desktopItems = ["cs", ...SUPPORTED_LANGS]
     .map((code) => {
       const isActive = code === currentLang;
       const style = isActive
-        ? "padding:8px 10px;border-radius:6px;text-decoration:none;color:#16140F;font-weight:600;background:#F2EFE6;display:block;white-space:nowrap"
-        : "padding:8px 10px;border-radius:6px;text-decoration:none;color:#4a463f;display:block;white-space:nowrap";
-      // Label rozdělíme na krátký kód ("CS") a celý název ("Čeština") do
-      // dvou <span>. Na desktopu (v rozbalovacím panelu) se zobrazuje obojí,
-      // na mobilu (viz CSS níž) skryjeme tu dlouhou část, ať se všechny
-      // jazyky vejdou do jednoho řádku jako kompaktní zkratky.
-      const label = LANG_LABELS[code]; // např. "CS — Čeština"
-      const [shortCode, ...rest] = label.split(" — ");
-      const longName = rest.join(" — ");
-      return `<a href="${langHref(code, originPath)}" style="${style}"><span class="lsCode">${shortCode}</span><span class="lsName" style="margin-left:4px">— ${longName}</span></a>`;
+        ? "padding:8px 10px;border-radius:6px;text-decoration:none;color:#16140F;font-weight:600;background:#F2EFE6;display:block"
+        : "padding:8px 10px;border-radius:6px;text-decoration:none;color:#4a463f;display:block";
+      return `<a href="${langHref(code, originPath)}" style="${style}">${LANG_LABELS[code]}</a>`;
+    })
+    .join("");
+
+  // Mobilní verze — krátké "pilulky" (CS/EN/DE/FR/ES), které jsou v DOMu
+  // vždycky přítomné a vždycky vykreslené, jen pomocí media query je na
+  // desktopu schováme a na mobilu zobrazíme. Žádné <details>/<summary>,
+  // žádné klikání na rozbalení, žádné samostatné okno.
+  const mobileItems = ["cs", ...SUPPORTED_LANGS]
+    .map((code) => {
+      const isActive = code === currentLang;
+      const style = isActive
+        ? "padding:7px 12px;border-radius:999px;text-decoration:none;color:#16140F;font-weight:600;background:#F2EFE6;border:1px solid #E7E4DC;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em"
+        : "padding:7px 12px;border-radius:999px;text-decoration:none;color:#4a463f;border:1px solid #E7E4DC;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em";
+      const shortCode = LANG_LABELS[code].split(" — ")[0];
+      return `<a href="${langHref(code, originPath)}" style="${style}">${shortCode}</a>`;
     })
     .join("");
 
@@ -143,40 +153,29 @@ function buildSwitcherHtml(originPath, currentLang) {
   //    "position:absolute;right:0" vázaný na úzký badge na levém okraji
   //    full-width mobilního menu.
   // 2) Po zarovnání badge doprava se panel sice vešel "pod" řádek, ale byl
-  //    to znovu samostatný malý vyskakovací rámeček (position:absolute) —
-  //    a uživatel chce přesně tohle NE: žádné další okno/rámeček.
-  // Finální řešení: na mobilu se <details> obsah (seznam jazyků) vůbec
-  // nechová jako vyskakovací panel. Přepneme ho na "position:static" a
-  // "display:flex" (s !important, aby to přebilo i nativní skryté chování
-  // zavřeného <details>, i inline styly), takže se jazyky vykreslí přímo
-  // do toho samého řádku, kde svítí aktuální jazyk — žádné kliknutí na
-  // rozbalení není potřeba, žádné samostatné okno se neotvírá. Dlouhý
-  // název (".lsName") na mobilu skryjeme, zůstanou jen krátké zkratky
-  // (CS/EN/DE/FR/ES), aby se vešly vedle sebe na šířku obrazovky.
+  //    to znovu samostatný malý vyskakovací rámeček — uživatel chtěl
+  //    přesně tohle NE: žádné další okno/rámeček.
+  // 3) Pak jsme zkusili na mobilu donutit skrytý obsah <details> (přes
+  //    "display:flex !important") aby se zobrazil v řádku rovnou bez
+  //    klikání. To se ALE ukázalo nespolehlivé — moderní mobilní
+  //    prohlížeče (zejména Mobile Safari) skrývají obsah zavřeného
+  //    <details> jiným mechanismem než prostým "display:none" (např.
+  //    "content-visibility"), takže autorské CSS přes display nešlo
+  //    přebít. Výsledek: na mobilu nešlo vidět vůbec nic.
+  // Finální (robustní) řešení: <details>/<summary> dropdown necháváme jen
+  // pro desktop a na mobilu ho úplně skryjeme. Vedle něj je v DOMu druhý,
+  // úplně samostatný řádek s krátkými odkazy na všechny jazyky — ten je
+  // normální <div> (žádné <details>), defaultně schovaný přes "display:
+  // none" a na mobilu ho médiovým dotazem prostě zviditelníme. Tohle je
+  // čistě CSS přepínání viditelnosti, bez závislosti na nejistém chování
+  // <details> v různých prohlížečích.
   return `<style>
 @media (max-width:900px){
-  #langSwitcher{width:100% !important;margin:14px 0 0 !important;flex-wrap:wrap}
-  #langSwitcher summary{display:none !important}
-  #langSwitcher details{position:static !important;width:100%}
-  #langSwitcher details>div{
-    position:static !important;
-    top:auto !important;
-    right:auto !important;
-    display:flex !important;
-    flex-direction:row !important;
-    flex-wrap:wrap !important;
-    align-items:center !important;
-    width:100% !important;
-    min-width:0 !important;
-    background:transparent !important;
-    border:none !important;
-    box-shadow:none !important;
-    padding:0 !important;
-    gap:8px !important;
-  }
-  #langSwitcher .lsName{display:none !important}
+  #langSwitcher{width:100% !important;margin:14px 0 0 !important}
+  #langSwitcher .lsDesktop{display:none !important}
+  #langSwitcher .lsMobile{display:flex !important}
 }
-</style><div id="langSwitcher" style="display:flex;align-items:center;margin-left:6px"><details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #E7E4DC;border-radius:999px;color:#4a463f;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid #E7E4DC;border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.18);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${items}</div></details></div>`;
+</style><div id="langSwitcher" style="display:flex;align-items:center;margin-left:6px"><div class="lsDesktop" style="display:flex;align-items:center"><details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #E7E4DC;border-radius:999px;color:#4a463f;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid #E7E4DC;border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.18);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${desktopItems}</div></details></div><div class="lsMobile" style="display:none;align-items:center;flex-wrap:wrap;gap:8px;width:100%">${mobileItems}</div></div>`;
 }
 
 function buildHreflangTags(originPath, currentLang) {
