@@ -497,12 +497,27 @@ export async function onRequest(context) {
   // (níž) zůstává jen jako fallback pro stránky/jazyky, pro které statický
   // překlad (ještě) neexistuje — typicky nově přidaný obsah nebo jazyky
   // mimo en/de, které se zatím ručně nepřekládají.
+  // POZOR: NEPŘIDÁVAT sem "index.html" natvrdo! Cloudflare Pages servíruje
+  // adresářové URL ve "vyčištěné" podobě (např. "/en/") a explicitní dotaz
+  // na ".../index.html" interně přesměruje (3xx) zpátky na vyčištěnou formu.
+  // env.ASSETS.fetch ten redirect vrátí jako odpověď se status 3xx, takže
+  // "staticResponse.ok" je false a celá tahle větev se tiše přeskočí — to
+  // byl důvod, proč /en/ a /de/ na produkci dál ukazovaly český originál,
+  // přestože /en/index.html i /de/index.html na GitHubu existovaly. Proto
+  // necháváme adresářovou cestu beze změny a dovolíme i jeden redirect.
   let staticPath = pathname;
-  if (!hasFileExtension) {
-    staticPath = pathname.endsWith("/") ? `${pathname}index.html` : `${pathname}/index.html`;
+  if (!hasFileExtension && !staticPath.endsWith("/")) {
+    staticPath = `${staticPath}/`;
   }
   const staticUrl = new URL(staticPath, url.origin);
-  const staticResponse = await env.ASSETS.fetch(new Request(staticUrl, request));
+  let staticResponse = await env.ASSETS.fetch(new Request(staticUrl, request));
+  if (staticResponse.status >= 300 && staticResponse.status < 400) {
+    const redirectLocation = staticResponse.headers.get("Location");
+    if (redirectLocation) {
+      const redirectUrl = new URL(redirectLocation, staticUrl);
+      staticResponse = await env.ASSETS.fetch(new Request(redirectUrl, request));
+    }
+  }
   if (staticResponse.ok) {
     return decoratePage(staticResponse, originPath, lang);
   }
