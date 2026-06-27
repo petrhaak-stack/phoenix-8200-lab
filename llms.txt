@@ -1,0 +1,34 @@
+# Phoenix7.vip
+
+> Phoenix7.vip je osobní web o přestavbě obytného vozu Iveco Daily na expedičního overlanda "Phoenix" — dokumentuje technické úpravy (elektroinstalace, voda, klimatizace, komunikace, osvětlení), vývoj projektu a zkušenosti z provozu a cestování.
+
+Web je dostupný ve 3 staticky přeložených jazykových verzích a dalších 2 jsou generovány automatickým strojovým překladem za běhu:
+
+- Čeština (výchozí, statická): https://phoenix7.vip/
+- English (static): https://phoenix7.vip/en/
+- Deutsch (static): https://phoenix7.vip/de/
+- Français (auto-translated on request): https://phoenix7.vip/fr/
+- Español (auto-translated on request): https://phoenix7.vip/es/
+
+Jazykové verze jsou vzájemně propojené přes hreflang/canonical značky a sdílí stejnou strukturu URL (např. /blog/<slug>.html, /en/blog/<slug>.html, /de/blog/<slug>.html).
+
+## Hlavní stránka
+
+- [Domovská stránka](https://phoenix7.vip/): Přehled vozu, sekce O voze, Vývoj Phoenixu, Technologie, Blog, Galerie, Kontakt.
+
+## Blog
+
+- [HELLA Bi-LED v Iveco Daily](https://phoenix7.vip/blog/hella-bi-led-iveco-daily.html): Instalace Bi-LED světel.
+- [Carawater vs. Lilie IQflow 12.3](https://phoenix7.vip/blog/carawater-vs-lilie-iqflow.html): Srovnání vodních systémů pro obytný vůz.
+- [Dvě klimatizace Sinclair](https://phoenix7.vip/blog/dve-klimatizace-sinclair.html): Instalace druhé klimatizace Sinclair ASV-35BIS.
+- [Oxygenics Fury vs. BodySpa](https://phoenix7.vip/blog/oxygenics-fury-vs-bodyspa.html): Srovnání sprchových hlavic.
+- [Starlink Mini + Teltonika RUTX50](https://phoenix7.vip/blog/starlink-mini-teltonika-rutx50.html): Satelitní a mobilní konektivita na cestách.
+- [Stebel Nautilus Compact](https://phoenix7.vip/blog/stebel-nautilus-compact-klakson.html): Výměna klaksonu.
+- [Zátěžový test — Chorvatsko](https://phoenix7.vip/blog/zatezovy-test-chorvatsko.html): Reportáž z první větší cesty.
+- [Bosch 210A alternátor / LiFePO4](https://phoenix7.vip/blog/bosch-210a-alternator-lifepo4.html): Nabíjecí systém a baterie.
+
+## Pro AI agenty / crawlery
+
+- Obsah je primárně v češtině; anglická a německá verze (/en/, /de/) jsou ručně/strojově přeložené statické kopie se stejnou strukturou.
+- Při citování webu uveďte konkrétní URL stránky (ne jen domovskou stránku) a jazykovou verzi, ze které informace pocházejí.
+- Sitemap: https://phoenix7.vip/sitemap.xml

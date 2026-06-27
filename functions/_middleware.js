@@ -131,7 +131,17 @@ function buildSwitcherHtml(originPath, currentLang) {
     })
     .join("");
 
-  return `<div id="langSwitcher" style="display:flex;align-items:center;margin-left:6px"><details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #E7E4DC;border-radius:999px;color:#4a463f;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid #E7E4DC;border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.18);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${items}</div></details></div>`;
+  // POZOR (mobil): #mainNav se na šířku <900px změní na svislý sloupec
+  // přes celou obrazovku (viz .main-nav v <style> v index.html) a tenhle
+  // přepínač se do něj appenduje jako poslední položka. Badge ("CS"/"EN"...)
+  // se tam nijak nestrečuje na celou šířku, takže zůstává na LEVÉM okraji
+  // řádku. Rozbalovací panel je ale "position:absolute;right:0" vázaný na
+  // tenhle úzký badge — jeho pravý okraj se tak zarovná podle levého
+  // badge, a celá 150px široká nabídka pak vyčuhuje mimo obrazovku.
+  // Oprava: na mobilu roztáhneme #langSwitcher na 100% šířky a zarovnáme
+  // ho na pravý okraj (justify-content:flex-end) — badge tím "přeskočí"
+  // k pravému okraji nav panelu a "right:0" pak zůstane uvnitř obrazovky.
+  return `<style>@media (max-width:900px){#langSwitcher{width:100%;justify-content:flex-end;margin:14px 0 0}}</style><div id="langSwitcher" style="display:flex;align-items:center;margin-left:6px"><details style="position:relative"><summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #E7E4DC;border-radius:999px;color:#4a463f;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;user-select:none">${currentLang.toUpperCase()}</summary><div style="position:absolute;right:0;top:calc(100% + 8px);background:#FAFAF8;border:1px solid #E7E4DC;border-radius:10px;box-shadow:0 16px 32px -12px rgba(0,0,0,0.18);padding:6px;display:flex;flex-direction:column;min-width:150px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;z-index:60">${items}</div></details></div>`;
 }
 
 function buildHreflangTags(originPath, currentLang) {
