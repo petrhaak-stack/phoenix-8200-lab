@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motorhome Service Plan — A Complete Guide to Preventive Maintenance — Phoenix 8200 Lab</title>
+<meta name="description" content="A complete overview of motorhome preventive maintenance — pre-trip and post-trip checklists, service intervals by mileage and age, and a comparison of prevention cost versus repair cost when maintenance is neglected.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  .check-list{list-style:none; padding:0; margin:0}
+  .check-list li{position:relative; padding-left:30px; margin-bottom:10px; font-size:15.5px; line-height:1.6; color:#3d3a34}
+  .check-list li::before{content:""; position:absolute; left:0; top:3px; width:16px; height:16px; border:1.5px solid var(--gold); border-radius:3px}
+  .dot-list{list-style:none; padding:0; margin:0}
+  .dot-list li{position:relative; padding-left:22px; margin-bottom:9px; font-size:15.5px; line-height:1.6; color:#3d3a34}
+  .dot-list li::before{content:""; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--gold)}
+  .svc-table{width:100%; border-collapse:collapse; font-size:14.5px}
+  .svc-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9a958c; font-weight:500; padding:0 14px 10px 0; border-bottom:1px solid #E7E4DC}
+  .svc-table td{padding:14px 14px 14px 0; border-bottom:1px solid #EEEBE2; color:#3d3a34; line-height:1.5; vertical-align:top}
+  .svc-table td:first-child{font-weight:600; color:#16140F; white-space:nowrap}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+    .svc-table{font-size:13px}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="../index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="../index.html#auto" style="text-decoration:none; color:#4a463f">About the vehicle</a>
+        <a href="../index.html#vyvoj" style="text-decoration:none; color:#4a463f">Phoenix development</a>
+        <a href="../index.html#dily" style="text-decoration:none; color:#4a463f">Technology</a>
+        <a href="../index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="../index.html#galerie" style="text-decoration:none; color:#4a463f">Gallery</a>
+        <a href="../index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Contact</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ ARTICLE HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="../index.html#blog" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Back to blog</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Blog · Service</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Motorhome Service Plan — A Complete Guide to Preventive Maintenance</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 24px">The most expensive repairs are the ones that could have been prevented.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">
+        <span>14 min read</span>
+        <span>·</span>
+        <span>June 2026</span>
+        <span>·</span>
+        <span>Service · Service log</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARTICLE BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">A motorhome isn't just a vehicle.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">It's a truck, a house, a water system, a power plant, a gas installation, heating, air conditioning, and often an office on wheels. Each of these parts needs regular care.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Yet most owners only deal with service once something has already broken.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">The chassis manufacturer recommends engine service. The bodybuilder covers windows, the roof, or furniture. Victron documents batteries and inverters. Alde explains heating. Dometic covers the fridge.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">But nobody brings all of this information together.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">That's exactly why this series exists.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Its goal isn't to teach you how to repair an engine or strip down a gearbox. The point is to show you what to check, when to carry out preventive service, and why prevention is always cheaper than repair.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">How to use this guide</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">Each chapter will include:</p>
+    <ul class="dot-list" style="margin:0 0 20px">
+      <li>how the system works,</li>
+      <li>the most common causes of wear,</li>
+      <li>recommended service intervals,</li>
+      <li>a checklist,</li>
+      <li>an approximate cost of preventive service,</li>
+      <li>an approximate repair cost if maintenance is neglected.</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 0">This will let you build your own service plan regardless of whether you own a Phoenix, a Morelo, a Concorde, a Carthago, a Hymer, or any other motorhome.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:48px 0 24px; color:#16140F">Quick service overview</h2>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Before every trip</h3>
+    <ul class="check-list" style="margin:0 0 32px">
+      <li>Check the engine oil level.</li>
+      <li>Check the coolant.</li>
+      <li>Check the windshield washer fluid.</li>
+      <li>Check tire pressure, including the spare.</li>
+      <li>Inspect the tires for cracks or damage.</li>
+      <li>Verify that all lights are working.</li>
+      <li>Check for any fluid leaks underneath the vehicle.</li>
+      <li>Close all roof windows.</li>
+      <li>Lock the cabinets and drawers.</li>
+      <li>Secure the awning.</li>
+      <li>Retract the hydraulic levelling jacks.</li>
+      <li>Retract the electric step.</li>
+      <li>Lock the garage doors.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">After returning from a longer trip</h3>
+    <ul class="check-list" style="margin:0 0 32px">
+      <li>Empty the waste tank.</li>
+      <li>Flush the cassette toilet or ceramic toilet.</li>
+      <li>Charge all batteries to 100%.</li>
+      <li>Check the chassis for fluid leaks.</li>
+      <li>Wash the solar panels.</li>
+      <li>Clean the fridge.</li>
+      <li>Air out the interior.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every month</h3>
+    <ul class="check-list" style="margin:0 0 32px">
+      <li>Re-check tire pressure.</li>
+      <li>Check the starter battery condition.</li>
+      <li>Check the LiFePO₄ batteries.</li>
+      <li>Test the residual current device (RCD/GFCI).</li>
+      <li>Check Victron system alarms.</li>
+      <li>Verify the inverter and charger are working correctly.</li>
+      <li>Inspect the accessory belt.</li>
+      <li>Check the alternator.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 20,000 km or 1 year</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Engine oil.</li>
+      <li>Oil filter.</li>
+      <li>Chassis inspection.</li>
+      <li>Brake inspection.</li>
+      <li>Steering inspection.</li>
+      <li>Shock absorber inspection.</li>
+      <li>Hose inspection.</li>
+      <li>Engine seal inspection.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 40,000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Fuel filter.</li>
+      <li>Cabin filter.</li>
+      <li>Brake pad inspection.</li>
+      <li>Brake disc inspection.</li>
+      <li>Wheel alignment check.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 60,000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Air filter.</li>
+      <li>Belt inspection.</li>
+      <li>Tensioner inspection.</li>
+      <li>Turbo inspection.</li>
+      <li>Intake inspection.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 80,000–100,000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Automatic transmission oil change.</li>
+      <li>Automatic transmission filter change.</li>
+      <li>Transmission cooler inspection.</li>
+      <li>Transmission adaptation after service (if recommended by the manufacturer).</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 100,000 km</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Differential oil change.</li>
+      <li>Driveshaft inspection.</li>
+      <li>Bearing inspection.</li>
+      <li>Universal joint (cross) inspection.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 2 years</h3>
+    <ul class="dot-list" style="margin:0 0 28px">
+      <li>Brake fluid.</li>
+      <li>Air conditioning service.</li>
+      <li>Water system disinfection.</li>
+      <li>Gas installation inspection.</li>
+      <li>Heating system inspection.</li>
+    </ul>
+
+    <h3 style="font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.005em; margin:0 0 14px; color:#16140F">Every 3–5 years</h3>
+    <ul class="dot-list" style="margin:0 0 0">
+      <li>Coolant (per manufacturer specification).</li>
+      <li>Inspection of all rubber hoses.</li>
+      <li>Inspection of rubber bushings.</li>
+      <li>Roof sealant inspection.</li>
+      <li>Inspection of all roof penetrations.</li>
+    </ul>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:48px 0 20px; color:#16140F">How much does prevention cost, and how much does a repair cost?</h2>
+    <div style="overflow-x:auto; margin-bottom:8px">
+      <table class="svc-table">
+        <thead>
+          <tr><th>Component</th><th>Preventive service</th><th>Repair if neglected</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Engine oil</td><td>€160–320</td><td>€6,000–20,000</td></tr>
+          <tr><td>Automatic transmission</td><td>€480–800</td><td>€4,800–10,000</td></tr>
+          <tr><td>Differential</td><td>€120–240</td><td>€2,400–4,800</td></tr>
+          <tr><td>Brake fluid</td><td>€40–120</td><td>Risk of significantly reduced braking performance</td></tr>
+          <tr><td>Roof sealant</td><td>A few hundred euros</td><td>Tens of thousands of euros in the case of long-term water ingress</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:48px 0 16px; color:#16140F">What comes next?</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">This article is the introduction to the whole series.</p>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 16px">In the following chapters, we'll cover every system of the motorhome in detail:</p>
+    <ul class="dot-list" style="margin:0 0 24px; columns:2; column-gap:32px">
+      <li>Engine</li>
+      <li>Automatic transmission</li>
+      <li>Differential</li>
+      <li>Brakes</li>
+      <li>Chassis</li>
+      <li>Tires</li>
+      <li>Electrical system</li>
+      <li>LiFePO₄ batteries</li>
+      <li>Solar system</li>
+      <li>Victron</li>
+      <li>Water system</li>
+      <li>Gas installation</li>
+      <li>Alde and Truma heating</li>
+      <li>Air conditioning</li>
+      <li>Roof windows</li>
+      <li>Awning</li>
+      <li>Anti-corrosion protection</li>
+      <li>Winterizing</li>
+      <li>Spring start-up</li>
+      <li>Complete service log</li>
+    </ul>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 0">Our goal is to create the most comprehensive guide to preventive motorhome maintenance — one that helps owners extend the life of their vehicles, increase reliability on the road, and avoid unnecessarily expensive repairs.</p>
+
+    <a href="../index.html#blog" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600; margin-top:40px">← Back to all articles</a>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Diary of a Phoenix · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
