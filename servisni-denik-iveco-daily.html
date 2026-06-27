@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servisní deník Iveco Daily pro obytný vůz — Phoenix 8200 Lab</title>
+<meta name="description" content="Praktický servisní deník a kontrolní plán pro obytný vůz na podvozku Iveco Daily — servisní tahák, intervaly podle kilometrů a času, roční kontrola, rychlá diagnostika podle příznaku a deník záznamů úkonů. Ke stažení i jako PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  .svc-table{width:100%; border-collapse:collapse; font-size:14.5px; margin:0 0 36px}
+  .svc-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9a958c; font-weight:500; padding:0 14px 10px 0; border-bottom:1px solid #E7E4DC}
+  .svc-table td{padding:14px 14px 14px 0; border-bottom:1px solid #EEEBE2; color:#3d3a34; line-height:1.55; vertical-align:top}
+  .svc-table td:first-child{font-weight:600; color:#16140F; white-space:nowrap}
+  .svc-table.log td:first-child{font-weight:400; color:#3d3a34; white-space:normal; min-height:32px}
+  .dl-btn{display:inline-flex; align-items:center; gap:10px; text-decoration:none; background:var(--gold); color:#16140F; font-weight:600; font-size:14.5px; padding:13px 22px; border-radius:8px; white-space:nowrap}
+  .note-box{background:#FAF6EC; border:1px solid #E4D6B0; border-radius:8px; padding:18px 22px; margin:0 0 36px}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+    .svc-table{font-size:13px}
+    .hero-cta{flex-direction:column; align-items:flex-start !important}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+    .svc-table{display:block; overflow-x:auto; white-space:nowrap}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="index.html#auto" style="text-decoration:none; color:#4a463f">O voze</a>
+        <a href="index.html#vyvoj" style="text-decoration:none; color:#4a463f">Vývoj Phoenixu</a>
+        <a href="index.html#dily" style="text-decoration:none; color:#4a463f">Technologie</a>
+        <a href="index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="index.html#vyvoj-servis" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zpět na Servisní deník</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Ke stažení · Servis</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Servisní deník Iveco Daily pro obytný vůz</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 28px">Krátký praktický plán údržby podvozku, motoru a hnací soustavy. Verze 1.0</p>
+      <div class="hero-cta" style="display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+        <a href="files/servisni-denik-iveco-daily.pdf" class="dl-btn" target="_blank" rel="noopener">⬇ Stáhnout jako PDF</a>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">PDF zatím pouze v češtině · tato stránka je dostupná i v jiných jazycích</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <div class="note-box">
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 10px"><strong style="color:#16140F">Použití dokumentu:</strong> Tento dokument je záměrně krátký. Není to servisní manuál ani náhrada dokumentace Iveco podle VIN. Je to praktický deník a kontrolní plán pro majitele obytného vozu na podvozku Iveco Daily, zejména pro vozy s nízkým ročním nájezdem, vysokou hmotností a dlouhými odstávkami.</p>
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 10px">U obytných aut nerozhodují jen kilometry. Důležitý je také čas, stáří kapalin, koroze, zatížení náprav, dlouhé stání a provoz v horku nebo v kopcích.</p>
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0"><strong style="color:#16140F">Zásada:</strong> co nastane dřív, to platí — kilometry nebo čas.</p>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">1. Servisní tahák — Iveco podvozek</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Kdy</th><th>Co udělat</th><th>Poznámka</th></tr></thead>
+        <tbody>
+          <tr><td>Před každou delší cestou</td><td>Olej, chladicí kapalina, brzdy, světla, tlak a stav pneumatik, úniky pod autem.</td><td>Stačí 5–10 minut. U těžkého obytného vozu je to nejlevnější prevence.</td></tr>
+          <tr><td>Po delší cestě</td><td>Kontrola úniků, pneumatik, brzd, zápachu od kol, stavu podvozku.</td><td>Hodí se hlavně po horách, dálnici a horku.</td></tr>
+          <tr><td>1× měsíčně / při odstávce</td><td>Tlak pneumatik, stav baterie, vizuální kontrola řemenů a hadic, koroze.</td><td>Pneumatiky a baterie trpí i bez jízdy.</td></tr>
+          <tr><td>1× ročně nebo 15–20 000 km</td><td>Motorový olej + olejový filtr, celková kontrola podvozku a brzd.</td><td>Pro obytný vůz doporučeno konzervativněji než maximální intervaly flotilového provozu.</td></tr>
+          <tr><td>Každé 2 roky</td><td>Brzdová kapalina, kontrola klimatizace, dezinfekce klimatizace, kontrola pryžových hadic.</td><td>Brzdová kapalina váže vlhkost i při malém nájezdu.</td></tr>
+          <tr><td>40 000 km nebo 2 roky</td><td>Palivový filtr, kabinový filtr, kontrola geometrie, kontrola podvozku.</td><td>U prašného provozu nebo horší nafty dříve.</td></tr>
+          <tr><td>60 000 km nebo 3 roky</td><td>Vzduchový filtr, řemen příslušenství, napínací kladky — kontrola/výměna dle stavu.</td><td>Filtr měnit dříve při prašném prostředí.</td></tr>
+          <tr><td>80–100 000 km nebo 5 let</td><td>Automatická převodovka — olej, filtr/olejová vana dle typu, kontrola úniků.</td><td>U těžkého obytného vozu nečekat na „doživotní" náplň.</td></tr>
+          <tr><td>100 000 km nebo 5 let</td><td>Diferenciál — výměna oleje, kontrola kardanu a vůlí.</td><td>Levná prevence drahé opravy.</td></tr>
+          <tr><td>5 let</td><td>Chladicí kapalina podle specifikace, důkladná kontrola hadic a spon.</td><td>Řiďte se přesnou specifikací pro konkrétní motor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px; line-height:1.6; color:#9a958c; margin:-16px 0 36px">Poznámka: některé oficiální intervaly Iveco mohou být delší a liší se podle modelu, motoru, oleje, provozního profilu a VIN. Tento plán je prakticky konzervativní pro obytný vůz.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">2. Provozní kapaliny — co zapisovat</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Systém</th><th>Co zapsat do deníku</th><th>Doporučení</th></tr></thead>
+        <tbody>
+          <tr><td>Motor</td><td>Datum, km, typ oleje, specifikace, množství, filtr.</td><td>Měnit minimálně 1× ročně u nízkého nájezdu.</td></tr>
+          <tr><td>Automatická převodovka</td><td>Datum, km, typ oleje, filtr/vana, způsob výměny.</td><td>Ideálně odborný servis s diagnostikou a správnou teplotou oleje.</td></tr>
+          <tr><td>Diferenciál</td><td>Datum, km, typ oleje, množství, stav magnetu/výpusti.</td><td>Po výměně uložit foto vypouštěcího šroubu a oleje.</td></tr>
+          <tr><td>Brzdy</td><td>Brzdová kapalina, datum, km, bod varu pokud měřen.</td><td>Interval 2 roky je rozumný i při malém nájezdu.</td></tr>
+          <tr><td>Chlazení</td><td>Typ kapaliny, poměr, datum, km.</td><td>Nemíchat neověřené typy kapalin.</td></tr>
+          <tr><td>Klimatizace</td><td>Servis, množství chladiva, olej, dezinfekce.</td><td>Řešit i když chladí — kvůli těsnosti a zápachu.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 12px; color:#16140F">3. Servisní deník — záznam úkonu</h2>
+    <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 20px">Šablona pro vlastní zápis. Ke stažení a vyplňování doporučujeme PDF verzi výše.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table log">
+        <thead><tr><th>Datum</th><th>Km</th><th>Úkon</th><th>Materiál / specifikace</th><th>Servis / osoba</th><th>Cena</th><th>Poznámka</th></tr></thead>
+        <tbody>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 12px; color:#16140F">4. Roční kontrola Iveco podvozku</h2>
+    <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 20px">Tuto stránku lze vytisknout a odškrtat při každoročním servisu.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table log">
+        <thead><tr><th>Oblast</th><th>Kontrola</th><th>OK / poznámka</th></tr></thead>
+        <tbody>
+          <tr><td>Motor</td><td>Úniky oleje, stav oleje, filtry, zvuk motoru, starty za studena.</td><td>&nbsp;</td></tr>
+          <tr><td>Chlazení</td><td>Hladina, barva kapaliny, hadice, spony, expanzní nádoba, chladič.</td><td>&nbsp;</td></tr>
+          <tr><td>Sání/turbo</td><td>Hadice sání, netěsnosti, pískání, olej v sání, intercooler.</td><td>&nbsp;</td></tr>
+          <tr><td>Řemeny</td><td>Řemen příslušenství, kladky, napínák, praskliny, hluk.</td><td>&nbsp;</td></tr>
+          <tr><td>Brzdy</td><td>Destičky, kotouče, třmeny, vedení, hadičky, ruční brzda.</td><td>&nbsp;</td></tr>
+          <tr><td>Podvozek</td><td>Čepy, silentbloky, listová pera, dorazy, tlumiče, vůle.</td><td>&nbsp;</td></tr>
+          <tr><td>Řízení</td><td>Vůle, manžety, únik kapaliny/maziva, geometrie.</td><td>&nbsp;</td></tr>
+          <tr><td>Pneumatiky</td><td>DOT, tlak podle zatížení, praskliny, nerovnoměrné sjíždění.</td><td>&nbsp;</td></tr>
+          <tr><td>Kardan</td><td>Vůle, kříže, uložení, vibrace při zátěži.</td><td>&nbsp;</td></tr>
+          <tr><td>Diferenciál</td><td>Úniky, hučení, olej dle intervalu.</td><td>&nbsp;</td></tr>
+          <tr><td>Koroze</td><td>Rám, nápravy, držáky, brzdové trubky, prahy, dutiny.</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">5. Intervaly podle kilometrů</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Km</th><th>Doporučený úkon</th></tr></thead>
+        <tbody>
+          <tr><td>15–20 000</td><td>Motorový olej + filtr; kontrola podvozku a brzd.</td></tr>
+          <tr><td>40 000</td><td>Palivový filtr; kabinový filtr; kontrola geometrie.</td></tr>
+          <tr><td>60 000</td><td>Vzduchový filtr; kontrola/výměna řemenu příslušenství a kladek dle stavu.</td></tr>
+          <tr><td>80–100 000</td><td>Automatická převodovka — olej a filtr/vana dle typu převodovky.</td></tr>
+          <tr><td>100 000</td><td>Diferenciál — olej; kontrola kardanu.</td></tr>
+          <tr><td>120 000</td><td>Důkladná kontrola podvozku, ložisek, silentbloků a tlumičů.</td></tr>
+          <tr><td>150–200 000</td><td>Opakovat větší servis převodovky/diferenciálu dle historie a zatížení.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">6. Intervaly podle času</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Čas</th><th>Doporučený úkon</th></tr></thead>
+        <tbody>
+          <tr><td>Každý měsíc</td><td>Tlak pneumatik, vizuální kontrola úniků, baterie, koroze.</td></tr>
+          <tr><td>Každý rok</td><td>Motorový olej + filtr, kompletní prohlídka podvozku, brzd a pneumatik.</td></tr>
+          <tr><td>2 roky</td><td>Brzdová kapalina, klima, kontrola hadic a pryžových dílů.</td></tr>
+          <tr><td>3 roky</td><td>Důkladná kontrola řemenů, kladek, silentbloků a chlazení.</td></tr>
+          <tr><td>5 let</td><td>Chladicí kapalina podle specifikace; převodovka/diferenciál pokud nebyly měněny podle km.</td></tr>
+          <tr><td>6–7 let</td><td>Pneumatiky velmi pečlivě posoudit, i když mají vzorek. U těžkých obytných aut rozhoduje stáří a zatížení.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">7. Rychlá diagnostika podle příznaku</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Příznak</th><th>Co zkontrolovat jako první</th><th>Poznámka</th></tr></thead>
+        <tbody>
+          <tr><td>Vibrace při zátěži</td><td>Kardan, uložení, pneumatiky, diferenciál.</td><td>Neodkládat, může se zhoršovat.</td></tr>
+          <tr><td>Hučení zezadu</td><td>Diferenciál, ložiska, pneumatiky.</td><td>Pomůže záznam rychlosti a zátěže.</td></tr>
+          <tr><td>Měkký brzdový pedál</td><td>Brzdová kapalina, netěsnost, zavzdušnění.</td><td>Bezpečnostní závada.</td></tr>
+          <tr><td>Tahání do strany</td><td>Tlak pneumatik, brzdy, geometrie, vůle v podvozku.</td><td>U těžkého auta řešit rychle.</td></tr>
+          <tr><td>Vyšší teplota motoru</td><td>Chladicí kapalina, chladič, ventilátor, termostat, hadice.</td><td>Hned zastavit a nechat vychladnout.</td></tr>
+          <tr><td>Pískání/hučení z motoru</td><td>Řemen, kladky, turbo, netěsnost sání.</td><td>Diagnostika podle otáček a zátěže.</td></tr>
+          <tr><td>Kopání převodovky</td><td>Stav oleje, adaptace, diagnostika, teplota.</td><td>U automatu nečekat na poruchový režim.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">8. Co chtít po servisu</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Po každém servisu si nechte napsat přesně: datum, stav km, provedené úkony, použitý materiál, specifikaci oleje/kapalin, čísla dílů a případné doporučení další opravy. U dražších úkonů chtějte fotky původního stavu.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Úkon</th><th>Co má být na faktuře / protokolu</th></tr></thead>
+        <tbody>
+          <tr><td>Motorový olej</td><td>Značka, viskozita, specifikace, množství, filtr.</td></tr>
+          <tr><td>Převodovka</td><td>Typ oleje, množství, filtr/vana, postup, diagnostika.</td></tr>
+          <tr><td>Diferenciál</td><td>Typ oleje, množství, stav starého oleje.</td></tr>
+          <tr><td>Brzdy</td><td>Tloušťka destiček/kotoučů, kapalina, odvzdušnění.</td></tr>
+          <tr><td>Podvozek</td><td>Vůle, silentbloky, čepy, tlumiče, koroze.</td></tr>
+          <tr><td>Geometrie</td><td>Protokol před/po nastavení.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">9. Oddělený díl pro nástavbu</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Nástavbu je lepší vést zvlášť. Má jiné intervaly než Iveco: střecha a těsnění se řídí časem, voda hygienou, plyn revizí a elektro zatížením baterií. Druhý dokument proto bude samostatný: „Servisní deník obytné nástavby" — voda, plyn, Alde/Truma, Victron, soláry, střecha, okna, markýza a zazimování.</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px; display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+      <a href="files/servisni-denik-iveco-daily.pdf" class="dl-btn" target="_blank" rel="noopener">⬇ Stáhnout jako PDF</a>
+      <a href="index.html#vyvoj-servis" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600">← Zpět na Servisní deník</a>
+    </div>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Deník jednoho Phoenixu · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
