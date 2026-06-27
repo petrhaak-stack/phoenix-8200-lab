@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servicetagebuch Iveco Daily für Wohnmobile — Phoenix 8200 Lab</title>
+<meta name="description" content="Ein praktisches Servicetagebuch und Kontrollplan für ein Wohnmobil auf Iveco-Daily-Basis — Service-Spickzettel, Intervalle nach Kilometern und Zeit, Jahreskontrolle, Schnelldiagnose nach Symptom und ein Protokoll der durchgeführten Arbeiten. Auch als PDF zum Download.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  .svc-table{width:100%; border-collapse:collapse; font-size:14.5px; margin:0 0 36px}
+  .svc-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9a958c; font-weight:500; padding:0 14px 10px 0; border-bottom:1px solid #E7E4DC}
+  .svc-table td{padding:14px 14px 14px 0; border-bottom:1px solid #EEEBE2; color:#3d3a34; line-height:1.55; vertical-align:top}
+  .svc-table td:first-child{font-weight:600; color:#16140F; white-space:nowrap}
+  .svc-table.log td:first-child{font-weight:400; color:#3d3a34; white-space:normal; min-height:32px}
+  .dl-btn{display:inline-flex; align-items:center; gap:10px; text-decoration:none; background:var(--gold); color:#16140F; font-weight:600; font-size:14.5px; padding:13px 22px; border-radius:8px; white-space:nowrap}
+  .note-box{background:#FAF6EC; border:1px solid #E4D6B0; border-radius:8px; padding:18px 22px; margin:0 0 36px}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+    .svc-table{font-size:13px}
+    .hero-cta{flex-direction:column; align-items:flex-start !important}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+    .svc-table{display:block; overflow-x:auto; white-space:nowrap}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="index.html#auto" style="text-decoration:none; color:#4a463f">Über das Fahrzeug</a>
+        <a href="index.html#vyvoj" style="text-decoration:none; color:#4a463f">Entwicklung des Phoenix</a>
+        <a href="index.html#dily" style="text-decoration:none; color:#4a463f">Technik</a>
+        <a href="index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="index.html#galerie" style="text-decoration:none; color:#4a463f">Galerie</a>
+        <a href="index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Kontakt</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="index.html#vyvoj-servis" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Zurück zum Servicetagebuch</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Download · Wartung</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Servicetagebuch Iveco Daily für Wohnmobile</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 28px">Ein kurzer, praktischer Wartungsplan für Fahrgestell, Motor und Antriebsstrang. Version 1.0</p>
+      <div class="hero-cta" style="display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+        <a href="../files/servisni-denik-iveco-daily.pdf" class="dl-btn" target="_blank" rel="noopener">⬇ Als PDF herunterladen</a>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">Das PDF ist derzeit nur auf Tschechisch verfügbar · diese Seite gibt es auch in anderen Sprachen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <div class="note-box">
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 10px"><strong style="color:#16140F">Verwendung dieses Dokuments:</strong> Dieses Dokument ist bewusst kurz gehalten. Es ist kein Servicehandbuch und ersetzt nicht die VIN-spezifische Dokumentation von Iveco. Es ist ein praktisches Tagebuch und Kontrollplan für Besitzer eines Wohnmobils auf Iveco-Daily-Basis, insbesondere für Fahrzeuge mit geringer Jahresfahrleistung, hohem Gesamtgewicht und langen Standzeiten.</p>
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 10px">Bei Wohnmobilen zählen nicht nur Kilometer. Auch Zeit, Alter der Flüssigkeiten, Korrosion, Achslast, lange Standzeiten und Betrieb bei Hitze oder im Gebirge spielen eine Rolle.</p>
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0"><strong style="color:#16140F">Grundsatz:</strong> Was zuerst eintritt, gilt — Kilometer oder Zeit.</p>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">1. Service-Spickzettel — Iveco-Fahrgestell</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Wann</th><th>Was zu tun ist</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td>Vor jeder längeren Fahrt</td><td>Öl, Kühlmittel, Bremsen, Beleuchtung, Reifendruck und -zustand, Lecks unter dem Fahrzeug.</td><td>Dauert nur 5–10 Minuten. Bei einem schweren Wohnmobil ist das die günstigste Form der Vorbeugung.</td></tr>
+          <tr><td>Nach einer längeren Fahrt</td><td>Kontrolle auf Lecks, Reifen, Bremsen, Geruch von den Rädern, Zustand des Fahrgestells.</td><td>Besonders sinnvoll nach Bergfahrten, Autobahn und Hitze.</td></tr>
+          <tr><td>1× monatlich / bei Stillstand</td><td>Reifendruck, Batteriezustand, Sichtkontrolle von Riemen und Schläuchen, Korrosion.</td><td>Reifen und Batterien leiden auch ohne Fahrbetrieb.</td></tr>
+          <tr><td>1× jährlich oder 15.000–20.000 km</td><td>Motoröl + Ölfilter, Gesamtkontrolle von Fahrgestell und Bremsen.</td><td>Bei einem Wohnmobil empfiehlt sich eine konservativere Vorgehensweise als bei maximalen Flottenintervallen.</td></tr>
+          <tr><td>Alle 2 Jahre</td><td>Bremsflüssigkeit, Kontrolle der Klimaanlage, Desinfektion der Klimaanlage, Kontrolle der Gummischläuche.</td><td>Bremsflüssigkeit zieht auch bei geringer Fahrleistung Feuchtigkeit.</td></tr>
+          <tr><td>40.000 km oder 2 Jahre</td><td>Kraftstofffilter, Innenraumfilter, Kontrolle der Achsgeometrie, Kontrolle des Fahrgestells.</td><td>Bei staubigem Betrieb oder schlechterem Diesel früher.</td></tr>
+          <tr><td>60.000 km oder 3 Jahre</td><td>Luftfilter, Keilriemen, Spannrollen — Kontrolle/Austausch je nach Zustand.</td><td>Filter bei staubiger Umgebung früher wechseln.</td></tr>
+          <tr><td>80.000–100.000 km oder 5 Jahre</td><td>Automatikgetriebe — Öl, Filter/Ölwanne je nach Typ, Kontrolle auf Lecks.</td><td>Bei einem schweren Wohnmobil nicht auf eine „lebenslange" Füllung verlassen.</td></tr>
+          <tr><td>100.000 km oder 5 Jahre</td><td>Differenzial — Ölwechsel, Kontrolle der Gelenkwelle und des Spiels.</td><td>Günstige Vorbeugung gegen eine teure Reparatur.</td></tr>
+          <tr><td>5 Jahre</td><td>Kühlmittel gemäß Spezifikation, gründliche Kontrolle von Schläuchen und Schellen.</td><td>Halten Sie sich an die genaue Spezifikation für den jeweiligen Motor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px; line-height:1.6; color:#9a958c; margin:-16px 0 36px">Hinweis: Einige offizielle Iveco-Intervalle können länger sein und variieren je nach Modell, Motor, Öl, Nutzungsprofil und VIN. Dieser Plan ist bewusst konservativ für ein Wohnmobil ausgelegt.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">2. Betriebsflüssigkeiten — was zu protokollieren ist</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>System</th><th>Was ins Tagebuch eingetragen wird</th><th>Empfehlung</th></tr></thead>
+        <tbody>
+          <tr><td>Motor</td><td>Datum, km, Öltyp, Spezifikation, Menge, Filter.</td><td>Bei geringer Fahrleistung mindestens 1× jährlich wechseln.</td></tr>
+          <tr><td>Automatikgetriebe</td><td>Datum, km, Öltyp, Filter/Ölwanne, Wechselmethode.</td><td>Idealerweise eine Fachwerkstatt mit Diagnose und korrekter Öltemperatur.</td></tr>
+          <tr><td>Differenzial</td><td>Datum, km, Öltyp, Menge, Zustand des Magneten/der Ablassschraube.</td><td>Nach dem Wechsel ein Foto der Ablassschraube und des Öls speichern.</td></tr>
+          <tr><td>Bremsen</td><td>Bremsflüssigkeit, Datum, km, Siedepunkt, falls gemessen.</td><td>Ein 2-Jahres-Intervall ist auch bei geringer Fahrleistung sinnvoll.</td></tr>
+          <tr><td>Kühlung</td><td>Kühlmitteltyp, Mischverhältnis, Datum, km.</td><td>Keine ungeprüften Kühlmitteltypen mischen.</td></tr>
+          <tr><td>Klimaanlage</td><td>Service, Kältemittelmenge, Öl, Desinfektion.</td><td>Auch behandeln, wenn sie noch kühlt — wegen Dichtheit und Geruch.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 12px; color:#16140F">3. Servicetagebuch — Eintrag der Arbeiten</h2>
+    <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 20px">Eine Vorlage für eigene Einträge. Zum Herunterladen und Ausfüllen empfehlen wir die PDF-Version oben.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table log">
+        <thead><tr><th>Datum</th><th>Km</th><th>Durchgeführte Arbeit</th><th>Material / Spezifikation</th><th>Werkstatt / Person</th><th>Preis</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 12px; color:#16140F">4. Jahreskontrolle des Iveco-Fahrgestells</h2>
+    <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 20px">Diese Seite kann ausgedruckt und bei jeder Jahreswartung abgehakt werden.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table log">
+        <thead><tr><th>Bereich</th><th>Kontrolle</th><th>OK / Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td>Motor</td><td>Ölundichtigkeiten, Ölzustand, Filter, Motorgeräusch, Kaltstarts.</td><td>&nbsp;</td></tr>
+          <tr><td>Kühlung</td><td>Füllstand, Farbe der Flüssigkeit, Schläuche, Schellen, Ausgleichsbehälter, Kühler.</td><td>&nbsp;</td></tr>
+          <tr><td>Ansaugung/Turbo</td><td>Ansaugschläuche, Undichtigkeiten, Pfeifgeräusche, Öl im Ansaugtrakt, Ladeluftkühler.</td><td>&nbsp;</td></tr>
+          <tr><td>Riemen</td><td>Keilriemen, Riemenscheiben, Spanner, Risse, Geräusche.</td><td>&nbsp;</td></tr>
+          <tr><td>Bremsen</td><td>Beläge, Scheiben, Bremssättel, Leitungen, Schläuche, Handbremse.</td><td>&nbsp;</td></tr>
+          <tr><td>Fahrgestell</td><td>Bolzen, Gummilager, Blattfedern, Anschläge, Stoßdämpfer, Spiel.</td><td>&nbsp;</td></tr>
+          <tr><td>Lenkung</td><td>Spiel, Manschetten, Lecks von Flüssigkeit/Schmiermittel, Geometrie.</td><td>&nbsp;</td></tr>
+          <tr><td>Reifen</td><td>DOT-Datum, Druck nach Beladung, Risse, ungleichmäßiger Verschleiß.</td><td>&nbsp;</td></tr>
+          <tr><td>Gelenkwelle</td><td>Spiel, Kreuzgelenke, Lagerung, Vibrationen unter Last.</td><td>&nbsp;</td></tr>
+          <tr><td>Differenzial</td><td>Undichtigkeiten, Brummgeräusch, Öl gemäß Intervall.</td><td>&nbsp;</td></tr>
+          <tr><td>Korrosion</td><td>Rahmen, Achsen, Halterungen, Bremsleitungen, Schweller, Hohlräume.</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">5. Intervalle nach Kilometern</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Km</th><th>Empfohlene Maßnahme</th></tr></thead>
+        <tbody>
+          <tr><td>15.000–20.000</td><td>Motoröl + Filter; Kontrolle von Fahrgestell und Bremsen.</td></tr>
+          <tr><td>40.000</td><td>Kraftstofffilter; Innenraumfilter; Kontrolle der Achsgeometrie.</td></tr>
+          <tr><td>60.000</td><td>Luftfilter; Kontrolle/Austausch von Keilriemen und Riemenscheiben je nach Zustand.</td></tr>
+          <tr><td>80.000–100.000</td><td>Automatikgetriebe — Öl und Filter/Ölwanne je nach Getriebetyp.</td></tr>
+          <tr><td>100.000</td><td>Differenzial — Öl; Kontrolle der Gelenkwelle.</td></tr>
+          <tr><td>120.000</td><td>Gründliche Kontrolle von Fahrgestell, Lagern, Gummilagern und Stoßdämpfern.</td></tr>
+          <tr><td>150.000–200.000</td><td>Größeren Getriebe-/Differenzialservice je nach Verlauf und Belastung wiederholen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">6. Intervalle nach Zeit</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Zeit</th><th>Empfohlene Maßnahme</th></tr></thead>
+        <tbody>
+          <tr><td>Jeden Monat</td><td>Reifendruck, Sichtkontrolle auf Lecks, Batterie, Korrosion.</td></tr>
+          <tr><td>Jedes Jahr</td><td>Motoröl + Filter, vollständige Kontrolle von Fahrgestell, Bremsen und Reifen.</td></tr>
+          <tr><td>2 Jahre</td><td>Bremsflüssigkeit, Klimaanlage, Kontrolle von Schläuchen und Gummiteilen.</td></tr>
+          <tr><td>3 Jahre</td><td>Gründliche Kontrolle von Riemen, Riemenscheiben, Gummilagern und Kühlung.</td></tr>
+          <tr><td>5 Jahre</td><td>Kühlmittel gemäß Spezifikation; Getriebe/Differenzial, falls nicht bereits nach km gewechselt.</td></tr>
+          <tr><td>6–7 Jahre</td><td>Reifen sehr sorgfältig beurteilen, auch mit Restprofil. Bei schweren Wohnmobilen sind Alter und Belastung entscheidend.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">7. Schnelldiagnose nach Symptom</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Symptom</th><th>Was zuerst zu prüfen ist</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td>Vibrationen unter Last</td><td>Gelenkwelle, Lagerung, Reifen, Differenzial.</td><td>Nicht aufschieben, kann sich verschlimmern.</td></tr>
+          <tr><td>Brummen von hinten</td><td>Differenzial, Lager, Reifen.</td><td>Geschwindigkeit und Last beim Auftreten notieren.</td></tr>
+          <tr><td>Weiches Bremspedal</td><td>Bremsflüssigkeit, Undichtigkeit, Luft im System.</td><td>Sicherheitsrelevanter Defekt.</td></tr>
+          <tr><td>Ziehen zur Seite</td><td>Reifendruck, Bremsen, Geometrie, Spiel im Fahrgestell.</td><td>Bei einem schweren Fahrzeug zügig beheben.</td></tr>
+          <tr><td>Höhere Motortemperatur</td><td>Kühlmittel, Kühler, Lüfter, Thermostat, Schläuche.</td><td>Sofort anhalten und abkühlen lassen.</td></tr>
+          <tr><td>Pfeifen/Brummen vom Motor</td><td>Riemen, Riemenscheiben, Turbo, Undichtigkeit im Ansaugtrakt.</td><td>Diagnose nach Drehzahl und Last.</td></tr>
+          <tr><td>Rucken des Getriebes</td><td>Ölzustand, Adaption, Diagnose, Temperatur.</td><td>Bei einer Automatik nicht auf den Notlaufmodus warten.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">8. Was nach dem Service zu verlangen ist</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">Lassen Sie sich nach jedem Service genau Folgendes dokumentieren: Datum, Kilometerstand, durchgeführte Arbeiten, verwendetes Material, Öl-/Flüssigkeitsspezifikation, Teilenummern und etwaige Empfehlungen für weitere Reparaturen. Bei teureren Arbeiten Fotos des ursprünglichen Zustands verlangen.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Arbeit</th><th>Was auf der Rechnung / im Protokoll stehen sollte</th></tr></thead>
+        <tbody>
+          <tr><td>Motoröl</td><td>Marke, Viskosität, Spezifikation, Menge, Filter.</td></tr>
+          <tr><td>Getriebe</td><td>Öltyp, Menge, Filter/Ölwanne, Vorgehen, Diagnose.</td></tr>
+          <tr><td>Differenzial</td><td>Öltyp, Menge, Zustand des Altöls.</td></tr>
+          <tr><td>Bremsen</td><td>Dicke der Beläge/Scheiben, Flüssigkeit, Entlüftung.</td></tr>
+          <tr><td>Fahrgestell</td><td>Spiel, Gummilager, Bolzen, Stoßdämpfer, Korrosion.</td></tr>
+          <tr><td>Achsgeometrie</td><td>Protokoll vor/nach der Einstellung.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">9. Ein eigener Abschnitt für den Wohnaufbau</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">Den Wohnaufbau führt man besser getrennt. Er hat andere Intervalle als das Iveco-Fahrgestell: Dach und Dichtungen richten sich nach der Zeit, Wasser nach der Hygiene, Gas nach der Prüfung und die Elektrik nach der Batteriebelastung. Das zweite Dokument wird daher separat sein: „Servicetagebuch Wohnaufbau" — Wasser, Gas, Alde/Truma, Victron, Solar, Dach, Fenster, Markise und Einwintern.</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px; display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+      <a href="../files/servisni-denik-iveco-daily.pdf" class="dl-btn" target="_blank" rel="noopener">⬇ Als PDF herunterladen</a>
+      <a href="index.html#vyvoj-servis" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600">← Zurück zum Servicetagebuch</a>
+    </div>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Tagebuch eines Phoenix · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
