@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iveco Daily Service Log for Motorhomes — Phoenix 8200 Lab</title>
+<meta name="description" content="A practical service log and inspection plan for a motorhome built on the Iveco Daily chassis — a service cheat sheet, intervals by mileage and time, annual inspection, quick diagnosis by symptom, and a log of completed work. Also available as a PDF download.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  ::selection{background:#1a1813;color:#fff}
+  :root{
+    --gold:#b08d4e;
+    --display:'Newsreader', Georgia, serif;
+  }
+  a{transition:background .15s ease, border-color .15s ease}
+  .hover-row:hover{background:#161513}
+  .nav-toggle{display:none}
+  .svc-table{width:100%; border-collapse:collapse; font-size:14.5px; margin:0 0 36px}
+  .svc-table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#9a958c; font-weight:500; padding:0 14px 10px 0; border-bottom:1px solid #E7E4DC}
+  .svc-table td{padding:14px 14px 14px 0; border-bottom:1px solid #EEEBE2; color:#3d3a34; line-height:1.55; vertical-align:top}
+  .svc-table td:first-child{font-weight:600; color:#16140F; white-space:nowrap}
+  .svc-table.log td:first-child{font-weight:400; color:#3d3a34; white-space:normal; min-height:32px}
+  .dl-btn{display:inline-flex; align-items:center; gap:10px; text-decoration:none; background:var(--gold); color:#16140F; font-weight:600; font-size:14.5px; padding:13px 22px; border-radius:8px; white-space:nowrap}
+  .note-box{background:#FAF6EC; border:1px solid #E4D6B0; border-radius:8px; padding:18px 22px; margin:0 0 36px}
+  @media (max-width: 900px){
+    .grid-2{grid-template-columns:1fr !important}
+    h1{font-size:34px !important}
+    .nav-toggle{display:flex !important}
+    .main-nav{display:none !important; position:fixed; top:68px; left:0; right:0; max-height:calc(100vh - 68px); overflow-y:auto; background:#FAFAF8; border-bottom:1px solid #E7E4DC; box-shadow:0 16px 32px -12px rgba(0,0,0,0.18); flex-direction:column; align-items:stretch !important; gap:0 !important; padding:8px 24px 18px; z-index:49}
+    .main-nav.open{display:flex !important}
+    .main-nav a{padding:13px 0; border-bottom:1px solid #EEEBE2; width:100%}
+    .main-nav a:last-child{border-bottom:none; margin-top:10px; text-align:center}
+    .svc-table{font-size:13px}
+    .hero-cta{flex-direction:column; align-items:flex-start !important}
+  }
+  @media (max-width: 700px){
+    .article-body{padding-left:24px !important; padding-right:24px !important}
+    .svc-table{display:block; overflow-x:auto; white-space:nowrap}
+  }
+  @media (max-width: 560px){
+    h1{font-size:29px !important}
+    h2{font-size:23px !important}
+  }
+</style>
+</head>
+<body>
+<div style="background:#FAFAF8; color:#16140F; font-family:'Archivo',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.86); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid #E7E4DC">
+    <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <a href="index.html#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit">
+        <span style="display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500">P</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em; font-weight:500; text-transform:uppercase">Phoenix 8200 Lab</span>
+      </a>
+      <nav id="mainNav" class="main-nav" style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500">
+        <a href="index.html#auto" style="text-decoration:none; color:#4a463f">About the vehicle</a>
+        <a href="index.html#vyvoj" style="text-decoration:none; color:#4a463f">Phoenix development</a>
+        <a href="index.html#dily" style="text-decoration:none; color:#4a463f">Technology</a>
+        <a href="index.html#blog" style="text-decoration:none; color:#4a463f">Blog</a>
+        <a href="index.html#galerie" style="text-decoration:none; color:#4a463f">Gallery</a>
+        <a href="index.html#dotazy" style="text-decoration:none; color:#16140F; border:1px solid #16140F; padding:8px 16px; border-radius:999px">Contact</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="var n=document.getElementById('mainNav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));this.textContent=n.classList.contains('open')?'✕':'☰'" style="align-items:center; justify-content:center; width:38px; height:38px; flex-shrink:0; background:none; border:1px solid #E7E4DC; border-radius:6px; cursor:pointer; font-size:17px; color:#16140F; line-height:1">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section style="background:#111010; color:#F3F1EA">
+    <div style="max-width:760px; margin:0 auto; padding:64px 40px 56px">
+      <a href="index.html#vyvoj-servis" style="text-decoration:none; color:#9b968c; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; display:inline-flex; align-items:center; gap:8px; margin-bottom:28px">← Back to Service log</a>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; margin-bottom:16px">Download · Service</div>
+      <h1 style="font-family:var(--display); font-weight:400; font-size:42px; line-height:1.15; letter-spacing:-0.015em; margin:0 0 16px; color:#F3F1EA">Iveco Daily Service Log for Motorhomes</h1>
+      <p style="font-family:var(--display); font-style:italic; font-size:18px; line-height:1.5; color:#B8B3A8; margin:0 0 28px">A short, practical maintenance plan for the chassis, engine and drivetrain. Version 1.0</p>
+      <div class="hero-cta" style="display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+        <a href="../files/servisni-denik-iveco-daily.pdf" class="dl-btn" target="_blank" rel="noopener">⬇ Download as PDF</a>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#75716a">The PDF is currently Czech-only · this page is also available in other languages</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY ============ -->
+  <article class="article-body" style="max-width:760px; margin:0 auto; padding:64px 40px 96px">
+
+    <div class="note-box">
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 10px"><strong style="color:#16140F">How to use this document:</strong> This document is intentionally short. It is not a service manual and does not replace Iveco's VIN-specific documentation. It's a practical log and inspection plan for owners of a motorhome built on the Iveco Daily chassis, especially vehicles with low annual mileage, high gross weight, and long periods of standing still.</p>
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 10px">For motorhomes, mileage alone doesn't tell the whole story. Time, fluid age, corrosion, axle loads, long periods of inactivity, and operation in heat or hilly terrain all matter too.</p>
+      <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0"><strong style="color:#16140F">Rule of thumb:</strong> whichever comes first applies — mileage or time.</p>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">1. Service cheat sheet — Iveco chassis</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>When</th><th>What to do</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Before every longer trip</td><td>Oil, coolant, brakes, lights, tire pressure and condition, leaks underneath the vehicle.</td><td>Takes just 5–10 minutes. For a heavy motorhome, this is the cheapest form of prevention.</td></tr>
+          <tr><td>After a longer trip</td><td>Check for leaks, tires, brakes, smell from the wheels, chassis condition.</td><td>Especially useful after mountains, highway driving, or hot weather.</td></tr>
+          <tr><td>Once a month / during downtime</td><td>Tire pressure, battery condition, visual check of belts and hoses, corrosion.</td><td>Tires and batteries deteriorate even without driving.</td></tr>
+          <tr><td>Once a year or 15,000–20,000 km</td><td>Engine oil + oil filter, full inspection of chassis and brakes.</td><td>For a motorhome, it's wiser to be more conservative than fleet-vehicle maximum intervals.</td></tr>
+          <tr><td>Every 2 years</td><td>Brake fluid, air conditioning inspection, A/C disinfection, rubber hose inspection.</td><td>Brake fluid absorbs moisture even with low mileage.</td></tr>
+          <tr><td>40,000 km or 2 years</td><td>Fuel filter, cabin filter, wheel alignment check, chassis inspection.</td><td>Sooner in dusty conditions or with lower-quality diesel.</td></tr>
+          <tr><td>60,000 km or 3 years</td><td>Air filter, accessory belt, tensioner pulleys — inspect/replace based on condition.</td><td>Replace the filter sooner in dusty environments.</td></tr>
+          <tr><td>80,000–100,000 km or 5 years</td><td>Automatic transmission — oil, filter/pan depending on type, leak inspection.</td><td>For a heavy motorhome, don't rely on a "lifetime" fluid claim.</td></tr>
+          <tr><td>100,000 km or 5 years</td><td>Differential — oil change, driveshaft and play inspection.</td><td>Cheap prevention against an expensive repair.</td></tr>
+          <tr><td>5 years</td><td>Coolant per specification, thorough inspection of hoses and clamps.</td><td>Follow the exact specification for your specific engine.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px; line-height:1.6; color:#9a958c; margin:-16px 0 36px">Note: some official Iveco intervals may be longer and vary by model, engine, oil, usage profile and VIN. This plan is intentionally conservative for a motorhome.</p>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">2. Fluids — what to log</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>System</th><th>What to record in the log</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td>Engine</td><td>Date, mileage, oil type, specification, quantity, filter.</td><td>Change at least once a year for low-mileage use.</td></tr>
+          <tr><td>Automatic transmission</td><td>Date, mileage, oil type, filter/pan, replacement method.</td><td>Ideally a specialist workshop with diagnostics and correct oil temperature.</td></tr>
+          <tr><td>Differential</td><td>Date, mileage, oil type, quantity, magnet/drain plug condition.</td><td>After a change, save a photo of the drain plug and the oil.</td></tr>
+          <tr><td>Brakes</td><td>Brake fluid, date, mileage, boiling point if measured.</td><td>A 2-year interval is reasonable even with low mileage.</td></tr>
+          <tr><td>Cooling</td><td>Coolant type, mixture ratio, date, mileage.</td><td>Don't mix unverified coolant types.</td></tr>
+          <tr><td>Air conditioning</td><td>Service, refrigerant quantity, oil, disinfection.</td><td>Service it even if it's still cooling — for tightness and odor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 12px; color:#16140F">3. Service log — work record</h2>
+    <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 20px">A template for your own records. We recommend downloading and filling in the PDF version above.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table log">
+        <thead><tr><th>Date</th><th>Mileage</th><th>Work performed</th><th>Material / specification</th><th>Workshop / person</th><th>Cost</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 12px; color:#16140F">4. Annual inspection of the Iveco chassis</h2>
+    <p style="font-size:15px; line-height:1.7; color:#5a564e; margin:0 0 20px">This page can be printed out and checked off at each annual service.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table log">
+        <thead><tr><th>Area</th><th>Inspection</th><th>OK / note</th></tr></thead>
+        <tbody>
+          <tr><td>Engine</td><td>Oil leaks, oil condition, filters, engine noise, cold starts.</td><td>&nbsp;</td></tr>
+          <tr><td>Cooling</td><td>Level, fluid color, hoses, clamps, expansion tank, radiator.</td><td>&nbsp;</td></tr>
+          <tr><td>Intake/turbo</td><td>Intake hoses, leaks, whistling, oil in the intake, intercooler.</td><td>&nbsp;</td></tr>
+          <tr><td>Belts</td><td>Accessory belt, pulleys, tensioner, cracks, noise.</td><td>&nbsp;</td></tr>
+          <tr><td>Brakes</td><td>Pads, discs, calipers, lines, hoses, handbrake.</td><td>&nbsp;</td></tr>
+          <tr><td>Chassis</td><td>Pins, rubber bushings, leaf springs, bump stops, shocks, play.</td><td>&nbsp;</td></tr>
+          <tr><td>Steering</td><td>Play, boots, fluid/grease leaks, alignment.</td><td>&nbsp;</td></tr>
+          <tr><td>Tires</td><td>DOT date, pressure for load, cracks, uneven wear.</td><td>&nbsp;</td></tr>
+          <tr><td>Driveshaft</td><td>Play, universal joints, mounting, vibration under load.</td><td>&nbsp;</td></tr>
+          <tr><td>Differential</td><td>Leaks, whining noise, oil per interval.</td><td>&nbsp;</td></tr>
+          <tr><td>Corrosion</td><td>Frame, axles, brackets, brake lines, sills, cavities.</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">5. Intervals by mileage</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Km</th><th>Recommended action</th></tr></thead>
+        <tbody>
+          <tr><td>15,000–20,000</td><td>Engine oil + filter; chassis and brake inspection.</td></tr>
+          <tr><td>40,000</td><td>Fuel filter; cabin filter; wheel alignment check.</td></tr>
+          <tr><td>60,000</td><td>Air filter; inspect/replace accessory belt and pulleys based on condition.</td></tr>
+          <tr><td>80,000–100,000</td><td>Automatic transmission — oil and filter/pan depending on transmission type.</td></tr>
+          <tr><td>100,000</td><td>Differential — oil; driveshaft inspection.</td></tr>
+          <tr><td>120,000</td><td>Thorough inspection of chassis, bearings, rubber bushings and shock absorbers.</td></tr>
+          <tr><td>150,000–200,000</td><td>Repeat the major transmission/differential service depending on history and load.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">6. Intervals by time</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Time</th><th>Recommended action</th></tr></thead>
+        <tbody>
+          <tr><td>Every month</td><td>Tire pressure, visual leak inspection, battery, corrosion.</td></tr>
+          <tr><td>Every year</td><td>Engine oil + filter, full inspection of chassis, brakes and tires.</td></tr>
+          <tr><td>2 years</td><td>Brake fluid, A/C, inspection of hoses and rubber parts.</td></tr>
+          <tr><td>3 years</td><td>Thorough inspection of belts, pulleys, rubber bushings and cooling.</td></tr>
+          <tr><td>5 years</td><td>Coolant per specification; transmission/differential if not already replaced by mileage.</td></tr>
+          <tr><td>6–7 years</td><td>Assess tires very carefully, even with tread remaining. For heavy motorhomes, age and load matter most.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 20px; color:#16140F">7. Quick diagnosis by symptom</h2>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Symptom</th><th>What to check first</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Vibration under load</td><td>Driveshaft, mounts, tires, differential.</td><td>Don't put it off — it tends to get worse.</td></tr>
+          <tr><td>Whining from the rear</td><td>Differential, bearings, tires.</td><td>Note the speed and load when it occurs.</td></tr>
+          <tr><td>Soft brake pedal</td><td>Brake fluid, leaks, air in the system.</td><td>Safety-critical issue.</td></tr>
+          <tr><td>Pulling to one side</td><td>Tire pressure, brakes, alignment, chassis play.</td><td>Address quickly on a heavy vehicle.</td></tr>
+          <tr><td>Higher engine temperature</td><td>Coolant, radiator, fan, thermostat, hoses.</td><td>Stop immediately and let it cool down.</td></tr>
+          <tr><td>Whistling/whining from the engine</td><td>Belt, pulleys, turbo, intake leak.</td><td>Diagnose based on RPM and load.</td></tr>
+          <tr><td>Transmission kicking/jerking</td><td>Oil condition, adaptation, diagnostics, temperature.</td><td>Don't wait for fail-safe mode on an automatic.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">8. What to ask for after a service</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 20px">After every service, request exact documentation: date, mileage, work performed, materials used, oil/fluid specification, part numbers, and any recommendations for future repairs. For more expensive jobs, ask for photos of the original condition.</p>
+    <div style="overflow-x:auto">
+      <table class="svc-table">
+        <thead><tr><th>Work</th><th>What should be on the invoice / report</th></tr></thead>
+        <tbody>
+          <tr><td>Engine oil</td><td>Brand, viscosity, specification, quantity, filter.</td></tr>
+          <tr><td>Transmission</td><td>Oil type, quantity, filter/pan, procedure, diagnostics.</td></tr>
+          <tr><td>Differential</td><td>Oil type, quantity, condition of the old oil.</td></tr>
+          <tr><td>Brakes</td><td>Pad/disc thickness, fluid, bleeding.</td></tr>
+          <tr><td>Chassis</td><td>Play, rubber bushings, pins, shocks, corrosion.</td></tr>
+          <tr><td>Alignment</td><td>Before/after adjustment report.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--display); font-weight:500; font-size:26px; line-height:1.25; letter-spacing:-0.01em; margin:0 0 16px; color:#16140F">9. A separate section for the living module</h2>
+    <p style="font-size:16px; line-height:1.75; color:#3d3a34; margin:0 0 40px">It's better to track the living module separately. It has different intervals than the Iveco chassis: the roof and seals are governed by time, water by hygiene, gas by inspection, and the electrical system by battery load. The second document will therefore be separate: "Living Module Service Log" — water, gas, Alde/Truma, Victron, solar, roof, windows, awning, and winterizing.</p>
+
+    <div style="border-top:1px solid #E7E4DC; padding-top:32px; display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+      <a href="../files/servisni-denik-iveco-daily.pdf" class="dl-btn" target="_blank" rel="noopener">⬇ Download as PDF</a>
+      <a href="index.html#vyvoj-servis" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#16140F; font-size:14px; font-weight:600">← Back to Service log</a>
+    </div>
+  </article>
+
+  <footer style="max-width:1280px; margin:0 auto; padding:0 40px 64px; border-top:1px solid #E7E4DC; padding-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:1.5px solid var(--gold); border-radius:50%; color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px">P</span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#5a564e; text-transform:uppercase">Phoenix 8200 Lab</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#9a958c">Diary of a Phoenix · © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
