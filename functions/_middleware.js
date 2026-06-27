@@ -490,6 +490,23 @@ export async function onRequest(context) {
     return decoratePage(originResponse, originPath);
   }
 
+  // 3b) Cizí jazyk: pokud už pro danou stránku existuje hotový, ručně
+  // přeložený statický soubor (např. /en/index.html, /de/blog/...), použijeme
+  // ho přímo — žádné AI, žádný KV, žádný risk poškozených relativních cest
+  // nebo nekvalitního/zkráceného překladu. Workers AI překlad "na počkání"
+  // (níž) zůstává jen jako fallback pro stránky/jazyky, pro které statický
+  // překlad (ještě) neexistuje — typicky nově přidaný obsah nebo jazyky
+  // mimo en/de, které se zatím ručně nepřekládají.
+  let staticPath = pathname;
+  if (!hasFileExtension) {
+    staticPath = pathname.endsWith("/") ? `${pathname}index.html` : `${pathname}/index.html`;
+  }
+  const staticUrl = new URL(staticPath, url.origin);
+  const staticResponse = await env.ASSETS.fetch(new Request(staticUrl, request));
+  if (staticResponse.ok) {
+    return decoratePage(staticResponse, originPath, lang);
+  }
+
   // DOČASNÉ DEBUG: ?debug=1 obejde KV cache (mohla v sobě mít zacachovaný
   // "úspěšný", ale ve skutečnosti nepřeložený výsledek) a ukáže skutečné
   // chyby z AI volání místo tichého fallbacku. Po vyřešení smazat.
