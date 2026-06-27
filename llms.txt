@@ -30,7 +30,7 @@ Jazykové verze jsou vzájemně propojené přes hreflang/canonical značky a sd
 
 ## Ke stažení
 
-- [Servisní deník Iveco Daily pro obytný vůz](https://phoenix7.vip/servisni-denik-iveco-daily.html): Praktický servisní tahák a kontrolní plán pro podvozek Iveco Daily — intervaly podle kilometrů a času, roční kontrola, rychlá diagnostika podle příznaku. Dostupný i jako PDF ke stažení (zatím pouze v češtině).
+- [Servisní deník Iveco Daily pro obytný vůz](https://phoenix7.vip/servisni-denik-iveco-daily.html): Praktický servisní tahák a kontrolní plán pro podvozek Iveco Daily — intervaly podle kilometrů a času, roční kontrola, rychlá diagnostika podle příznaku. Dostupný i jako PDF ke stažení v češtině, angličtině a němčině.
 
 ## Pro AI agenty / crawlery
 
